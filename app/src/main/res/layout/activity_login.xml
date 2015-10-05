@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/user_email_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/user_email_text" />
+
+    <EditText
+        android:id="@+id/user_email_value"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/user_email_text"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/user_pwd_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_email_text"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/user_pwd_text"/>
+
+    <EditText
+        android:id="@+id/user_pwd_value"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_email_text"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/user_pwd_text"/>
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_pwd_text"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="80dp"
+        android:text="@string/submit_btn"
+        bootstrap:bb_type="success"
+        bootstrap:bb_size="small" />
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_pwd_text"
+        android:layout_toRightOf="@+id/submit_btn"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/cancel_btn"
+        bootstrap:bb_type="danger"
+        bootstrap:bb_size="small" />
+</RelativeLayout>
