@@ -128,6 +128,7 @@ public class BaseActivity extends ActionBarActivity {
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+//                asdf
                 invalidateOptionsMenu();
             }
 
