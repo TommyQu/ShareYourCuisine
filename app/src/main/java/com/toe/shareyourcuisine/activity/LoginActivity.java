@@ -1,8 +1,11 @@
-package com.toe.shareyourcuisine;
+package com.toe.shareyourcuisine.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.toe.shareyourcuisine.R;
 
 /**
  * Project: Share Your Cuisine
@@ -24,5 +27,13 @@ public class LoginActivity extends BaseActivity {
         mContentView = (FrameLayout)findViewById(R.id.content);
         View child = getLayoutInflater().inflate(R.layout.activity_login, null);
         mContentView.addView(child);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        finish();
+        startActivity(intent);
     }
 }

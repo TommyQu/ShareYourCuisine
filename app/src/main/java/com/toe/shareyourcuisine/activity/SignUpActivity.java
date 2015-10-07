@@ -1,11 +1,13 @@
-package com.toe.shareyourcuisine;
+package com.toe.shareyourcuisine.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.FrameLayout;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.toe.shareyourcuisine.R;
 
 /**
  * Created by kukentaira on 10/5/15.
@@ -42,5 +44,12 @@ public class SignUpActivity extends BaseActivity {
 //        });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+        finish();
+        startActivity(intent);
+    }
 
 }

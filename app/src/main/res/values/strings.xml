@@ -15,4 +15,7 @@
     <string name="user_des_text">Description:</string>
     <string name="submit_btn">Submit</string>
     <string name="cancel_btn">Cancel</string>
+    <string name="menu_text">Menu</string>
+    <string name="post_text">Post</string>
+    <string name="activity_text">Activity</string>
 </resources>
