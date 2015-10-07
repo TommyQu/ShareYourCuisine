@@ -1,4 +1,4 @@
-package com.toe.shareyourcuisine;
+package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.toe.shareyourcuisine.R;
 
 /**
  * Project: Share Your Cuisine
@@ -112,6 +114,7 @@ public class BaseActivity extends ActionBarActivity {
                 else if (position == 5) {
                     intent.setClass(BaseActivity.this, ActivityActivity.class);
                 }
+                finish();
                 startActivity(intent);
 
             }

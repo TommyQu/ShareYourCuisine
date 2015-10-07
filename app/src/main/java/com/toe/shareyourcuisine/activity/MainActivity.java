@@ -1,8 +1,10 @@
-package com.toe.shareyourcuisine;
+package com.toe.shareyourcuisine.activity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.toe.shareyourcuisine.R;
 
 /**
  * Project: Share Your Cuisine

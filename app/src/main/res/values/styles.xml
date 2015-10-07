@@ -2,13 +2,21 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
-        <!-- Customize your theme here. -->
+        <!--<item name="android:actionBarStyle">@style/SycActionBar</item>-->
     </style>
 
-    <style name="edittext_style" parent="@android:style/Widget.EditText">
-        <item name="android:background">@drawable/selector_edittext_bg</item>
-        <item name="android:width">100dp</item>
-        <item name="android:height">30dp</item>
-    </style>
+    <!--<style name="SycActionBar" parent="Widget.AppCompat.Light.ActionBar">-->
+        <!--<item name="android:background">#FF0000</item>-->
+    <!--</style>-->
+
+    <!--<style name="drawerLayoutFont">-->
+        <!--<item name="android:textColor">@color/white</item>-->
+    <!--</style>-->
+
+    <!--<style name="edittext_style" parent="@android:style/Widget.EditText">-->
+        <!--<item name="android:background">@drawable/selector_edittext_bg</item>-->
+        <!--<item name="android:width">100dp</item>-->
+        <!--<item name="android:height">30dp</item>-->
+    <!--</style>-->
 
 </resources>
