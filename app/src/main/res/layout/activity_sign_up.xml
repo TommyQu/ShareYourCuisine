@@ -5,7 +5,7 @@
     xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <!--this is a test-->
     <TextView
         android:id="@+id/user_email_text"
         android:layout_width="wrap_content"
