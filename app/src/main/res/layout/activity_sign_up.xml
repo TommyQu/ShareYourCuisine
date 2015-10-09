@@ -132,8 +132,8 @@
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:layout_below="@+id/user_confirm_pwd_value"
-        android:layout_marginTop="12dp"
-        android:layout_marginLeft="80dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="30dp">
     </DatePicker>
 
     <TextView
