@@ -2,46 +2,46 @@
 <items version="2" >
 
     <item
-        jar="/Users/kukentaira/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-0cb6a98e9b33bf5ced4fb94196ced04208a85436.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/libs/Parse-1.10.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="181b435832725bec96c11ff568bdfbccdacab944">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/Parse-1.10.1-65782d5e65bfb258619954ddeb072f0467fd74eb.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-58f3cfc3cd57c4bc2db8c3c00e9d0df37636781d.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-119043bc68a0d2e1f5dbc051ceeb83cc955f4447.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-c3feb1225d86382888e6a096dfbca006e181abc2.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar"
+        jar="/Users/Theon_Z/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-fef86e9a742029a9df6adc1328af4a3c3f6ab722.jar" />
+        <dex dex="/Users/Theon_Z/Documents/Git_Projects/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-93da8e59cf72793af7452dee8ab1827b36ca0c57.jar" />
+    </item>
+    <item
+        jar="/Users/Theon_Z/Documents/Git_Projects/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/Theon_Z/Documents/Git_Projects/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-a8b77ffc29b907fc5f42d492d971098609f7615c.jar" />
+    </item>
+    <item
+        jar="/Users/Theon_Z/Documents/Git_Projects/ShareYourCuisine/app/libs/Parse-1.10.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="181b435832725bec96c11ff568bdfbccdacab944">
+        <dex dex="/Users/Theon_Z/Documents/Git_Projects/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/Parse-1.10.1-77fee685a72db73121619a5c5b7bd422570d454c.jar" />
+    </item>
+    <item
+        jar="/Users/Theon_Z/Documents/Git_Projects/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Users/Theon_Z/Documents/Git_Projects/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-45b5dc20121eb14f9a9bb3bc6f99435cf9ee0001.jar" />
+    </item>
+    <item
+        jar="/Users/Theon_Z/Documents/Git_Projects/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/Theon_Z/Documents/Git_Projects/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-e6695f57a1d873a8cb7e91a17d1002d34d6aa1d7.jar" />
+    </item>
+    <item
+        jar="/Users/Theon_Z/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/Theon_Z/Documents/Git_Projects/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-6560e958e0f5ecf9dd0824b95eff0c55d864655e.jar" />
     </item>
 
 </items>
