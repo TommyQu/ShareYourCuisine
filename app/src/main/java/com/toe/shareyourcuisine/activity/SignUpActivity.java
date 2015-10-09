@@ -3,10 +3,10 @@ package com.toe.shareyourcuisine.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.FrameLayout;
 
-import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.toe.shareyourcuisine.R;
 
 /**
@@ -15,7 +15,7 @@ import com.toe.shareyourcuisine.R;
 public class SignUpActivity extends BaseActivity {
 
     private FrameLayout mContentView;
-    private BootstrapButton mCancelBtn;
+    private Button mCancelBtn;
     private DatePicker mDatePicker;
 
     @Override
@@ -26,7 +26,7 @@ public class SignUpActivity extends BaseActivity {
         mContentView.addView(child);
 
         mDatePicker = (DatePicker)findViewById(R.id.dob_picker);
-        mCancelBtn = (BootstrapButton)findViewById(R.id.cancel_btn);
+        mCancelBtn = (Button)findViewById(R.id.cancel_btn);
         mCancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -29,8 +29,8 @@ public class LoginActivity extends BaseActivity {
 
     private final String TAG = "ToeLoginActivity";
     private FrameLayout mContentView;
-    private BootstrapButton mSubmitBtn;
-    private BootstrapButton mCancelBtn;
+    private Button mSubmitBtn;
+    private Button mCancelBtn;
     private EditText mUserEmailValue;
     private EditText mUserPwdValue;
 
@@ -40,8 +40,8 @@ public class LoginActivity extends BaseActivity {
         mContentView = (FrameLayout)findViewById(R.id.content);
         View child = getLayoutInflater().inflate(R.layout.activity_login, null);
         mContentView.addView(child);
-        mSubmitBtn = (BootstrapButton)findViewById(R.id.submit_btn);
-        mCancelBtn = (BootstrapButton)findViewById(R.id.cancel_btn);
+        mSubmitBtn = (Button)findViewById(R.id.submit_btn);
+        mCancelBtn = (Button)findViewById(R.id.cancel_btn);
         mUserEmailValue = (EditText)findViewById(R.id.user_email_value);
         mUserPwdValue = (EditText)findViewById(R.id.user_pwd_value);
 
