@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent">-->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:stretchColumns="1"
+        >
 
     <TextView
         android:id="@+id/user_email_text"
@@ -22,6 +33,29 @@
         android:layout_alignLeft="@+id/user_email_text"
         android:layout_alignStart="@+id/user_email_text"
         android:layout_alignParentRight="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp" />
+
+    <TextView
+        android:id="@+id/user_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/user_name_text" />
+
+    <EditText
+        android:id="@+id/user_name_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:hint="User name"
+        android:layout_below="@+id/user_name_text"
+        android:layout_alignLeft="@+id/user_name_text"
+        android:layout_alignStart="@+id/user_name_text"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp" />
 
     <TextView
@@ -44,7 +78,9 @@
         android:layout_alignLeft="@+id/user_pwd_text"
         android:layout_alignStart="@+id/user_pwd_text"
         android:layout_alignRight="@+id/user_email_value"
-        android:layout_alignEnd="@+id/user_email_value" />
+        android:layout_alignEnd="@+id/user_email_value"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
 
     <TextView
         android:id="@+id/user_confirm_pwd_text"
@@ -66,7 +102,9 @@
         android:layout_alignLeft="@+id/user_confirm_pwd_text"
         android:layout_alignStart="@+id/user_confirm_pwd_text"
         android:layout_alignRight="@+id/user_pwd_value"
-        android:layout_alignEnd="@+id/user_pwd_value" />
+        android:layout_alignEnd="@+id/user_pwd_value"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
 
     <TextView
         android:id="@+id/user_gender_text"
@@ -84,6 +122,8 @@
         android:orientation="horizontal"
         android:layout_below="@+id/user_confirm_pwd_value"
         android:layout_marginTop="13dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_toRightOf="@+id/user_gender_text">
         <RadioButton
             android:id="@+id/male_btn"
@@ -102,7 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_gender_text"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:text="@string/user_dob_text" />
 
@@ -114,8 +154,8 @@
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:layout_below="@+id/user_confirm_pwd_value"
-        android:layout_marginTop="12dp"
-        android:layout_marginLeft="80dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="30dp">
     </DatePicker>
 
     <TextView
@@ -134,7 +174,8 @@
         android:layout_below="@+id/user_dob_text"
         android:layout_toRightOf="@+id/user_des_text"
         android:layout_marginTop="60dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:inputType="textMultiLine"
         android:lines="4" />
 
@@ -144,144 +185,21 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_des_value"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:text="@string/submit_btn" />
 
     <Button
         android:id="@+id/cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/user_des_value"
-        android:layout_toRightOf="@+id/submit_btn"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/submit_btn"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:text="@string/cancel_btn" />
-    <!-- <TextView
-         android:id="@+id/user_email_text"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="30dp"
-         android:layout_marginLeft="30dp"
-         android:text="@string/user_email_text" />
-     <EditText
-         android:id="@+id/user_email_value"
-         android:layout_width="100dp"
-         android:layout_height="wrap_content"
-         android:layout_toRightOf="@+id/user_email_text"
-         android:layout_marginTop="15dp" />
-     <TextView
-         android:id="@+id/user_pwd_text"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/user_email_text"
-         android:layout_marginTop="25dp"
-         android:layout_marginLeft="30dp"
-         android:text="@string/user_pwd_text"/>
-     <EditText
-         android:id="@+id/user_pwd_value"
-         android:layout_width="100dp"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/user_email_text"
-         android:layout_marginTop="10dp"
-         android:layout_toRightOf="@+id/user_pwd_text"/>
-     <TextView
-         android:id="@+id/user_confirm_pwd_text"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/user_pwd_text"
-         android:layout_marginTop="20dp"
-         android:layout_marginLeft="30dp"
-         android:text="@string/user_confirm_pwd_text"/>
-     <EditText
-         android:id="@+id/user_confirm_pwd_value"
-         android:layout_width="100dp"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/user_pwd_text"
-         android:layout_marginTop="5dp"
-         android:layout_toRightOf="@+id/user_confirm_pwd_text" />
-     <TextView
-         android:id="@+id/user_gender_text"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/user_confirm_pwd_text"
-         android:layout_marginTop="30dp"
-         android:layout_marginLeft="30dp"
-         android:text="@string/user_gender_text"/>
-     <RadioGroup
-         android:id="@+id/btn_group"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal"
-         android:layout_below="@+id/user_confirm_pwd_text"
-         android:layout_marginTop="23dp"
-         android:layout_toRightOf="@+id/user_gender_text">
-         <RadioButton
-             android:id="@+id/male_btn"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="@string/male_btn"/>
-         <RadioButton
-             android:id="@+id/female_btn"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="@string/female_btn"/>
-     </RadioGroup>
-     <TextView
-         android:id="@+id/user_dob_text"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/user_gender_text"
-         android:layout_marginTop="55dp"
-         android:layout_marginLeft="30dp"
-         android:text="@string/user_dob_text" />
-     <DatePicker
-         android:id="@+id/dob_picker"
-         android:calendarViewShown="false"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:scaleX="0.7"
-         android:scaleY="0.7"
-         android:layout_below="@+id/user_confirm_pwd_text"
-         android:layout_marginTop="12dp"
-         android:layout_marginLeft="80dp">
-     </DatePicker>
-     <TextView
-         android:id="@+id/user_des_text"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@id/dob_picker"
-         android:layout_marginLeft="30dp"
-         android:text="@string/user_des_text" />
-     <com.beardedhen.androidbootstrap.BootstrapEditText
-         android:id="@+id/user_des_value"
-         android:layout_width="200dp"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/user_dob_text"
-         android:layout_toRightOf="@+id/user_des_text"
-         android:layout_marginTop="60dp"
-         android:layout_marginLeft="10dp"
-         android:inputType="textMultiLine"
-         android:lines="4" />
-     <com.beardedhen.androidbootstrap.BootstrapButton
-         android:id="@+id/submit_btn"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/user_des_value"
-         android:layout_marginTop="20dp"
-         android:layout_marginLeft="80dp"
-         android:text="@string/submit_btn"
-         bootstrap:bb_type="success"
-         bootstrap:bb_size="small" />
-     <com.beardedhen.androidbootstrap.BootstrapButton
-         android:id="@+id/cancel_btn"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/user_des_value"
-         android:layout_toRightOf="@+id/submit_btn"
-         android:layout_marginTop="20dp"
-         android:layout_marginLeft="30dp"
-         android:text="@string/cancel_btn"
-         bootstrap:bb_type="danger"
-         bootstrap:bb_size="small" />-->
 
-</RelativeLayout>
+    </TableLayout>
+</ScrollView>
+
+<!--</RelativeLayout>-->

@@ -44,7 +44,6 @@ public class BaseActivity extends ActionBarActivity {
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         activityTitle = getTitle().toString();
         setupDrawer();
-//        Parse.initialize(this, "azue2TtJIXAFTrqD3SpEjYGjHU8ImgXPatmlZzHg", "DM8kgbiabchxLYealzGJaXmrjmoEVEm8ReGEQszk");
     }
 
     @Override

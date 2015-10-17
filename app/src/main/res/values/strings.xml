@@ -7,7 +7,7 @@
 
     <string name="user_email_text">Email:</string>
     <string name="user_pwd_text">Password:</string>
-    <string name="user_confirm_pwd_text">Confirm Password:</string>
+    <string name="user_confirm_pwd_text">Confirm password:</string>
     <string name="user_gender_text">Gender:</string>
     <string name="male_btn">Male</string>
     <string name="female_btn">Female</string>
@@ -18,4 +18,5 @@
     <string name="menu_text">Menu</string>
     <string name="post_text">Post</string>
     <string name="activity_text">Activity</string>
+    <string name="user_name_text">User name:</string>
 </resources>
