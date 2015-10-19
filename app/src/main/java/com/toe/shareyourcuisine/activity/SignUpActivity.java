@@ -3,7 +3,6 @@ package com.toe.shareyourcuisine.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -22,13 +21,13 @@ import java.util.Date;
 /**
  * Created by kukentaira on 10/5/15.
  */
-public class SignUpActivity extends BaseActivity implements UserService.UserServiceListener{
+public class SignUpActivity extends BaseActivity implements UserService.UserSignUpListener{
 
     private static final String TAG = "ToeSignUpActivity";
     private FrameLayout mContentView;
 
     private EditText mUserEmailValue;
-    private EditText mUserNameValue;
+    private EditText mUserNickNameValue;
     private EditText mUserPwdValue;
     private EditText mUserConfirmPwdValue;
     private RadioGroup mBtnGroup;
@@ -47,7 +46,7 @@ public class SignUpActivity extends BaseActivity implements UserService.UserServ
         mContentView.addView(child);
 
         mUserEmailValue = (EditText)findViewById(R.id.user_email_value);
-        mUserNameValue = (EditText)findViewById(R.id.user_name_value);
+        mUserNickNameValue = (EditText)findViewById(R.id.user_nick_name_value);
         mUserPwdValue = (EditText)findViewById(R.id.user_pwd_value);
         mUserConfirmPwdValue = (EditText)findViewById(R.id.user_confirm_pwd_value);
         mBtnGroup = (RadioGroup)findViewById(R.id.btn_group);
@@ -61,12 +60,12 @@ public class SignUpActivity extends BaseActivity implements UserService.UserServ
                 if(check() == true) {
                     User user = new User();
                     user.setUserEmail(mUserEmailValue.getText().toString());
-                    user.setUserName(mUserNameValue.getText().toString());
+                    user.setUserName(mUserNickNameValue.getText().toString());
                     user.setUserPwd(mUserPwdValue.getText().toString());
                     user.setUserGender(mUserGender);
                     user.setUserDob(mUserDob);
                     user.setUserDescription(mUserDesValue.getText().toString());
-                    UserService userService = new UserService(SignUpActivity.this, SignUpActivity.this);
+                    UserService userService = new UserService(SignUpActivity.this, "SignUp", SignUpActivity.this);
                     userService.signUp(user);
                 }
             }
@@ -93,7 +92,7 @@ public class SignUpActivity extends BaseActivity implements UserService.UserServ
 
     private boolean check() {
         if(TextUtils.isEmpty(mUserEmailValue.getText().toString())
-                || TextUtils.isEmpty(mUserNameValue.getText().toString())
+                || TextUtils.isEmpty(mUserNickNameValue.getText().toString())
                 || TextUtils.isEmpty(mUserPwdValue.getText().toString())
                 || mBtnGroup.getCheckedRadioButtonId() == -1) {
             Toast.makeText(SignUpActivity.this, "Please fill required text fields!", Toast.LENGTH_SHORT).show();
@@ -118,7 +117,6 @@ public class SignUpActivity extends BaseActivity implements UserService.UserServ
 
     @Override
     public void signUpSuccess() {
-        Log.d(TAG, "success");
         Toast.makeText(SignUpActivity.this, "Sign up successfully!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
         finish();

@@ -37,6 +37,10 @@
             android:name=".activity.ActivityActivity"
             android:label="Activity">
         </activity>
+        <activity
+            android:name=".activity.NewMenuActivity"
+            android:label="NewMenuActivity">
+        </activity>
     </application>
 
 </manifest>

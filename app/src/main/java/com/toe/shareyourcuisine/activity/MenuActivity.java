@@ -1,6 +1,10 @@
 package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.toe.shareyourcuisine.R;
 
 /**
  * Project: Share Your Cuisine
@@ -22,4 +26,24 @@ public class MenuActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        else if (id == R.id.new_menu) {
+            Intent intent = new Intent(MenuActivity.this, NewMenuActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

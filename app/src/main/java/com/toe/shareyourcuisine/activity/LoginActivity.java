@@ -2,18 +2,14 @@ package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.parse.GetCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.toe.shareyourcuisine.R;
+import com.toe.shareyourcuisine.service.UserService;
 
 /**
  * Project: Share Your Cuisine
@@ -25,7 +21,7 @@ import com.toe.shareyourcuisine.R;
  * Modified Date:
  * Why is modified:
  */
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements UserService.UserLoginListener{
 
     private final String TAG = "ToeLoginActivity";
     private FrameLayout mContentView;
@@ -48,29 +44,10 @@ public class LoginActivity extends BaseActivity {
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = "123";
                 String userEmail = mUserEmailValue.getText().toString();
                 String userPwd = mUserPwdValue.getText().toString();
-                try {
-                    ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
-                    query.whereEqualTo("user_email", userEmail);
-                    query.whereEqualTo("user_pwd", userPwd);
-                    query.getFirstInBackground(new GetCallback<ParseObject>() {
-                        @Override
-                        public void done(ParseObject parseObject, ParseException e) {
-                            if (parseObject == null)
-                                Toast.makeText(LoginActivity.this, "User email or password is incorrect!", Toast.LENGTH_SHORT).show();
-                            else {
-                                Toast.makeText(LoginActivity.this, parseObject.getString("user_name") + " log in successfully!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                finish();
-                                startActivity(intent);
-                            }
-                        }
-                    });
-                } catch (Exception e) {
-                    Log.d(TAG, e.getMessage());
-                }
+                UserService userService = new UserService(LoginActivity.this, "Login", LoginActivity.this);
+                userService.login(userEmail, userPwd);
             }
         });
 
@@ -90,5 +67,18 @@ public class LoginActivity extends BaseActivity {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         finish();
         startActivity(intent);
+    }
+
+    @Override
+    public void loginSuccess() {
+        Toast.makeText(LoginActivity.this, "Login successfully!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        finish();
+        startActivity(intent);
+    }
+
+    @Override
+    public void loginFail() {
+        Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT).show();
     }
 }
