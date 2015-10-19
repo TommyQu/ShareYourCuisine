@@ -1,8 +1,6 @@
 package com.toe.shareyourcuisine.service;
 
 import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -16,13 +14,21 @@ public class UserService {
 
     private static final String TAG = "ToeUserService";
     private Context mContext;
+    private UserServiceListener mUserServiceListener;
+    private String mAction;
     private boolean isSignUp;
 
-    public UserService(Context context) {
-        mContext = context;
+    public interface UserServiceListener {
+        public void signUpSuccess();
+        public void signUpFail();
     }
 
-    public boolean signUp(User user) {
+    public UserService(Context context, UserServiceListener userServiceListener) {
+        mContext = context;
+        mUserServiceListener = userServiceListener;
+    }
+
+    public void signUp(User user) {
         ParseUser parseUser = new ParseUser();
         parseUser.put("userEmail", user.getUserEmail());
         parseUser.setUsername(user.getUserName());
@@ -35,17 +41,16 @@ public class UserService {
             public void done(ParseException e) {
                 //Sign up successfully.
                 if (e == null) {
+                    mUserServiceListener.signUpSuccess();
                     isSignUp = true;
-                    Log.d(TAG, "done:" + String.valueOf(isSignUp));
                 }
                 //Sign up failed.
                 else {
+                    mUserServiceListener.signUpFail();
                     isSignUp = false;
                 }
             }
         });
-        Log.d(TAG, String.valueOf(isSignUp));
-        return isSignUp;
     }
 
 }

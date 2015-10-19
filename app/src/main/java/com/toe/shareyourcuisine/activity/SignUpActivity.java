@@ -3,6 +3,7 @@ package com.toe.shareyourcuisine.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -21,7 +22,7 @@ import java.util.Date;
 /**
  * Created by kukentaira on 10/5/15.
  */
-public class SignUpActivity extends BaseActivity {
+public class SignUpActivity extends BaseActivity implements UserService.UserServiceListener{
 
     private static final String TAG = "ToeSignUpActivity";
     private FrameLayout mContentView;
@@ -65,16 +66,8 @@ public class SignUpActivity extends BaseActivity {
                     user.setUserGender(mUserGender);
                     user.setUserDob(mUserDob);
                     user.setUserDescription(mUserDesValue.getText().toString());
-                    UserService userService = new UserService(SignUpActivity.this);
-                    if(userService.signUp(user) == true) {
-                        Toast.makeText(SignUpActivity.this, "Sign up successfully!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                        finish();
-                        startActivity(intent);
-                    }
-                    else {
-                        Toast.makeText(SignUpActivity.this, "Sign up failed!", Toast.LENGTH_SHORT).show();
-                    }
+                    UserService userService = new UserService(SignUpActivity.this, SignUpActivity.this);
+                    userService.signUp(user);
                 }
             }
         });
@@ -121,5 +114,19 @@ public class SignUpActivity extends BaseActivity {
 //            Log.d(TAG, mUserDob.toString());
             return true;
         }
+    }
+
+    @Override
+    public void signUpSuccess() {
+        Log.d(TAG, "success");
+        Toast.makeText(SignUpActivity.this, "Sign up successfully!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+        finish();
+        startActivity(intent);
+    }
+
+    @Override
+    public void signUpFail() {
+        Toast.makeText(SignUpActivity.this, "Sign up failed!", Toast.LENGTH_SHORT).show();
     }
 }
