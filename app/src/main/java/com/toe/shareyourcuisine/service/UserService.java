@@ -31,7 +31,7 @@ public class UserService {
     }
 
     //Action is to identify different actions and implement different listeners
-    public UserService(Context context, String action, Object userListener) {
+    public UserService(Context context, Object userListener, String action) {
         mContext = context;
         if(action.equals("SignUp")) {
             mUserSignUpListener = (UserSignUpListener)userListener;

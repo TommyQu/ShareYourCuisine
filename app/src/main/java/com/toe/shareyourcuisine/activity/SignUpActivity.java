@@ -65,7 +65,7 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
                     user.setUserGender(mUserGender);
                     user.setUserDob(mUserDob);
                     user.setUserDescription(mUserDesValue.getText().toString());
-                    UserService userService = new UserService(SignUpActivity.this, "SignUp", SignUpActivity.this);
+                    UserService userService = new UserService(SignUpActivity.this, SignUpActivity.this, "SignUp");
                     userService.signUp(user);
                 }
             }

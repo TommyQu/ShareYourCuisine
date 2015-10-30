@@ -1,8 +1,11 @@
 package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.toe.shareyourcuisine.R;
 
@@ -17,6 +20,17 @@ import com.toe.shareyourcuisine.R;
  * Why is modified:
  */
 public class MenuActivity extends BaseActivity {
+
+    private final String TAG = "ToeMenuActivity";
+    private FrameLayout mContentView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mContentView = (FrameLayout)findViewById(R.id.content);
+        View child = getLayoutInflater().inflate(R.layout.activity_menu, null);
+        mContentView.addView(child);
+    }
 
     @Override
     public void onBackPressed() {

@@ -41,6 +41,10 @@
             android:name=".activity.NewMenuActivity"
             android:label="NewMenuActivity">
         </activity>
+        <activity
+            android:name=".activity.NewPostActivity"
+            android:label="NewPostActivity">
+        </activity>
     </application>
 
 </manifest>

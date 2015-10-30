@@ -19,5 +19,6 @@
     <string name="post_text">Post</string>
     <string name="activity_text">Activity</string>
     <string name="user_nick_name_text">Nick name:</string>
-    <string name="new_menu">New</string>
+    <string name="new_menu">New Menu</string>
+    <string name="new_post">New Post</string>
 </resources>

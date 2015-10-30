@@ -46,7 +46,7 @@ public class LoginActivity extends BaseActivity implements UserService.UserLogin
             public void onClick(View v) {
                 String userEmail = mUserEmailValue.getText().toString();
                 String userPwd = mUserPwdValue.getText().toString();
-                UserService userService = new UserService(LoginActivity.this, "Login", LoginActivity.this);
+                UserService userService = new UserService(LoginActivity.this, LoginActivity.this, "Login");
                 userService.login(userEmail, userPwd);
             }
         });
