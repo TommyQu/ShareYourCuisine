@@ -22,7 +22,7 @@ public class UserService {
 
     public interface UserSignUpListener {
         public void signUpSuccess();
-        public void signUpFail();
+        public void signUpFail(String errorMsg);
     }
 
     public interface UserLoginListener {
@@ -43,14 +43,14 @@ public class UserService {
 
     public void signUp(User user) {
         ParseUser parseUser = new ParseUser();
-        parseUser.put("userEmail", user.getUserEmail());
+        parseUser.put("email", user.getUserEmail());
         //Take userEmail as ParseUser username
         parseUser.setUsername(user.getUserEmail());
         parseUser.put("nickName", user.getUserName());
         parseUser.setPassword(user.getUserPwd());
-        parseUser.put("userGender", user.getUserGender());
-        parseUser.put("userDob", user.getUserDob());
-        parseUser.put("userDescription", user.getUserDescription());
+        parseUser.put("gender", user.getUserGender());
+        parseUser.put("dob", user.getUserDob());
+        parseUser.put("description", user.getUserDescription());
         parseUser.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
@@ -61,7 +61,7 @@ public class UserService {
                 }
                 //Sign up failed.
                 else {
-                    mUserSignUpListener.signUpFail();
+                    mUserSignUpListener.signUpFail(e.getMessage().toString());
                     isSignUp = false;
                 }
             }

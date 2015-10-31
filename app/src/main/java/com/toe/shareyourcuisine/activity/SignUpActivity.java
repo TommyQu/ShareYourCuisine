@@ -124,7 +124,7 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
     }
 
     @Override
-    public void signUpFail() {
-        Toast.makeText(SignUpActivity.this, "Sign up failed!", Toast.LENGTH_SHORT).show();
+    public void signUpFail(String errorMsg) {
+        Toast.makeText(SignUpActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 }
