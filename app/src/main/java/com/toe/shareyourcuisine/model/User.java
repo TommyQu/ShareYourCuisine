@@ -7,78 +7,83 @@ import java.util.Date;
 /**
  * Created by TommyQu on 10/16/15.
  */
+
+/**
+ * Modified by Theon_Z on 10/31/15.
+ */
+
 public class User {
 
-    private String userId;
-    private String userEmail;
-    private String userName;
-    private String userPwd;
-    private String userGender;
-    private Date userDob;
-    private String userDescription;
-    private ParseFile userImg;
+    private String mUserId;
+    private String mUserEmail;
+    private String mUserName;
+    private String mUserPwd;
+    private String mUserGender;
+    private Date mUserDob;
+    private String mUserDescription;
+    private ParseFile mUserImg;
 
     public String getUserId() {
-        return userId;
+        return mUserId;
     }
 
     public void setUserId(String userId) {
-        this.userId = userId;
+        mUserId = userId;
     }
 
     public String getUserEmail() {
-        return userEmail;
+        return mUserEmail;
     }
 
     public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+        mUserEmail = userEmail;
     }
 
     public String getUserName() {
-        return userName;
+        return mUserName;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        mUserName = userName;
     }
 
     public String getUserPwd() {
-        return userPwd;
+        return mUserPwd;
     }
 
     public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
+        mUserPwd = userPwd;
     }
 
     public String getUserGender() {
-        return userGender;
+        return mUserGender;
     }
 
     public void setUserGender(String userGender) {
-        this.userGender = userGender;
+        mUserGender = userGender;
     }
 
     public Date getUserDob() {
-        return userDob;
+        return mUserDob;
     }
 
     public void setUserDob(Date userDob) {
-        this.userDob = userDob;
+        mUserDob = userDob;
     }
 
     public String getUserDescription() {
-        return userDescription;
+        return mUserDescription;
     }
 
     public void setUserDescription(String userDescription) {
-        this.userDescription = userDescription;
+        mUserDescription = userDescription;
     }
 
     public ParseFile getUserImg() {
-        return userImg;
+        return mUserImg;
     }
 
     public void setUserImg(ParseFile userImg) {
-        this.userImg = userImg;
+        mUserImg = userImg;
     }
 }

@@ -51,6 +51,7 @@ public class UserService {
         parseUser.put("gender", user.getUserGender());
         parseUser.put("dob", user.getUserDob());
         parseUser.put("description", user.getUserDescription());
+
         parseUser.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {

@@ -23,7 +23,6 @@ public class PostActivity extends BaseActivity {
 
     private final String TAG = "ToePostActivity";
     private FrameLayout mContentView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

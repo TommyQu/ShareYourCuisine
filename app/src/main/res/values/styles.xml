@@ -4,6 +4,12 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!--<item name="android:actionBarStyle">@style/SycActionBar</item>-->
     </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <!--<style name="SycActionBar" parent="Widget.AppCompat.Light.ActionBar">-->
         <!--<item name="android:background">#FF0000</item>-->

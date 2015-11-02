@@ -21,4 +21,5 @@
     <string name="user_nick_name_text">Nick name:</string>
     <string name="new_menu">New Menu</string>
     <string name="new_post">New Post</string>
+    <string name="title_activity_single_post">SinglePostActivity</string>
 </resources>

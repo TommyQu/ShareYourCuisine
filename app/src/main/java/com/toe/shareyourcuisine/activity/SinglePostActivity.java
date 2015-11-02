@@ -7,22 +7,18 @@ import android.view.MenuItem;
 import com.toe.shareyourcuisine.R;
 
 /**
- * Created by TommyQu on 10/29/15.
+ * Created by Theon_Z on 10/31/15.
  */
 
-/**
- * Updated by Theon_Z on 10/31/15.
- *
- */
-public class NewPostActivity extends ActionBarActivity {
+public class SinglePostActivity extends ActionBarActivity {
 
-    private static final String TAG = "ToeNewPostActivity";
+    private static final String TAG = "ToeSinglePostActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_post);
-        getSupportActionBar().setTitle("New Post");
+        setContentView(R.layout.activity_single_post);
+        getSupportActionBar().setTitle("Single Post");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
