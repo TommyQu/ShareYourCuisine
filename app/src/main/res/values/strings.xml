@@ -22,4 +22,5 @@
     <string name="new_menu">New Menu</string>
     <string name="new_post">New Post</string>
     <string name="title_activity_single_post">SinglePostActivity</string>
+    <string name="post_content_text">Post content:</string>
 </resources>

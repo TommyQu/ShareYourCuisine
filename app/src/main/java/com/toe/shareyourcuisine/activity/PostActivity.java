@@ -88,8 +88,6 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
         postListView.setAdapter(postAdapter);
     }
 
-
-
     @Override
     public void getAllPostsFail(String errorMsg) {
         Toast.makeText(PostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();

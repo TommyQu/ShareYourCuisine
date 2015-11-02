@@ -27,7 +27,7 @@ public class UserService {
 
     public interface UserLoginListener {
         public void loginSuccess();
-        public void loginFail();
+        public void loginFail(String errorMsg);
     }
 
     //Action is to identify different actions and implement different listeners
@@ -80,7 +80,7 @@ public class UserService {
                 }
                 //Login failed
                 else {
-                    mUserLoginListener.loginFail();
+                    mUserLoginListener.loginFail(e.getMessage().toString());
                 }
             }
         });

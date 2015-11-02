@@ -78,7 +78,7 @@ public class LoginActivity extends BaseActivity implements UserService.UserLogin
     }
 
     @Override
-    public void loginFail() {
-        Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT).show();
+    public void loginFail(String errorMsg) {
+        Toast.makeText(LoginActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 }
