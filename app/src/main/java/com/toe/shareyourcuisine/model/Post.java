@@ -15,7 +15,11 @@ public class Post {
     private Date mUpdatedAt;
     private ParseUser mCreatedBy;
     private String mContent;
-    private ArrayList<ParseFile> mImg = new ArrayList<ParseFile>();
+    private ArrayList<ParseFile> mImg;
+
+    public Post() {
+        mImg = new ArrayList<ParseFile>();
+    }
 
     public String getPostId() {
         return mPostId;
