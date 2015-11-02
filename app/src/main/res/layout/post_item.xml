@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/userImageView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/edittext_bg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tommy Qu"
+        android:id="@+id/userNameTextView"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/userImageView"
+        android:layout_toEndOf="@+id/userImageView"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 hour ago"
+        android:id="@+id/createdAtTextView"
+        android:layout_toRightOf="@+id/userImageView"
+        android:layout_toEndOf="@+id/userImageView"
+        android:layout_below="@+id/userNameTextView"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Binds several enermy units together, causing 25% of the damage dealt to one to them to be felt by the others."
+        android:id="@+id/contentTextView"
+        android:layout_below="@+id/createdAtTextView"
+        android:layout_toRightOf="@+id/userImageView"
+        android:layout_toEndOf="@+id/userImageView"/>
+
+
+
+</RelativeLayout>

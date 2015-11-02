@@ -10,7 +10,6 @@ import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 import com.toe.shareyourcuisine.model.Post;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,12 +24,12 @@ public class PostService {
     private GetSinglePostListener mGetSinglePostListener;
 
     public interface GetAllPostsListener {
-        public ArrayList<Post> getAllPostsSuccess(List<ParseObject> postlist);
+        public void getAllPostsSuccess(List<ParseObject> postlist);
         public void getAllPostsFail(String errorMsg);
     }
 
     public interface GetSinglePostListener {
-        public Post getSinglePostSuccess(ParseObject post);
+        public void getSinglePostSuccess(ParseObject post);
         public void getSinglePostFail(String errorMsg);
     }
 
