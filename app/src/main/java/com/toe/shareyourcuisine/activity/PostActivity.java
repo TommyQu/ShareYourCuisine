@@ -46,8 +46,9 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
         View child = getLayoutInflater().inflate(R.layout.activity_post, null);
         mContentView.addView(child);
 
-
-        //populateListView();
+        //call PostService to get all posts
+        PostService PostService = new PostService(PostActivity.this, PostActivity.this, "getAllPosts");
+        PostService.getAllPosts();
 
         //Todo deal with the click listener
         registerClickCallback();
@@ -88,11 +89,6 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
         postListView.setAdapter(postAdapter);
     }
 
-    @Override
-    public void getAllPostsFail(String errorMsg) {
-        Toast.makeText(PostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
-    }
-
     private class PostListAdapter extends ArrayAdapter<Post> {
         public PostListAdapter() {
             super(PostActivity.this, R.layout.post_item, mPostList);
@@ -113,7 +109,7 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
             //userImageView
             ImageView userImageView = (ImageView) itemView.findViewById(R.id.userImageView);
             ParseUser user = currentPost.getCreatedBy();
-            ParseFile userImg = user.getParseFile("Img");
+            ParseFile userImg = user.getParseFile("img");
             //Todo how fill the userImageView with the user image which is a ParseFile type
             //userImageView.setImageDrawable();
 
@@ -143,6 +139,28 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
 
     @Override
     public void getAllPostsSuccess(List<ParseObject> postlist) {
+        List<Post> tempList = new ArrayList<Post>();
+        for(int n=0;n<postlist.size(); n++) {
+            Post currentPost = new Post();
+            currentPost.setPostId(postlist.get(n).getObjectId());
+            currentPost.setCreatedAt(postlist.get(n).getCreatedAt());
+            currentPost.setUpdatedAt(postlist.get(n).getUpdatedAt());
+            currentPost.setCreatedBy(postlist.get(n).getParseUser("createdBy"));
+            currentPost.setContent(postlist.get(n).getString("content"));
 
+            //how to get the img array and assign it to the Post.mImg
+            ArrayList<ParseFile> tempImg = new ArrayList<ParseFile>();
+            tempImg =(ArrayList<ParseFile>) postlist.get(n).get("img");
+            currentPost.setImg(tempImg);
+            tempList.add(currentPost);
+        }
+        mPostList = tempList;
+
+        populateListView();
+    }
+
+    @Override
+    public void getAllPostsFail(String errorMsg) {
+        Toast.makeText(PostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 }

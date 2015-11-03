@@ -58,15 +58,37 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
             @Override
             public void onClick(View v) {
                 if(check() == true) {
-                    User user = new User();
+                    final User user = new User();
                     user.setUserEmail(mUserEmailValue.getText().toString());
                     user.setUserName(mUserNickNameValue.getText().toString());
                     user.setUserPwd(mUserPwdValue.getText().toString());
                     user.setUserGender(mUserGender);
                     user.setUserDob(mUserDob);
                     user.setUserDescription(mUserDesValue.getText().toString());
-                    UserService userService = new UserService(SignUpActivity.this, SignUpActivity.this, "SignUp");
+                    final UserService userService = new UserService(SignUpActivity.this, SignUpActivity.this, "SignUp");
+
+                    /*//set default user img
+                    //initialize the user img
+                    final User tempUser = user;
+
+                    if(user.getUserImg() == null) {
+                        //test convert img to parsefile
+                        Bitmap bitmap = BitmapFactory.decodeResource(SignUpActivity.this.getResources(), R.drawable.edittext_bg);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] bitmapdata = stream.toByteArray();
+                        ParseFile defaultImgFile = new ParseFile(user.getUserName()+".png",bitmapdata);
+                        defaultImgFile.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                userService.signUp(tempUser);
+                            }
+                        });
+                        //test ends
+                    }*/
+
                     userService.signUp(user);
+
                 }
             }
         });
