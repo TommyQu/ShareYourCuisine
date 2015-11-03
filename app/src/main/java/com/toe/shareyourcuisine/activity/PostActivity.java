@@ -1,6 +1,7 @@
 package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.squareup.picasso.Picasso;
 import com.toe.shareyourcuisine.R;
 import com.toe.shareyourcuisine.model.Post;
 import com.toe.shareyourcuisine.service.PostService;
@@ -49,6 +51,10 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
         //call PostService to get all posts
         PostService PostService = new PostService(PostActivity.this, PostActivity.this, "getAllPosts");
         PostService.getAllPosts();
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 
         //Todo deal with the click listener
         registerClickCallback();
@@ -89,6 +95,17 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
         postListView.setAdapter(postAdapter);
     }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    @Override
+    public void getAllPostsFail(String errorMsg) {
+        Toast.makeText(PostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+=======
+>>>>>>> PostBranch
+>>>>>>> origin/master
     private class PostListAdapter extends ArrayAdapter<Post> {
         public PostListAdapter() {
             super(PostActivity.this, R.layout.post_item, mPostList);
@@ -112,6 +129,11 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
             ParseFile userImg = user.getParseFile("img");
             //Todo how fill the userImageView with the user image which is a ParseFile type
             //userImageView.setImageDrawable();
+            String imageUrl = userImg.getUrl() ;//live url
+            Uri imageUri = Uri.parse(imageUrl);
+
+            Picasso.with(PostActivity.this).load(imageUri.toString()).into(userImageView);
+
 
             //userNameTextView
             TextView userNameTextView = (TextView) itemView.findViewById(R.id.userNameTextView);
