@@ -23,4 +23,8 @@
     <string name="new_post">New Post</string>
     <string name="title_activity_single_post">SinglePostActivity</string>
     <string name="post_content_text">Post content:</string>
+    <string name="activity_title_text">Title:</string>
+    <string name="activity_address_text">Address:</string>
+    <string name="activity_start_time">Start time:</string>
+    <string name="new_activity">New Activity</string>
 </resources>

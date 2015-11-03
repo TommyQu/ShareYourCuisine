@@ -51,10 +51,6 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
         //call PostService to get all posts
         PostService PostService = new PostService(PostActivity.this, PostActivity.this, "getAllPosts");
         PostService.getAllPosts();
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 
         //Todo deal with the click listener
         registerClickCallback();
@@ -95,17 +91,6 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
         postListView.setAdapter(postAdapter);
     }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    @Override
-    public void getAllPostsFail(String errorMsg) {
-        Toast.makeText(PostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
-    }
-
-=======
->>>>>>> PostBranch
->>>>>>> origin/master
     private class PostListAdapter extends ArrayAdapter<Post> {
         public PostListAdapter() {
             super(PostActivity.this, R.layout.post_item, mPostList);
@@ -185,4 +170,5 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
     public void getAllPostsFail(String errorMsg) {
         Toast.makeText(PostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
+
 }
