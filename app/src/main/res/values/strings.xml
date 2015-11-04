@@ -27,4 +27,11 @@
     <string name="activity_address_text">Address:</string>
     <string name="activity_start_time">Start time:</string>
     <string name="new_activity">New Activity</string>
+    <string name="activity_start_date_btn">Start date</string>
+    <string name="activity_start_time_btn">Start time</string>
+    <string name="activity_content_text">Content:</string>
+    <string name="activity_end_time">End time:</string>
+    <string name="activity_end_date_btn">End date</string>
+    <string name="activity_end_time_btn">End time</string>
+    <string name="activity_remain_to_be_set">Remain to be set</string>
 </resources>
