@@ -79,7 +79,7 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
             return true;
         }
         else if (id == R.id.new_post) {
-            Intent intent = new Intent(PostActivity.this, NewPostActivity.class);
+            Intent intent = new Intent(PostActivity.this, AddPostActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

@@ -55,7 +55,7 @@ public class ActivityActivity extends BaseActivity {
             return true;
         }
         else if (id == R.id.new_activity) {
-            Intent intent = new Intent(ActivityActivity.this, NewActivityActivity.class);
+            Intent intent = new Intent(ActivityActivity.this, AddActivityActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

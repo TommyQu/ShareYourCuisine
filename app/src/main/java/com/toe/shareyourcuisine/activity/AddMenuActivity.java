@@ -9,14 +9,14 @@ import com.toe.shareyourcuisine.R;
 /**
  * Created by TommyQu on 10/19/15.
  */
-public class NewMenuActivity extends ActionBarActivity {
+public class AddMenuActivity extends ActionBarActivity {
 
     private static final String TAG = "ToeNewMenuActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_menu);
+        setContentView(R.layout.activity_add_menu);
         getSupportActionBar().setTitle("New Menu");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

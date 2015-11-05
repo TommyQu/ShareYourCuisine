@@ -41,11 +41,11 @@
             android:label="Activity" >
         </activity>
         <activity
-            android:name=".activity.NewMenuActivity"
+            android:name=".activity.AddMenuActivity"
             android:label="NewMenuActivity" >
         </activity>
         <activity
-            android:name=".activity.NewPostActivity"
+            android:name=".activity.AddPostActivity"
             android:label="NewPostActivity" >
         </activity>
         <activity
@@ -54,7 +54,7 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".activity.NewActivityActivity"
+            android:name=".activity.AddActivityActivity"
             android:label="NewActivityActivity">
         </activity>
     </application>

@@ -23,7 +23,7 @@ import java.util.Date;
 /**
  * Created by TommyQu on 11/3/15.
  */
-public class NewActivityActivity extends ActionBarActivity implements DatePickerDialog.OnDateSetListener,
+public class AddActivityActivity extends ActionBarActivity implements DatePickerDialog.OnDateSetListener,
         TimePickerDialog.OnTimeSetListener, ActivityService.AddActivityListener{
 
     private static final String TAG = "ToeNewActivityActivity";
@@ -50,7 +50,7 @@ public class NewActivityActivity extends ActionBarActivity implements DatePicker
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_activity);
+        setContentView(R.layout.activity_add_activity);
         getSupportActionBar().setTitle("New Activity");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Calendar calendar = Calendar.getInstance();
@@ -90,7 +90,7 @@ public class NewActivityActivity extends ActionBarActivity implements DatePicker
             public void onClick(View v) {
                 //If user hasn't logged in
                 if(ParseUser.getCurrentUser() == null) {
-                    Toast.makeText(NewActivityActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddActivityActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //Implement add activity
@@ -102,7 +102,7 @@ public class NewActivityActivity extends ActionBarActivity implements DatePicker
                     activity.setmStartTime(mStartTime);
                     activity.setmEndTime(mEndTime);
                     activity.setmCreatedBy(ParseUser.getCurrentUser());
-                    ActivityService activityService = new ActivityService(NewActivityActivity.this, NewActivityActivity.this, "addActivity");
+                    ActivityService activityService = new ActivityService(AddActivityActivity.this, AddActivityActivity.this, "addActivity");
                     activityService.addActivity(activity);
                 }
             }
@@ -152,14 +152,14 @@ public class NewActivityActivity extends ActionBarActivity implements DatePicker
         if(mTitleValue.getText().toString().equals("")
                 || mAddressValue.getText().toString().equals("")
                 || mContentValue.getText().toString().equals("")) {
-            Toast.makeText(NewActivityActivity.this, "Please fill required text fields!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddActivityActivity.this, "Please fill required text fields!", Toast.LENGTH_SHORT).show();
             return false;
         }
         else if(mStartDateValue.getText().toString().equals("Remain to be set")
                 || mStartTimeValue.getText().toString().equals("Remain to be set")
                 || mEndDateValue.getText().toString().equals("Remain to be set")
                 || mEndTimeValue.getText().toString().equals("Remain to be set")) {
-            Toast.makeText(NewActivityActivity.this, "Please set date and time!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddActivityActivity.this, "Please set date and time!", Toast.LENGTH_SHORT).show();
             return false;
         }
         else {
@@ -177,7 +177,7 @@ public class NewActivityActivity extends ActionBarActivity implements DatePicker
             mEndTime.setMinutes(Integer.valueOf(mEndTimeValue.getText().toString().split("-")[1]));
             //Check whether end time is after start time
             if(mEndTime.before(mStartTime)) {
-                Toast.makeText(NewActivityActivity.this, "End time must after start time!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddActivityActivity.this, "End time must after start time!", Toast.LENGTH_SHORT).show();
                 return false;
             }
             else
@@ -225,12 +225,12 @@ public class NewActivityActivity extends ActionBarActivity implements DatePicker
 
     @Override
     public void addActivitySuccess() {
-        Toast.makeText(NewActivityActivity.this, "Add activity successfully!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddActivityActivity.this, "Add activity successfully!", Toast.LENGTH_SHORT).show();
         finish();
     }
 
     @Override
     public void addActivityFail(String errorMsg) {
-        Toast.makeText(NewActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 }

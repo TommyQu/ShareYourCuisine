@@ -55,7 +55,7 @@ public class MenuActivity extends BaseActivity {
             return true;
         }
         else if (id == R.id.new_menu) {
-            Intent intent = new Intent(MenuActivity.this, NewMenuActivity.class);
+            Intent intent = new Intent(MenuActivity.this, AddMenuActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

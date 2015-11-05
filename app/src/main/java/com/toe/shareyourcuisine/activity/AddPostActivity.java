@@ -21,7 +21,7 @@ import com.toe.shareyourcuisine.service.PostService;
  * Updated by Theon_Z on 10/31/15.
  *
  */
-public class NewPostActivity extends ActionBarActivity implements PostService.AddPostListener{
+public class AddPostActivity extends ActionBarActivity implements PostService.AddPostListener{
 
     private static final String TAG = "ToeNewPostActivity";
     private EditText mPostContentValue;
@@ -31,7 +31,7 @@ public class NewPostActivity extends ActionBarActivity implements PostService.Ad
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_post);
+        setContentView(R.layout.activity_add_post);
         getSupportActionBar().setTitle("New Post");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mSubmitBtn = (Button)findViewById(R.id.submit_btn);
@@ -42,17 +42,17 @@ public class NewPostActivity extends ActionBarActivity implements PostService.Ad
             @Override
             public void onClick(View v) {
                 if(ParseUser.getCurrentUser() == null) {
-                    Toast.makeText(NewPostActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddPostActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
                 }
                 else if(mPostContentValue.getText().toString().equals("")) {
-                    Toast.makeText(NewPostActivity.this, "Please fill required fields!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddPostActivity.this, "Please fill required fields!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     String postContent = mPostContentValue.getText().toString();
                     Post post = new Post();
                     post.setContent(postContent);
                     post.setCreatedBy(ParseUser.getCurrentUser());
-                    PostService postService = new PostService(NewPostActivity.this, NewPostActivity.this, "addPost");
+                    PostService postService = new PostService(AddPostActivity.this, AddPostActivity.this, "addPost");
                     postService.addPost(post);
                 }
             }
@@ -84,12 +84,12 @@ public class NewPostActivity extends ActionBarActivity implements PostService.Ad
 
     @Override
     public void addPostSuccess() {
-        Toast.makeText(NewPostActivity.this, "Add post successfully!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddPostActivity.this, "Add post successfully!", Toast.LENGTH_SHORT).show();
         finish();
     }
 
     @Override
     public void addPostFail(String errorMsg) {
-        Toast.makeText(NewPostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddPostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 }
