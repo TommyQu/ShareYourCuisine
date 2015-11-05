@@ -88,7 +88,6 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
                     }*/
 
                     userService.signUp(user);
-
                 }
             }
         });

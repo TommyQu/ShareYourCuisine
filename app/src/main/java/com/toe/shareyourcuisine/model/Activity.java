@@ -13,17 +13,17 @@ public class Activity {
 
     String mObjectId;
     String mTitle;
-    Date createdAt;
-    Date startTime;
-    Date endTime;
-    String content;
-    String address;
-    ParseGeoPoint geoPoint;
-    ParseUser hostedBy;
-    ArrayList<ParseUser> joinedBy;
+    Date mCreatedAt;
+    Date mStartTime;
+    Date mEndTime;
+    String mContent;
+    String mAddress;
+    ParseGeoPoint mGeoPoint;
+    ParseUser mCreatedBy;
+    ArrayList<ParseUser> mJoinedBy;
 
     public Activity() {
-        joinedBy = new ArrayList<ParseUser>();
+        mJoinedBy = new ArrayList<ParseUser>();
     }
 
     public String getmObjectId() {
@@ -42,67 +42,67 @@ public class Activity {
         this.mTitle = mTitle;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getmCreatedAt() {
+        return mCreatedAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setmCreatedAt(Date mCreatedAt) {
+        this.mCreatedAt = mCreatedAt;
     }
 
-    public Date getStartTime() {
-        return startTime;
+    public Date getmStartTime() {
+        return mStartTime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setmStartTime(Date mStartTime) {
+        this.mStartTime = mStartTime;
     }
 
-    public Date getEndTime() {
-        return endTime;
+    public Date getmEndTime() {
+        return mEndTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    public void setmEndTime(Date mEndTime) {
+        this.mEndTime = mEndTime;
     }
 
-    public String getContent() {
-        return content;
+    public String getmContent() {
+        return mContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setmContent(String mContent) {
+        this.mContent = mContent;
     }
 
-    public String getAddress() {
-        return address;
+    public String getmAddress() {
+        return mAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setmAddress(String mAddress) {
+        this.mAddress = mAddress;
     }
 
-    public ParseGeoPoint getGeoPoint() {
-        return geoPoint;
+    public ParseGeoPoint getmGeoPoint() {
+        return mGeoPoint;
     }
 
-    public void setGeoPoint(ParseGeoPoint geoPoint) {
-        this.geoPoint = geoPoint;
+    public void setmGeoPoint(ParseGeoPoint mGeoPoint) {
+        this.mGeoPoint = mGeoPoint;
     }
 
-    public ParseUser getHostedBy() {
-        return hostedBy;
+    public ArrayList<ParseUser> getmJoinedBy() {
+        return mJoinedBy;
     }
 
-    public void setHostedBy(ParseUser hostedBy) {
-        this.hostedBy = hostedBy;
+    public void setmJoinedBy(ArrayList<ParseUser> mJoinedBy) {
+        this.mJoinedBy = mJoinedBy;
     }
 
-    public ArrayList<ParseUser> getJoinedBy() {
-        return joinedBy;
+    public ParseUser getmCreatedBy() {
+        return mCreatedBy;
     }
 
-    public void setJoinedBy(ArrayList<ParseUser> joinedBy) {
-        this.joinedBy = joinedBy;
+    public void setmCreatedBy(ParseUser mCreatedBy) {
+        this.mCreatedBy = mCreatedBy;
     }
 }

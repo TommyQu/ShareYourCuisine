@@ -41,8 +41,11 @@ public class NewPostActivity extends ActionBarActivity implements PostService.Ad
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ParseUser.getCurrentUser().equals(null)) {
+                if(ParseUser.getCurrentUser() == null) {
                     Toast.makeText(NewPostActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
+                }
+                else if(mPostContentValue.getText().toString().equals("")) {
+                    Toast.makeText(NewPostActivity.this, "Please fill required fields!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     String postContent = mPostContentValue.getText().toString();

@@ -7,18 +7,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
+import com.parse.ParseUser;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
 import com.toe.shareyourcuisine.R;
+import com.toe.shareyourcuisine.model.Activity;
+import com.toe.shareyourcuisine.service.ActivityService;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by TommyQu on 11/3/15.
  */
-public class NewActivityActivity extends ActionBarActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
+public class NewActivityActivity extends ActionBarActivity implements DatePickerDialog.OnDateSetListener,
+        TimePickerDialog.OnTimeSetListener, ActivityService.AddActivityListener{
 
     private static final String TAG = "ToeNewActivityActivity";
     private EditText mTitleValue;
@@ -36,6 +42,8 @@ public class NewActivityActivity extends ActionBarActivity implements DatePicker
     private Button mCancelBtn;
     private DatePickerDialog mDatePickerDialog;
     private TimePickerDialog mTimePickerDialog;
+    private Date mStartTime;
+    private Date mEndTime;
     private String mDateStr;
     private String mTimeStr;
 
@@ -80,7 +88,23 @@ public class NewActivityActivity extends ActionBarActivity implements DatePicker
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //If user hasn't logged in
+                if(ParseUser.getCurrentUser() == null) {
+                    Toast.makeText(NewActivityActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                //Implement add activity
+                if(check() == true) {
+                    Activity activity = new Activity();
+                    activity.setmTitle(mTitleValue.getText().toString());
+                    activity.setmAddress(mAddressValue.getText().toString());
+                    activity.setmContent(mContentValue.getText().toString());
+                    activity.setmStartTime(mStartTime);
+                    activity.setmEndTime(mEndTime);
+                    activity.setmCreatedBy(ParseUser.getCurrentUser());
+                    ActivityService activityService = new ActivityService(NewActivityActivity.this, NewActivityActivity.this, "addActivity");
+                    activityService.addActivity(activity);
+                }
             }
         });
         mCancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -123,10 +147,45 @@ public class NewActivityActivity extends ActionBarActivity implements DatePicker
             mEndTimeValue.setText(hourOfDay + "-" + minute);
     }
 
+    //Check the validation of input parameters
     private boolean check() {
-        return true;
+        if(mTitleValue.getText().toString().equals("")
+                || mAddressValue.getText().toString().equals("")
+                || mContentValue.getText().toString().equals("")) {
+            Toast.makeText(NewActivityActivity.this, "Please fill required text fields!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(mStartDateValue.getText().toString().equals("Remain to be set")
+                || mStartTimeValue.getText().toString().equals("Remain to be set")
+                || mEndDateValue.getText().toString().equals("Remain to be set")
+                || mEndTimeValue.getText().toString().equals("Remain to be set")) {
+            Toast.makeText(NewActivityActivity.this, "Please set date and time!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else {
+            mStartTime = new Date();
+            mEndTime = new Date();
+            mStartTime.setYear(Integer.valueOf(mStartDateValue.getText().toString().split("-")[0]));
+            mStartTime.setMonth(Integer.valueOf(mStartDateValue.getText().toString().split("-")[1]));
+            mStartTime.setDate(Integer.valueOf(mStartDateValue.getText().toString().split("-")[2]));
+            mStartTime.setHours(Integer.valueOf(mStartTimeValue.getText().toString().split("-")[0]));
+            mStartTime.setMinutes(Integer.valueOf(mStartTimeValue.getText().toString().split("-")[1]));
+            mEndTime.setYear(Integer.valueOf(mEndDateValue.getText().toString().split("-")[0]));
+            mEndTime.setMonth(Integer.valueOf(mEndDateValue.getText().toString().split("-")[1]));
+            mEndTime.setDate(Integer.valueOf(mEndDateValue.getText().toString().split("-")[2]));
+            mEndTime.setHours(Integer.valueOf(mEndTimeValue.getText().toString().split("-")[0]));
+            mEndTime.setMinutes(Integer.valueOf(mEndTimeValue.getText().toString().split("-")[1]));
+            //Check whether end time is after start time
+            if(mEndTime.before(mStartTime)) {
+                Toast.makeText(NewActivityActivity.this, "End time must after start time!", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            else
+                return true;
+        }
     }
 
+    //Set start date and time, end date and time
     private void setDateTimePicker() {
         mStartDateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,5 +221,16 @@ public class NewActivityActivity extends ActionBarActivity implements DatePicker
                 mTimePickerDialog.show(getSupportFragmentManager(), "timePicker");
             }
         });
+    }
+
+    @Override
+    public void addActivitySuccess() {
+        Toast.makeText(NewActivityActivity.this, "Add activity successfully!", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    @Override
+    public void addActivityFail(String errorMsg) {
+        Toast.makeText(NewActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 }
