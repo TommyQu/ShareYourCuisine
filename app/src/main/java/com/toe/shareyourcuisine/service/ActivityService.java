@@ -36,6 +36,7 @@ public class ActivityService {
         activityObject.put("content", activity.getmContent());
         activityObject.put("startTime", activity.getmStartTime());
         activityObject.put("endTime", activity.getmEndTime());
+        activityObject.put("geoPoint", activity.getmGeoPoint());
         activityObject.put("createdBy", activity.getmCreatedBy());
         activityObject.saveInBackground(new SaveCallback() {
             @Override

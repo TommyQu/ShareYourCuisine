@@ -23,6 +23,8 @@ public class Activity {
     ArrayList<ParseUser> mJoinedBy;
 
     public Activity() {
+        mGeoPoint = new ParseGeoPoint();
+        mCreatedBy = new ParseUser();
         mJoinedBy = new ArrayList<ParseUser>();
     }
 
