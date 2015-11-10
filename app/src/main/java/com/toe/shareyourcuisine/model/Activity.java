@@ -18,6 +18,9 @@ public class Activity {
     Date mEndTime;
     String mContent;
     String mAddress;
+    String mCity;
+    String mState;
+    String mZipCode;
     ParseGeoPoint mGeoPoint;
     ParseUser mCreatedBy;
     ArrayList<ParseUser> mJoinedBy;
@@ -82,6 +85,30 @@ public class Activity {
 
     public void setmAddress(String mAddress) {
         this.mAddress = mAddress;
+    }
+
+    public String getmCity() {
+        return mCity;
+    }
+
+    public void setmCity(String mCity) {
+        this.mCity = mCity;
+    }
+
+    public String getmState() {
+        return mState;
+    }
+
+    public void setmState(String mState) {
+        this.mState = mState;
+    }
+
+    public String getmZipCode() {
+        return mZipCode;
+    }
+
+    public void setmZipCode(String mZipCode) {
+        this.mZipCode = mZipCode;
     }
 
     public ParseGeoPoint getmGeoPoint() {

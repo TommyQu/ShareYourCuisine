@@ -33,6 +33,9 @@ public class ActivityService {
         ParseObject activityObject = new ParseObject("Activity");
         activityObject.put("title", activity.getmTitle());
         activityObject.put("address", activity.getmAddress());
+        activityObject.put("city", activity.getmCity());
+        activityObject.put("state", activity.getmState());
+        activityObject.put("zipCode", activity.getmZipCode());
         activityObject.put("content", activity.getmContent());
         activityObject.put("startTime", activity.getmStartTime());
         activityObject.put("endTime", activity.getmEndTime());

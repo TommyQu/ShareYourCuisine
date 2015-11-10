@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,10 +43,59 @@
             android:ems="10"/>
 
         <TextView
-            android:id="@+id/activity_start_time_text"
+            android:id="@+id/activity_city_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/activity_address_value"
+            android:layout_marginTop="20dp"
+            android:text="@string/activity_city_text" />
+
+        <EditText
+            android:id="@+id/activity_city_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_city_text"
+            android:ems="5"/>
+
+        <TextView
+            android:id="@+id/activity_state_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_address_value"
+            android:layout_toRightOf="@+id/activity_city_value"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/activity_state_text"/>
+
+        <EditText
+            android:id="@+id/activity_state_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_state_text"
+            android:layout_toRightOf="@+id/activity_city_value"
+            android:layout_marginLeft="20dp"
+            android:ems="5"/>
+
+        <TextView
+            android:id="@+id/activity_zip_code_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_city_value"
+            android:text="@string/activity_zip_code_text"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/activity_zip_code_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_zip_code_text"
+            android:ems="5"/>
+
+        <TextView
+            android:id="@+id/activity_start_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_zip_code_value"
             android:layout_marginTop="20dp"
             android:text="@string/activity_start_time"/>
 
@@ -54,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/activity_start_time_text"
-            android:text="@string/activity_start_date_btn"/>
+            android:text="@string/activity_start_date_btn" />
 
         <TextView
             android:id="@+id/activity_start_date_value"

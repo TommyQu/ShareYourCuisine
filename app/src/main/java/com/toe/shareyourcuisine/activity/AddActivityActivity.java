@@ -3,6 +3,7 @@ package com.toe.shareyourcuisine.activity;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import com.parse.ParseUser;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
 import com.toe.shareyourcuisine.R;
+import com.toe.shareyourcuisine.asynctask.AddressToGeoPointTask;
 import com.toe.shareyourcuisine.model.Activity;
 import com.toe.shareyourcuisine.sensor.LocationSensor;
 import com.toe.shareyourcuisine.service.ActivityService;
@@ -27,11 +29,15 @@ import java.util.Date;
  * Created by TommyQu on 11/3/15.
  */
 public class AddActivityActivity extends ActionBarActivity implements DatePickerDialog.OnDateSetListener,
-        TimePickerDialog.OnTimeSetListener, ActivityService.AddActivityListener, LocationSensor.LocationSensorListener{
+        TimePickerDialog.OnTimeSetListener, ActivityService.AddActivityListener, LocationSensor.LocationSensorListener,
+        AddressToGeoPointTask.AddressToGeoPointListener{
 
     private static final String TAG = "ToeNewActivityActivity";
     private EditText mTitleValue;
     private EditText mAddressValue;
+    private EditText mCityValue;
+    private EditText mStateValue;
+    private EditText mZipCodeValue;
     private EditText mContentValue;
     private Button mStartDateBtn;
     private Button mStartTimeBtn;
@@ -63,6 +69,9 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
         mGeoPoint = new ParseGeoPoint();
         mTitleValue = (EditText)findViewById(R.id.activity_title_value);
         mAddressValue = (EditText)findViewById(R.id.activity_address_value);
+        mCityValue = (EditText)findViewById(R.id.activity_city_value);
+        mStateValue = (EditText)findViewById(R.id.activity_state_value);
+        mZipCodeValue = (EditText)findViewById(R.id.activity_zip_code_value);
         mContentValue = (EditText)findViewById(R.id.activity_content_value);
         mStartDateBtn = (Button)findViewById(R.id.activity_start_date_btn);
         mStartTimeBtn = (Button)findViewById(R.id.activity_start_time_btn);
@@ -99,18 +108,10 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
                 }
                 //Implement add activity
                 if(check() == true) {
-                    LocationSensor locationSensor = new LocationSensor(AddActivityActivity.this, AddActivityActivity.this);
-                    locationSensor.getLocation();
-                    Activity activity = new Activity();
-                    activity.setmTitle(mTitleValue.getText().toString());
-                    activity.setmAddress(mAddressValue.getText().toString());
-                    activity.setmContent(mContentValue.getText().toString());
-                    activity.setmStartTime(mStartTime);
-                    activity.setmEndTime(mEndTime);
-                    activity.setmGeoPoint(mGeoPoint);
-                    activity.setmCreatedBy(ParseUser.getCurrentUser());
-                    ActivityService activityService = new ActivityService(AddActivityActivity.this, AddActivityActivity.this, "addActivity");
-                    activityService.addActivity(activity);
+                    //Combine the address, city, state and zip code
+                    String totalAddress = mAddressValue.getText().toString().replace(" ", "+") + mCityValue.getText().toString().replace(" ", "+") + mStateValue.getText().toString().replace(" ", "+") + mZipCodeValue.getText().toString().replace(" ", "+");
+                    AddressToGeoPointTask addressToGeoPointTask = new AddressToGeoPointTask(AddActivityActivity.this, AddActivityActivity.this);
+                    addressToGeoPointTask.execute("http://maps.googleapis.com/maps/api/geocode/json?address=" + totalAddress + "&sensor=true");
                 }
             }
         });
@@ -158,7 +159,10 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
     private boolean check() {
         if(mTitleValue.getText().toString().equals("")
                 || mAddressValue.getText().toString().equals("")
-                || mContentValue.getText().toString().equals("")) {
+                || mContentValue.getText().toString().equals("")
+                || mCityValue.getText().toString().equals("")
+                || mStateValue.getText().toString().equals("")
+                || mZipCodeValue.getText().toString().equals("")) {
             Toast.makeText(AddActivityActivity.this, "Please fill required text fields!", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -250,5 +254,31 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
     @Override
     public void getLocationFail(String errorMsg) {
         Toast.makeText(AddActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void getGeoPointSuccess(ParseGeoPoint geoPoint) {
+        mGeoPoint = geoPoint;
+        Log.d(TAG, String.valueOf(mGeoPoint.getLatitude()));
+        LocationSensor locationSensor = new LocationSensor(AddActivityActivity.this, AddActivityActivity.this);
+        locationSensor.getLocation();
+        Activity activity = new Activity();
+        activity.setmTitle(mTitleValue.getText().toString());
+        activity.setmAddress(mAddressValue.getText().toString());
+        activity.setmCity(mCityValue.getText().toString());
+        activity.setmState(mStateValue.getText().toString());
+        activity.setmZipCode(mZipCodeValue.getText().toString());
+        activity.setmContent(mContentValue.getText().toString());
+        activity.setmStartTime(mStartTime);
+        activity.setmEndTime(mEndTime);
+        activity.setmCreatedBy(ParseUser.getCurrentUser());
+        activity.setmGeoPoint(mGeoPoint);
+        ActivityService activityService = new ActivityService(AddActivityActivity.this, AddActivityActivity.this, "addActivity");
+        activityService.addActivity(activity);
+    }
+
+    @Override
+    public void getGeoPointFail(String errorMsg) {
+        Toast.makeText(AddActivityActivity.this, "errorMsg", Toast.LENGTH_SHORT).show();
     }
 }

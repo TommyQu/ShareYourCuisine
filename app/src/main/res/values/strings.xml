@@ -34,4 +34,7 @@
     <string name="activity_end_date_btn">End date</string>
     <string name="activity_end_time_btn">End time</string>
     <string name="activity_remain_to_be_set">Remain to be set</string>
+    <string name="activity_city_text">City:</string>
+    <string name="activity_state_text">State:</string>
+    <string name="activity_zip_code_text">Zip code:</string>
 </resources>

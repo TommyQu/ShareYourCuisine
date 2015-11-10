@@ -27,10 +27,10 @@ public class ActivityActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContentView = (FrameLayout)findViewById(R.id.content);
+        mContentView = (FrameLayout) findViewById(R.id.content);
         View child = getLayoutInflater().inflate(R.layout.activity_activity, null);
         mContentView.addView(child);
-    }
+   }
 
     @Override
     public void onBackPressed() {
@@ -53,11 +53,11 @@ public class ActivityActivity extends BaseActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
-        else if (id == R.id.new_activity) {
+        } else if (id == R.id.new_activity) {
             Intent intent = new Intent(ActivityActivity.this, AddActivityActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
