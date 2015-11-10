@@ -1,9 +1,7 @@
 package com.toe.shareyourcuisine.activity;
 
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +17,6 @@ import com.sleepbot.datetimepicker.time.TimePickerDialog;
 import com.toe.shareyourcuisine.R;
 import com.toe.shareyourcuisine.asynctask.AddressToGeoPointTask;
 import com.toe.shareyourcuisine.model.Activity;
-import com.toe.shareyourcuisine.sensor.LocationSensor;
 import com.toe.shareyourcuisine.service.ActivityService;
 
 import java.util.Calendar;
@@ -29,8 +26,7 @@ import java.util.Date;
  * Created by TommyQu on 11/3/15.
  */
 public class AddActivityActivity extends ActionBarActivity implements DatePickerDialog.OnDateSetListener,
-        TimePickerDialog.OnTimeSetListener, ActivityService.AddActivityListener, LocationSensor.LocationSensorListener,
-        AddressToGeoPointTask.AddressToGeoPointListener{
+        TimePickerDialog.OnTimeSetListener, ActivityService.AddActivityListener, AddressToGeoPointTask.AddressToGeoPointListener{
 
     private static final String TAG = "ToeNewActivityActivity";
     private EditText mTitleValue;
@@ -246,22 +242,8 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
     }
 
     @Override
-    public void getLocationSuccess(Location location) {
-        mGeoPoint.setLatitude(location.getLatitude());
-        mGeoPoint.setLongitude(location.getLongitude());
-    }
-
-    @Override
-    public void getLocationFail(String errorMsg) {
-        Toast.makeText(AddActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void getGeoPointSuccess(ParseGeoPoint geoPoint) {
         mGeoPoint = geoPoint;
-        Log.d(TAG, String.valueOf(mGeoPoint.getLatitude()));
-        LocationSensor locationSensor = new LocationSensor(AddActivityActivity.this, AddActivityActivity.this);
-        locationSensor.getLocation();
         Activity activity = new Activity();
         activity.setmTitle(mTitleValue.getText().toString());
         activity.setmAddress(mAddressValue.getText().toString());
@@ -279,6 +261,6 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
 
     @Override
     public void getGeoPointFail(String errorMsg) {
-        Toast.makeText(AddActivityActivity.this, "errorMsg", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 }
