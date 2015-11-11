@@ -6,7 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import com.parse.ParseUser;
 import com.toe.shareyourcuisine.R;
 
 /**
@@ -55,8 +57,13 @@ public class MenuActivity extends BaseActivity {
             return true;
         }
         else if (id == R.id.new_menu) {
-            Intent intent = new Intent(MenuActivity.this, AddMenuActivity.class);
-            startActivity(intent);
+            if(ParseUser.getCurrentUser() == null) {
+                Toast.makeText(MenuActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Intent intent = new Intent(MenuActivity.this, AddMenuActivity.class);
+                startActivity(intent);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

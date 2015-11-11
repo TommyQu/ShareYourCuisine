@@ -1,5 +1,7 @@
 package com.toe.shareyourcuisine.activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
@@ -59,6 +61,7 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
         setContentView(R.layout.activity_add_activity);
         getSupportActionBar().setTitle("New Activity");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
         final Calendar calendar = Calendar.getInstance();
         mDatePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), false);
         mTimePickerDialog = TimePickerDialog.newInstance(this, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false, false);
@@ -98,10 +101,6 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
             @Override
             public void onClick(View v) {
                 //If user hasn't logged in
-                if(ParseUser.getCurrentUser() == null) {
-                    Toast.makeText(AddActivityActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 //Implement add activity
                 if(check() == true) {
                     //Combine the address, city, state and zip code

@@ -2,6 +2,8 @@ package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -9,9 +11,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.toe.shareyourcuisine.R;
 
@@ -41,6 +45,7 @@ public class BaseActivity extends ActionBarActivity {
         addDrawerItems();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         activityTitle = getTitle().toString();
         setupDrawer();
@@ -87,13 +92,19 @@ public class BaseActivity extends ActionBarActivity {
 
     protected void addDrawerItems() {
         String[] osArray = { "Home", "Log in", "Sign Up", "Menu", "Post", "Activity"};
-        drawerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        drawerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(Color.WHITE);
+                return view;
+            }
+        };
         drawerList.setAdapter(drawerAdapter);
         drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(BaseActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
-                System.out.println(position);
                 Intent intent = new Intent();
                 if (position == 0) {
                     intent.setClass(BaseActivity.this, MainActivity.class);

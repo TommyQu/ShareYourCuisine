@@ -30,7 +30,7 @@
         android:paddingRight="20dp"
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
-        android:background="#ffeeeeee"/>
+        android:background="@color/red" />
 
 
 </android.support.v4.widget.DrawerLayout>

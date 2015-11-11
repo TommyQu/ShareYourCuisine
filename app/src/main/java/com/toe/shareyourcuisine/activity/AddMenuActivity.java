@@ -1,5 +1,7 @@
 package com.toe.shareyourcuisine.activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
@@ -19,6 +21,7 @@ public class AddMenuActivity extends ActionBarActivity {
         setContentView(R.layout.activity_add_menu);
         getSupportActionBar().setTitle("New Menu");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
     }
 
     @Override

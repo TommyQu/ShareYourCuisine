@@ -1,5 +1,7 @@
 package com.toe.shareyourcuisine.activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
@@ -34,6 +36,7 @@ public class AddPostActivity extends ActionBarActivity implements PostService.Ad
         setContentView(R.layout.activity_add_post);
         getSupportActionBar().setTitle("New Post");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
         mSubmitBtn = (Button)findViewById(R.id.submit_btn);
         mCancelBtn = (Button)findViewById(R.id.cancel_btn);
         mPostContentValue = (EditText)findViewById(R.id.post_content_value);
@@ -41,10 +44,7 @@ public class AddPostActivity extends ActionBarActivity implements PostService.Ad
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ParseUser.getCurrentUser() == null) {
-                    Toast.makeText(AddPostActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
-                }
-                else if(mPostContentValue.getText().toString().equals("")) {
+                if(mPostContentValue.getText().toString().equals("")) {
                     Toast.makeText(AddPostActivity.this, "Please fill required fields!", Toast.LENGTH_SHORT).show();
                 }
                 else {

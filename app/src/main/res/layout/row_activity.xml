@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/user_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/edittext_bg"/>
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_img"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/activity_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/user_img" />
+
+    <TextView
+        android:id="@+id/activity_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/activity_title" />
+
+    <TextView
+        android:id="@+id/activity_end_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/activity_start_time" />
+
+    <TextView
+        android:id="@+id/activity_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_title"
+        android:layout_toRightOf="@+id/user_img" />
+
+    <TextView
+        android:id="@+id/activity_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_title"
+        android:layout_toRightOf="@+id/activity_address" />
+
+    <TextView
+        android:id="@+id/activity_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_title"
+        android:layout_toRightOf="@+id/activity_city" />
+</RelativeLayout>

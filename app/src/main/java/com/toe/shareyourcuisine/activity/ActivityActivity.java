@@ -6,8 +6,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.parse.ParseUser;
 import com.toe.shareyourcuisine.R;
+import com.toe.shareyourcuisine.adapter.ActivityArrayAdapter;
+import com.toe.shareyourcuisine.model.Activity;
+import com.toe.shareyourcuisine.service.ActivityService;
+
+import java.util.List;
 
 /**
  * Project: Share Your Cuisine
@@ -19,10 +27,11 @@ import com.toe.shareyourcuisine.R;
  * Modified Date:
  * Why is modified:
  */
-public class ActivityActivity extends BaseActivity {
+public class ActivityActivity extends BaseActivity implements ActivityService.GetAllActivitiesListener{
 
     private final String TAG = "ToePostActivity";
     private FrameLayout mContentView;
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +39,10 @@ public class ActivityActivity extends BaseActivity {
         mContentView = (FrameLayout) findViewById(R.id.content);
         View child = getLayoutInflater().inflate(R.layout.activity_activity, null);
         mContentView.addView(child);
+        mListView = (ListView) findViewById(R.id.activity_list_view);
+        ActivityService activityService = new ActivityService(ActivityActivity.this, ActivityActivity.this, "getAllActivities");
+        activityService.getAllActivities();
+//        ActivityArrayAdapter activityArrayAdapter = new ActivityArrayAdapter(ActivityActivity);
    }
 
     @Override
@@ -54,10 +67,25 @@ public class ActivityActivity extends BaseActivity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.new_activity) {
-            Intent intent = new Intent(ActivityActivity.this, AddActivityActivity.class);
-            startActivity(intent);
+            if(ParseUser.getCurrentUser() == null) {
+                Toast.makeText(ActivityActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Intent intent = new Intent(ActivityActivity.this, AddActivityActivity.class);
+                startActivity(intent);
+            }
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void getAllActivitiesSuccess(List<Activity> activities) {
+        ActivityArrayAdapter activityArrayAdapter = new ActivityArrayAdapter(ActivityActivity.this, activities);
+        mListView.setAdapter(activityArrayAdapter);
+    }
+
+    @Override
+    public void getAllActivitiesFail(String errorMsg) {
+        Toast.makeText(ActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
 }
