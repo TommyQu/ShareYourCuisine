@@ -20,6 +20,7 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
 
     private static class ViewHolder {
         ImageView userImgView;
+        TextView activityIdTextView;
         TextView userNameTextView;
         TextView activityTitleTextView;
         TextView startTimeTextView;
@@ -41,6 +42,7 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.row_activity,parent,false);
+            viewHolder.activityIdTextView = (TextView) convertView.findViewById(R.id.activity_id);
             viewHolder.userImgView = (ImageView) convertView.findViewById(R.id.user_img);
             viewHolder.userNameTextView = (TextView) convertView.findViewById(R.id.user_name);
             viewHolder.activityTitleTextView = (TextView) convertView.findViewById(R.id.activity_title);
@@ -55,6 +57,7 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 //        viewHolder.userImgView.setImageBitmap((Bitmap) activity.getmCreatedBy().get("userImg"));
+        viewHolder.activityIdTextView.setText(activity.getmObjectId());
         viewHolder.userNameTextView.setText(activity.getmCreatedBy().get("nickName").toString());
         viewHolder.activityTitleTextView.setText(activity.getmTitle());
         viewHolder.startTimeTextView.setText(activity.getmStartTime().toString());
@@ -64,4 +67,5 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
         viewHolder.stateTextView.setText(activity.getmState());
         return convertView;
     }
+
 }

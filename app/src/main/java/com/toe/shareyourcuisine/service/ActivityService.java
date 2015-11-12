@@ -81,6 +81,7 @@ public class ActivityService {
                     List<Activity> activities = new ArrayList<Activity>();
                     for(int i = 0; i < list.size(); i++) {
                         Activity activity = new Activity();
+                        activity.setmObjectId(list.get(i).getObjectId());
                         activity.setmCreatedBy((ParseUser) list.get(i).get("createdBy"));
                         activity.setmTitle((String) list.get(i).get("title"));
                         activity.setmStartTime((Date) list.get(i).get("startTime"));

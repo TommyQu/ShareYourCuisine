@@ -2,11 +2,14 @@ package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
@@ -42,7 +45,7 @@ public class ActivityActivity extends BaseActivity implements ActivityService.Ge
         mListView = (ListView) findViewById(R.id.activity_list_view);
         ActivityService activityService = new ActivityService(ActivityActivity.this, ActivityActivity.this, "getAllActivities");
         activityService.getAllActivities();
-//        ActivityArrayAdapter activityArrayAdapter = new ActivityArrayAdapter(ActivityActivity);
+        setActivityItemClick();
    }
 
     @Override
@@ -76,6 +79,16 @@ public class ActivityActivity extends BaseActivity implements ActivityService.Ge
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setActivityItemClick() {
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView textView = (TextView)view.findViewById(R.id.activity_id);
+                Log.d(TAG, textView.getText().toString());
+            }
+        });
     }
 
     @Override
