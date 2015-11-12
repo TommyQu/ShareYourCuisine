@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -116,8 +117,14 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
             //userImageView
             ImageView userImageView = (ImageView) itemView.findViewById(R.id.userImageView);
             ParseUser user = currentPost.getCreatedBy();
+            try {
+                user.fetch();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             ParseFile userImg = user.getParseFile("img");
-            //Todo how fill the userImageView with the user image which is a ParseFile type
+
+            //Todo how to fill the userImageView with the user image which is a ParseFile type
             //userImageView.setImageDrawable();
             String imageUrl = userImg.getUrl() ;//live url
             Uri imageUri = Uri.parse(imageUrl);
@@ -147,6 +154,7 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
 
     //Todo the click listener
     private  void registerClickCallback() {
+
     }
 
     @Override
@@ -162,7 +170,12 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
 
             //how to get the img array and assign it to the Post.mImg
             ArrayList<ParseFile> tempImg = new ArrayList<ParseFile>();
-            tempImg =(ArrayList<ParseFile>) postlist.get(n).get("img");
+
+            try {
+                tempImg =(ArrayList<ParseFile>) postlist.get(n).fetchIfNeeded().get("img");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             currentPost.setImg(tempImg);
             tempList.add(currentPost);
         }

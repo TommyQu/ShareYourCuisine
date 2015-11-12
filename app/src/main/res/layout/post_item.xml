@@ -41,6 +41,44 @@
         android:layout_toRightOf="@+id/userImageView"
         android:layout_toEndOf="@+id/userImageView"/>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contentTextView"
+        android:layout_alignLeft="@+id/contentTextView"
+        android:layout_alignStart="@+id/contentTextView"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/postImage1"
+            android:adjustViewBounds="true"
+            android:maxHeight="60dp"
+            android:maxWidth="60dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/postImage1"
+            android:layout_toEndOf="@+id/postImage1"
+            android:id="@+id/postImage2"
+            android:adjustViewBounds="true"
+            android:maxHeight="60dp"
+            android:maxWidth="60dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/postImage2"
+            android:layout_toEndOf="@+id/postImage2"
+            android:id="@+id/postImage3"
+            android:adjustViewBounds="true"
+            android:maxHeight="60dp"
+            android:maxWidth="60dp"/>
+    </LinearLayout>
 
 
 </RelativeLayout>
