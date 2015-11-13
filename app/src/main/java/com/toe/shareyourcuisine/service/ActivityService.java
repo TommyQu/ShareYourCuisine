@@ -3,6 +3,7 @@ package com.toe.shareyourcuisine.service;
 import android.content.Context;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -24,6 +25,8 @@ public class ActivityService {
     private String mAction;
     private AddActivityListener mAddActivityListener;
     private GetAllActivitiesListener mGetAllActivitiesListener;
+    private GetSingleActivityListener mGetSingleActivityListener;
+    private JoinActivityListener mJoinActivityListener;
 
     public interface AddActivityListener {
         public void addActivitySuccess();
@@ -35,6 +38,16 @@ public class ActivityService {
         public void getAllActivitiesFail(String errorMsg);
     }
 
+    public interface GetSingleActivityListener {
+        public void getSingleActivitySuccess(Activity activity);
+        public void getSingleActivityFail(String errorMsg);
+    }
+
+    public interface JoinActivityListener {
+        public void joinActivitySuccess();
+        public void joinActivityFail(String errorMsg);
+    }
+
     public ActivityService(Context context, Object activityListener, String action) {
         mContext = context;
         if (action.equals("addActivity")) {
@@ -42,6 +55,12 @@ public class ActivityService {
         }
         else if (action.equals("getAllActivities")) {
             mGetAllActivitiesListener = (GetAllActivitiesListener)activityListener;
+        }
+        else if (action.equals("getSingleActivity")) {
+            mGetSingleActivityListener = (GetSingleActivityListener)activityListener;
+        }
+        else if (action.equals("joinActivity")) {
+            mJoinActivityListener = (JoinActivityListener) activityListener;
         }
     }
 
@@ -79,10 +98,10 @@ public class ActivityService {
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
                     List<Activity> activities = new ArrayList<Activity>();
-                    for(int i = 0; i < list.size(); i++) {
+                    for (int i = 0; i < list.size(); i++) {
                         Activity activity = new Activity();
                         activity.setmObjectId(list.get(i).getObjectId());
-                        activity.setmCreatedBy((ParseUser) list.get(i).get("createdBy"));
+                        activity.setmCreatedBy(list.get(i).getParseUser("createdBy"));
                         activity.setmTitle((String) list.get(i).get("title"));
                         activity.setmStartTime((Date) list.get(i).get("startTime"));
                         activity.setmEndTime((Date) list.get(i).get("endTime"));
@@ -92,9 +111,59 @@ public class ActivityService {
                         activities.add(activity);
                     }
                     mGetAllActivitiesListener.getAllActivitiesSuccess(activities);
-                }
-                else {
+                } else {
                     mGetAllActivitiesListener.getAllActivitiesFail(e.getMessage().toString());
+                }
+            }
+        });
+    }
+
+    public void getSingleActivity(String activityId) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Activity");
+        query.include("createdBy");
+        query.whereEqualTo("objectId", activityId);
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject parseObject, ParseException e) {
+                if (e == null) {
+                    Activity activity = new Activity();
+                    activity.setmTitle(parseObject.get("title").toString());
+                    activity.setmCreatedBy((ParseUser) parseObject.get("createdBy"));
+                    activity.setmAddress((String) parseObject.get("address"));
+                    activity.setmCity((String) parseObject.get("city"));
+                    activity.setmState((String) parseObject.get("state"));
+                    activity.setmZipCode((String) parseObject.get("zipCode"));
+                    activity.setmStartTime((Date) parseObject.get("startTime"));
+                    activity.setmEndTime((Date) parseObject.get("endTime"));
+                    activity.setmContent((String) parseObject.get("content"));
+                    mGetSingleActivityListener.getSingleActivitySuccess(activity);
+                } else {
+                    mGetSingleActivityListener.getSingleActivityFail(e.getMessage().toString());
+                }
+            }
+        });
+    }
+
+    public void joinActivity(String activityId, final ParseUser parseUser) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Activity");
+        query.whereEqualTo("objectId", activityId);
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject parseObject, ParseException e) {
+                if (e == null) {
+                    parseObject.addUnique("joinedBy", parseUser);
+                    parseObject.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if(e == null)
+                                mJoinActivityListener.joinActivitySuccess();
+                            else
+                                mJoinActivityListener.joinActivityFail(e.getMessage().toString());
+                        }
+                    });
+                    mJoinActivityListener.joinActivitySuccess();
+                } else {
+                    mJoinActivityListener.joinActivityFail(e.getMessage().toString());
                 }
             }
         });

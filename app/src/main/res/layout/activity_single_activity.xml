@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="20dp">
+
+    <ImageView
+        android:id="@+id/user_img"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/syc_icon"/>
+
+    <TextView
+        android:id="@+id/activity_title"
+        style="@style/SingleActivityTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/user_img"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="sdfasdf"/>
+
+    <Button
+        android:id="@+id/activity_join"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_title"
+        android:layout_toRightOf="@+id/user_img"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/join"/>
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_img"
+        android:text="Tommy Qu"/>
+
+    <TextView
+        android:id="@+id/activity_address"
+        style="@style/SingleActivityAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_name"
+        android:layout_marginTop="10dp"
+        android:text="asfasf"/>
+
+    <TextView
+        android:id="@+id/activity_start_time"
+        style="@style/SingleActivityTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_address"
+        android:text="starttime"/>
+
+    <TextView
+        android:id="@+id/activity_end_time"
+        style="@style/SingleActivityTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_start_time"
+        android:text="endtime"/>
+
+    <TextView
+        android:id="@+id/activity_content"
+        style="@style/SingleActivityContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_end_time"
+        android:layout_marginTop="10dp"
+        android:text="asdfasfsfsdfadf"/>
+</RelativeLayout>

@@ -65,6 +65,10 @@
             android:name=".activity.AddActivityActivity"
             android:label="NewActivityActivity">
         </activity>
+        <activity
+            android:name=".activity.SingleActivityActivity"
+            android:label="SingleActivityActivity">
+        </activity>
     </application>
 
 </manifest>

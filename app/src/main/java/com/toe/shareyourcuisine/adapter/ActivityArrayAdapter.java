@@ -1,6 +1,7 @@
 package com.toe.shareyourcuisine.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseUser;
+import com.squareup.picasso.Picasso;
 import com.toe.shareyourcuisine.R;
 import com.toe.shareyourcuisine.model.Activity;
 
@@ -17,6 +22,8 @@ import java.util.List;
  * Created by TommyQu on 11/11/15.
  */
 public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
+
+    private Context mContext;
 
     private static class ViewHolder {
         ImageView userImgView;
@@ -32,6 +39,7 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
 
     public ActivityArrayAdapter(Context context, List<Activity> activities) {
         super(context, R.layout.row_activity, activities);
+        mContext = context;
     }
 
     @Override
@@ -56,7 +64,19 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
         else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-//        viewHolder.userImgView.setImageBitmap((Bitmap) activity.getmCreatedBy().get("userImg"));
+        //Fetch user img
+        ParseUser parseUser = activity.getmCreatedBy();
+        try {
+            parseUser.fetch();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        ParseFile userImg = parseUser.getParseFile("img");
+        String imageUrl = userImg.getUrl() ;//live url
+        Uri imageUri = Uri.parse(imageUrl);
+        Picasso.with(mContext).load(imageUri.toString()).into(viewHolder.userImgView);
+
+//        viewHolder.userImgView.setImageBitmap((Bitmap) activity.getmCreatedBy().get("img"));
         viewHolder.activityIdTextView.setText(activity.getmObjectId());
         viewHolder.userNameTextView.setText(activity.getmCreatedBy().get("nickName").toString());
         viewHolder.activityTitleTextView.setText(activity.getmTitle());

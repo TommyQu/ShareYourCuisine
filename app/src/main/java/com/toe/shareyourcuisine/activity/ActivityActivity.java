@@ -2,7 +2,6 @@ package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -86,7 +85,11 @@ public class ActivityActivity extends BaseActivity implements ActivityService.Ge
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView textView = (TextView)view.findViewById(R.id.activity_id);
-                Log.d(TAG, textView.getText().toString());
+                TextView titleTextView = (TextView)view.findViewById(R.id.activity_title);
+                Intent intent = new Intent(ActivityActivity.this, SingleActivityActivity.class);
+                intent.putExtra("activityId", textView.getText().toString());
+                intent.putExtra("activityTitle", titleTextView.getText().toString());
+                startActivity(intent);
             }
         });
     }
