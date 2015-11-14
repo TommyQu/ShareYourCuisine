@@ -1,12 +1,15 @@
 package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -32,9 +35,9 @@ import java.util.List;
  * Compile SDK version: 22
  * Author: Tommy Qu
  * Created Date: 09/14/2015
- * Modified By:
- * Modified Date:
- * Why is modified:
+ * Modified By:Theon_Z
+ * Modified Date:11/12/2015
+ * Why is modified:Complete the class to Show the posts
  */
 public class PostActivity extends BaseActivity implements PostService.GetAllPostsListener{
     private final String TAG = "ToePostActivity";
@@ -115,7 +118,7 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
 
             //fill the view
             //userImageView
-            ImageView userImageView = (ImageView) itemView.findViewById(R.id.userImageView);
+            ImageView userImageView = (ImageView) itemView.findViewById(R.id.UserImage);
             ParseUser user = currentPost.getCreatedBy();
             try {
                 user.fetch();
@@ -133,16 +136,16 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
 
 
             //userNameTextView
-            TextView userNameTextView = (TextView) itemView.findViewById(R.id.userNameTextView);
+            TextView userNameTextView = (TextView) itemView.findViewById(R.id.UserName);
             userNameTextView.setText(user.getString("nickName"));
 
             //createdAtTextView
-            TextView createdAtTextView = (TextView) itemView.findViewById(R.id.createdAtTextView);
+            TextView createdAtTextView = (TextView) itemView.findViewById(R.id.CreatedAt);
             //how does parse Date looks like when toString() is applied
             createdAtTextView.setText(currentPost.getCreatedAt().toString());
 
             //contentTextView
-            TextView contentTextView = (TextView) itemView.findViewById(R.id.contentTextView);
+            TextView contentTextView = (TextView) itemView.findViewById(R.id.Content);
             contentTextView.setText(currentPost.getContent());
 
             //Todo show post images
@@ -154,6 +157,19 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
 
     //Todo the click listener
     private  void registerClickCallback() {
+        ListView list = (ListView) findViewById(R.id.postListView);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+                Post clickedPost = mPostList.get(position);
+                //Turn to Single Post activity and use shared preference to assign the post information
+                SavePrefs("clickedPostId", clickedPost.getPostId());
+
+                Intent intent = new Intent(PostActivity.this, SinglePostActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -187,6 +203,13 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
     @Override
     public void getAllPostsFail(String errorMsg) {
         Toast.makeText(PostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void SavePrefs(String key, String value) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putString(key, value);
+        edit.commit();
     }
 
 }

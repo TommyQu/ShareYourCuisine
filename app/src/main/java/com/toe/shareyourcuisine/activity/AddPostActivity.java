@@ -1,5 +1,6 @@
 package com.toe.shareyourcuisine.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -85,7 +86,9 @@ public class AddPostActivity extends ActionBarActivity implements PostService.Ad
     @Override
     public void addPostSuccess() {
         Toast.makeText(AddPostActivity.this, "Add post successfully!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(AddPostActivity.this, PostActivity.class);
         finish();
+        startActivity(intent);
     }
 
     @Override

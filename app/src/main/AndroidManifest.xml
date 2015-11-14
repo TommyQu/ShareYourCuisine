@@ -58,8 +58,7 @@
         </activity>
         <activity
             android:name=".activity.SinglePostActivity"
-            android:label="@string/title_activity_single_post"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:label="@string/title_activity_single_post">
         </activity>
         <activity
             android:name=".activity.AddActivityActivity"
