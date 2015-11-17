@@ -25,7 +25,7 @@ import com.toe.shareyourcuisine.service.ActivityService;
  * Created by TommyQu on 11/12/15.
  */
 public class SingleActivityActivity extends ActionBarActivity implements ActivityService.GetSingleActivityListener,
-        ActivityService.JoinActivityListener{
+        ActivityService.JoinActivityListener, ActivityService.UnJoinActivityListener, ActivityService.CheckJoinActivityListener{
 
     private static final String TAG = "ToeSingleActivity";
     private String mActivityId;
@@ -38,6 +38,7 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
     private TextView mActivityEndTimeTextView;
     private TextView mActivityContentTextView;
     private Button mJoinBtn;
+    private Button mUnJoinBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +60,12 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
         mActivityEndTimeTextView = (TextView) findViewById(R.id.activity_end_time);
         mActivityContentTextView = (TextView) findViewById(R.id.activity_content);
         mJoinBtn = (Button) findViewById(R.id.activity_join);
+        mUnJoinBtn = (Button) findViewById(R.id.activity_unjoin);
 
         ActivityService activityService = new ActivityService(SingleActivityActivity.this, SingleActivityActivity.this, "getSingleActivity");
         activityService.getSingleActivity(mActivityId);
 
-        setJoinBtnAction();
+        setActionBtnAction();
     }
 
     @Override
@@ -82,7 +84,7 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
         finish();
     }
 
-    private void setJoinBtnAction() {
+    private void setActionBtnAction() {
         mJoinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +94,18 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
                 else {
                     ActivityService activityService = new ActivityService(SingleActivityActivity.this, SingleActivityActivity.this, "joinActivity");
                     activityService.joinActivity(mActivityId, ParseUser.getCurrentUser());
+                }
+            }
+        });
+        mUnJoinBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ParseUser.getCurrentUser() == null) {
+                    Toast.makeText(SingleActivityActivity.this, "Please log in!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    ActivityService activityService = new ActivityService(SingleActivityActivity.this, SingleActivityActivity.this, "unJoinActivity");
+                    activityService.unJoinActivity(mActivityId, ParseUser.getCurrentUser());
                 }
             }
         });
@@ -117,6 +131,10 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
         mActivityStartTimeTextView.setText(activity.getmStartTime().toString());
         mActivityEndTimeTextView.setText(activity.getmEndTime().toString());
         mActivityContentTextView.setText(activity.getmContent());
+
+        //Check whether the user has joined the activity;
+        ActivityService checkJoinService = new ActivityService(SingleActivityActivity.this, SingleActivityActivity.this, "checkJoinActivity");
+        checkJoinService.checkJoinActivity(mActivityId, ParseUser.getCurrentUser());
     }
 
     @Override
@@ -127,10 +145,40 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
     @Override
     public void joinActivitySuccess() {
         Toast.makeText(SingleActivityActivity.this, "Join Activity Successfully!", Toast.LENGTH_SHORT).show();
+        mJoinBtn.setVisibility(View.INVISIBLE);
+        mUnJoinBtn.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void joinActivityFail(String errorMsg) {
+        Toast.makeText(SingleActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void unJoinActivitySuccess() {
+        Toast.makeText(SingleActivityActivity.this, "UnJoin Activity Successfully!", Toast.LENGTH_SHORT).show();
+        mJoinBtn.setVisibility(View.VISIBLE);
+        mUnJoinBtn.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void unJoinActivityFail(String errorMsg) {
+        Toast.makeText(SingleActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void checkJoinActivityListenerSuccess(String response) {
+        if(response.equals("isJoined")) {
+            mJoinBtn.setVisibility(View.INVISIBLE);
+            mUnJoinBtn.setVisibility(View.VISIBLE);
+        } else {
+            mJoinBtn.setVisibility(View.VISIBLE);
+            mUnJoinBtn.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
+    public void checkJoinActivityListenerFail(String errorMsg) {
         Toast.makeText(SingleActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 }

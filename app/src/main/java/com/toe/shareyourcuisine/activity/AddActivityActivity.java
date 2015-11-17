@@ -1,5 +1,6 @@
 package com.toe.shareyourcuisine.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ import java.util.Date;
 public class AddActivityActivity extends ActionBarActivity implements DatePickerDialog.OnDateSetListener,
         TimePickerDialog.OnTimeSetListener, ActivityService.AddActivityListener, AddressToGeoPointTask.AddressToGeoPointListener{
 
-    private static final String TAG = "ToeNewActivityActivity";
+    private static final String TAG = "ToeAddActivityActivity";
     private EditText mTitleValue;
     private EditText mAddressValue;
     private EditText mCityValue;
@@ -104,9 +105,9 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
                 //Implement add activity
                 if(check() == true) {
                     //Combine the address, city, state and zip code
-                    String totalAddress = mAddressValue.getText().toString().replace(" ", "+") + mCityValue.getText().toString().replace(" ", "+") + mStateValue.getText().toString().replace(" ", "+") + mZipCodeValue.getText().toString().replace(" ", "+");
+                    String totalAddress = mAddressValue.getText().toString().replace(" ", "+") + "+" +mCityValue.getText().toString().replace(" ", "+") + "+" +mStateValue.getText().toString().replace(" ", "+") + "+" + mZipCodeValue.getText().toString().replace(" ", "+");
                     AddressToGeoPointTask addressToGeoPointTask = new AddressToGeoPointTask(AddActivityActivity.this, AddActivityActivity.this);
-                    addressToGeoPointTask.execute("http://maps.googleapis.com/maps/api/geocode/json?address=" + totalAddress + "&sensor=true");
+                    addressToGeoPointTask.execute("https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyATMzIiSG-Ctvzb9pPeYTdroug1K7nxPmc&address=" + totalAddress + "&sensor=true");
                 }
             }
         });
@@ -232,7 +233,10 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
     @Override
     public void addActivitySuccess() {
         Toast.makeText(AddActivityActivity.this, "Add activity successfully!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(AddActivityActivity.this, ActivityActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
+        startActivity(intent);
     }
 
     @Override

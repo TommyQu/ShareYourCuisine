@@ -27,6 +27,8 @@ public class ActivityService {
     private GetAllActivitiesListener mGetAllActivitiesListener;
     private GetSingleActivityListener mGetSingleActivityListener;
     private JoinActivityListener mJoinActivityListener;
+    private UnJoinActivityListener mUnJoinActivityListener;
+    private CheckJoinActivityListener mCheckJoinActivityListener;
 
     public interface AddActivityListener {
         public void addActivitySuccess();
@@ -48,6 +50,16 @@ public class ActivityService {
         public void joinActivityFail(String errorMsg);
     }
 
+    public interface UnJoinActivityListener {
+        public void unJoinActivitySuccess();
+        public void unJoinActivityFail(String errorMsg);
+    }
+
+    public interface CheckJoinActivityListener {
+        public void checkJoinActivityListenerSuccess(String response);
+        public void checkJoinActivityListenerFail(String errorMsg);
+    }
+
     public ActivityService(Context context, Object activityListener, String action) {
         mContext = context;
         if (action.equals("addActivity")) {
@@ -61,6 +73,12 @@ public class ActivityService {
         }
         else if (action.equals("joinActivity")) {
             mJoinActivityListener = (JoinActivityListener) activityListener;
+        }
+        else if (action.equals("unJoinActivity")) {
+            mUnJoinActivityListener = (UnJoinActivityListener) activityListener;
+        }
+        else if (action.equals("checkJoinActivity")) {
+            mCheckJoinActivityListener = (CheckJoinActivityListener) activityListener;
         }
     }
 
@@ -82,7 +100,7 @@ public class ActivityService {
                 if (e == null) {
                     mAddActivityListener.addActivitySuccess();
                 }
-                //Add post failed.
+                //Add Activity failed.
                 else {
                     mAddActivityListener.addActivityFail(e.getMessage().toString());
                 }
@@ -151,19 +169,77 @@ public class ActivityService {
             @Override
             public void done(ParseObject parseObject, ParseException e) {
                 if (e == null) {
-                    parseObject.addUnique("joinedBy", parseUser);
-                    parseObject.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if(e == null)
-                                mJoinActivityListener.joinActivitySuccess();
-                            else
-                                mJoinActivityListener.joinActivityFail(e.getMessage().toString());
-                        }
-                    });
-                    mJoinActivityListener.joinActivitySuccess();
+                    List<ParseUser> joinedUsers = (List<ParseUser>) parseObject.get("joinedBy");
+                    if(joinedUsers.contains(ParseUser.getCurrentUser())) {
+                       mJoinActivityListener.joinActivityFail("You have joined this activity!");
+                   } else {
+                       parseObject.addUnique("joinedBy", parseUser);
+                       parseObject.saveInBackground(new SaveCallback() {
+                           @Override
+                           public void done(ParseException e) {
+                               if(e == null)
+                                   mJoinActivityListener.joinActivitySuccess();
+                               else
+                                   mJoinActivityListener.joinActivityFail(e.getMessage().toString());
+                           }
+                       });
+                   }
                 } else {
                     mJoinActivityListener.joinActivityFail(e.getMessage().toString());
+                }
+            }
+        });
+    }
+
+    public void unJoinActivity(String activityId, ParseUser parseUser) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Activity");
+        query.whereEqualTo("objectId", activityId);
+        query.include("joinedBy");
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject parseObject, ParseException e) {
+                if(e == null) {
+                    List<ParseUser> joinedUsers = (List<ParseUser>) parseObject.get("joinedBy");
+                    for(int i=0; i<joinedUsers.size(); i++) {
+                        if(joinedUsers.get(i).getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
+                            joinedUsers.remove(i);
+                            mUnJoinActivityListener.unJoinActivitySuccess();
+                            break;
+                        }
+                    }
+                    parseObject.put("joinedBy", joinedUsers);
+                    parseObject.saveInBackground();
+                }
+                else {
+                    mUnJoinActivityListener.unJoinActivityFail(e.getMessage().toString());
+                }
+            }
+        });
+    }
+
+    public void checkJoinActivity(String activityId, ParseUser parseUser) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Activity");
+        query.whereEqualTo("objectId", activityId);
+        query.include("joinedBy");
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject parseObject, ParseException e) {
+                if(e == null) {
+                    boolean isJoined = false;
+                    List<ParseUser> joinedUsers = (List<ParseUser>) parseObject.get("joinedBy");
+                    for(int i=0; i<joinedUsers.size(); i++) {
+                        if(joinedUsers.get(i).getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
+                            isJoined = true;
+                            break;
+                        }
+                    }
+                    if(isJoined == true)
+                        mCheckJoinActivityListener.checkJoinActivityListenerSuccess("isJoined");
+                    else
+                        mCheckJoinActivityListener.checkJoinActivityListenerSuccess("unJoined");
+                }
+                else {
+                    mUnJoinActivityListener.unJoinActivityFail(e.getMessage().toString());
                 }
             }
         });

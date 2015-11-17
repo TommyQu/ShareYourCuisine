@@ -56,11 +56,16 @@ public class AddressToGeoPointTask extends AsyncTask<String, Integer, ParseGeoPo
             totalInfo = locationSB.toString();
             JSONObject jsonObject = new JSONObject(totalInfo);
             JSONArray resultsArray = jsonObject.getJSONArray("results");
-            JSONObject resultObject = resultsArray.getJSONObject(0);
-            JSONObject geometryObject = resultObject.getJSONObject("geometry");
-            JSONObject locationObject = geometryObject.getJSONObject("location");
-            mGeoPoint.setLatitude(Double.parseDouble((locationObject.getString("lat"))));
-            mGeoPoint.setLongitude(Double.parseDouble((locationObject.getString("lng"))));
+            if(resultsArray.length() == 0) {
+                mErrorMsg = "Please enter valid address";
+            }
+            else {
+                JSONObject resultObject = resultsArray.getJSONObject(0);
+                JSONObject geometryObject = resultObject.getJSONObject("geometry");
+                JSONObject locationObject = geometryObject.getJSONObject("location");
+                mGeoPoint.setLatitude(Double.parseDouble((locationObject.getString("lat"))));
+                mGeoPoint.setLongitude(Double.parseDouble((locationObject.getString("lng"))));
+            }
         }
         catch (Exception e) {
             mErrorMsg = e.getMessage().toString();
