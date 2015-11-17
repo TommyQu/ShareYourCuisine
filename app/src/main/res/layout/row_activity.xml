@@ -12,6 +12,7 @@
         android:id="@+id/user_img"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginLeft="7dp"
         android:src="@drawable/edittext_bg"/>
 
     <TextView
@@ -19,44 +20,69 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_img"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="6dp"
+        android:text="Tommy Qu"/>
 
     <TextView
         android:id="@+id/activity_title"
+        style="@style/ActivityRowTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/user_img" />
+        android:layout_toRightOf="@+id/user_img"
+        android:layout_marginLeft="10dp"
+        android:text="111"/>
 
     <TextView
         android:id="@+id/activity_start_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/activity_title" />
+        android:layout_below="@+id/activity_title"
+        android:layout_toRightOf="@+id/user_img"
+        android:layout_marginLeft="10dp"
+        android:text="Nov 16 2015"/>
 
     <TextView
         android:id="@+id/activity_end_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/activity_start_time" />
+        android:layout_below="@+id/activity_title"
+        android:layout_toRightOf="@+id/activity_start_time"
+        android:layout_marginLeft="10dp"
+        android:text="Nov 16 2015"/>
 
     <TextView
         android:id="@+id/activity_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/activity_title"
-        android:layout_toRightOf="@+id/user_img" />
+        android:layout_below="@id/activity_start_time"
+        android:layout_toRightOf="@+id/user_img"
+        android:layout_marginLeft="10dp"
+        android:text="2111 Jefferson Davis HWY"/>
 
     <TextView
         android:id="@+id/activity_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/activity_title"
-        android:layout_toRightOf="@+id/activity_address" />
+        android:layout_below="@+id/activity_address"
+        android:layout_toRightOf="@+id/user_img"
+        android:layout_marginLeft="10dp"
+        android:text="Arlington"/>
 
     <TextView
         android:id="@+id/activity_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_address"
+        android:layout_toRightOf="@+id/activity_city"
+        android:layout_marginLeft="10dp"
+        android:text="Virginia"/>
+
+    <TextView
+        android:id="@+id/activity_joined_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/activity_title"
-        android:layout_toRightOf="@+id/activity_city" />
+        android:layout_toRightOf="@id/activity_end_time"
+        android:layout_marginLeft="10dp"
+        android:text="10"/>
 </RelativeLayout>

@@ -40,4 +40,6 @@
     <string name="btn_comment">comment</string>
     <string name="join">Join</string>
     <string name="unjoin">UnJoin</string>
+    <string name="activity_joined_by">Joined By:</string>
+
 </resources>

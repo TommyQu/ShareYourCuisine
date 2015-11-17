@@ -35,6 +35,7 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
         TextView addressTextView;
         TextView cityTextView;
         TextView stateTextView;
+        TextView joinedNumView;
     }
 
     public ActivityArrayAdapter(Context context, List<Activity> activities) {
@@ -59,6 +60,7 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
             viewHolder.addressTextView = (TextView) convertView.findViewById(R.id.activity_address);
             viewHolder.cityTextView = (TextView) convertView.findViewById(R.id.activity_city);
             viewHolder.stateTextView = (TextView) convertView.findViewById(R.id.activity_state);
+            viewHolder.joinedNumView = (TextView) convertView.findViewById(R.id.activity_joined_num);
             convertView.setTag(viewHolder);
         }
         else {
@@ -76,15 +78,19 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
         Uri imageUri = Uri.parse(imageUrl);
         Picasso.with(mContext).load(imageUri.toString()).into(viewHolder.userImgView);
 
-//        viewHolder.userImgView.setImageBitmap((Bitmap) activity.getmCreatedBy().get("img"));
+        String startTime = activity.getmStartTime().getMonth()+", "+activity.getmStartTime().getDay()+", "+
+            activity.getmStartTime().getYear()+", "+activity.getmStartTime().getHours()+", "+activity.getmStartTime().getMinutes();
+        String endTime = activity.getmEndTime().getMonth()+", "+activity.getmEndTime().getDay()+", "+
+                activity.getmEndTime().getYear()+", "+activity.getmEndTime().getHours()+", "+activity.getmEndTime().getMinutes();
         viewHolder.activityIdTextView.setText(activity.getmObjectId());
         viewHolder.userNameTextView.setText(activity.getmCreatedBy().get("nickName").toString());
         viewHolder.activityTitleTextView.setText(activity.getmTitle());
-        viewHolder.startTimeTextView.setText(activity.getmStartTime().toString());
-        viewHolder.endTimeTextView.setText(activity.getmEndTime().toString());
+        viewHolder.startTimeTextView.setText(startTime);
+        viewHolder.endTimeTextView.setText(endTime);
         viewHolder.addressTextView.setText(activity.getmAddress());
         viewHolder.cityTextView.setText(activity.getmCity());
         viewHolder.stateTextView.setText(activity.getmState());
+        viewHolder.joinedNumView.setText(String.valueOf(activity.getmJoinedBy().size()));
         return convertView;
     }
 

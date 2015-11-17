@@ -227,10 +227,12 @@ public class ActivityService {
                 if(e == null) {
                     boolean isJoined = false;
                     List<ParseUser> joinedUsers = (List<ParseUser>) parseObject.get("joinedBy");
-                    for(int i=0; i<joinedUsers.size(); i++) {
-                        if(joinedUsers.get(i).getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
-                            isJoined = true;
-                            break;
+                    if(joinedUsers != null) {
+                        for(int i=0; i<joinedUsers.size(); i++) {
+                            if(joinedUsers.get(i).getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
+                                isJoined = true;
+                                break;
+                            }
                         }
                     }
                     if(isJoined == true)

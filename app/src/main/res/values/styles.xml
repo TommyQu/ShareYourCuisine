@@ -29,10 +29,20 @@
         <!--<item name="android:height">30dp</item>-->
     <!--</style>-->
 
+    <style name="ActivityRowTitle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name="SingleActivityTitle">
         <item name="android:fontFamily">@string/sans_serif</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="SingleActivityUserName">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="SingleActivityAddress">
