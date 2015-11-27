@@ -15,20 +15,20 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20sp</item>
     </style>
-    <!--<style name="SycActionBar" parent="Widget.AppCompat.Light.ActionBar">-->
-        <!--<item name="android:background">#FF0000</item>-->
-    <!--</style>-->
 
-    <!--<style name="drawerLayoutFont">-->
-        <!--<item name="android:textColor">@color/white</item>-->
-    <!--</style>-->
 
-    <!--<style name="edittext_style" parent="@android:style/Widget.EditText">-->
-        <!--<item name="android:background">@drawable/selector_edittext_bg</item>-->
-        <!--<item name="android:width">100dp</item>-->
-        <!--<item name="android:height">30dp</item>-->
-    <!--</style>-->
+    <!-- Global styles-->
+    <style name="SubmitBtn">
+        <item name="android:background">@color/green</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="CancelBtn">
+        <item name="android:background">@color/red</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
+
+    <!-- Activity styles-->
     <style name="ActivityRowTitle">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">15sp</item>
@@ -62,4 +62,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">20sp</item>
     </style>
+
+
+    <!-- -->
 </resources>

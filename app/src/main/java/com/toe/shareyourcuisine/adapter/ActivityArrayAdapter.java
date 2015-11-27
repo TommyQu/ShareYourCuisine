@@ -31,8 +31,6 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
         TextView userNameTextView;
         TextView activityTitleTextView;
         TextView startTimeTextView;
-        TextView endTimeTextView;
-        TextView addressTextView;
         TextView cityTextView;
         TextView stateTextView;
         TextView joinedNumView;
@@ -56,8 +54,6 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
             viewHolder.userNameTextView = (TextView) convertView.findViewById(R.id.user_name);
             viewHolder.activityTitleTextView = (TextView) convertView.findViewById(R.id.activity_title);
             viewHolder.startTimeTextView = (TextView) convertView.findViewById(R.id.activity_start_time);
-            viewHolder.endTimeTextView = (TextView) convertView.findViewById(R.id.activity_end_time);
-            viewHolder.addressTextView = (TextView) convertView.findViewById(R.id.activity_address);
             viewHolder.cityTextView = (TextView) convertView.findViewById(R.id.activity_city);
             viewHolder.stateTextView = (TextView) convertView.findViewById(R.id.activity_state);
             viewHolder.joinedNumView = (TextView) convertView.findViewById(R.id.activity_joined_num);
@@ -86,11 +82,9 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
         viewHolder.userNameTextView.setText(activity.getmCreatedBy().get("nickName").toString());
         viewHolder.activityTitleTextView.setText(activity.getmTitle());
         viewHolder.startTimeTextView.setText(startTime);
-        viewHolder.endTimeTextView.setText(endTime);
-        viewHolder.addressTextView.setText(activity.getmAddress());
         viewHolder.cityTextView.setText(activity.getmCity());
         viewHolder.stateTextView.setText(activity.getmState());
-        viewHolder.joinedNumView.setText(String.valueOf(activity.getmJoinedBy().size()));
+        viewHolder.joinedNumView.setText(String.valueOf(activity.getmJoinedNum()));
         return convertView;
     }
 

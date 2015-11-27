@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 import com.toe.shareyourcuisine.R;
+import com.toe.shareyourcuisine.adapter.JoinedByArrayAdapter;
 import com.toe.shareyourcuisine.model.Activity;
 import com.toe.shareyourcuisine.service.ActivityService;
 
@@ -39,6 +41,7 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
     private TextView mActivityContentTextView;
     private Button mJoinBtn;
     private Button mUnJoinBtn;
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
         mActivityContentTextView = (TextView) findViewById(R.id.activity_content);
         mJoinBtn = (Button) findViewById(R.id.activity_join);
         mUnJoinBtn = (Button) findViewById(R.id.activity_unjoin);
+        mListView = (ListView) findViewById(R.id.activity_joined_by_list_view);
 
         ActivityService activityService = new ActivityService(SingleActivityActivity.this, SingleActivityActivity.this, "getSingleActivity");
         activityService.getSingleActivity(mActivityId);
@@ -128,13 +132,18 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
 
         mUserNameTextView.setText(activity.getmCreatedBy().get("nickName").toString());
         mActivityAddressTextView.setText(activity.getmAddress() + ", " + activity.getmCity() + ", " + activity.getmState() + ", " + activity.getmZipCode());
-        mActivityStartTimeTextView.setText(activity.getmStartTime().toString());
-        mActivityEndTimeTextView.setText(activity.getmEndTime().toString());
+        String startTimeStr = activity.getmStartTime().toString().substring(0, 20);
+        String endTimeStr = activity.getmEndTime().toString().substring(0, 20);
+        mActivityStartTimeTextView.setText(startTimeStr);
+        mActivityEndTimeTextView.setText(endTimeStr);
         mActivityContentTextView.setText(activity.getmContent());
 
         //Check whether the user has joined the activity;
         ActivityService checkJoinService = new ActivityService(SingleActivityActivity.this, SingleActivityActivity.this, "checkJoinActivity");
         checkJoinService.checkJoinActivity(mActivityId, ParseUser.getCurrentUser());
+
+        JoinedByArrayAdapter joinedByArrayAdapter = new JoinedByArrayAdapter(SingleActivityActivity.this, activity.getmJoinedBy());
+        mListView.setAdapter(joinedByArrayAdapter);
     }
 
     @Override

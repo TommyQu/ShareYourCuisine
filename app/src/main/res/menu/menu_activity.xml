@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".ActivityActivity">
-    <item android:id="@+id/new_activity" android:title="@string/new_activity"
+    <item android:id="@+id/new_activity" android:title="@string/new_activity" android:icon="@android:drawable/ic_input_add"
         android:orderInCategory="100" app:showAsAction="ifRoom" />
 </menu>

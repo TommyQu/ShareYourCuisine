@@ -23,8 +23,10 @@
         <EditText
             android:id="@+id/activity_title_value"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_below="@+id/activity_title_text"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_edittext_selector"
             android:ems="10"/>
 
         <TextView
@@ -38,9 +40,11 @@
         <EditText
             android:id="@+id/activity_address_value"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_below="@+id/activity_address_text"
-            android:ems="10"/>
+            android:ems="10"
+            android:background="@drawable/bg_edittext_selector"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/activity_city_text"
@@ -53,9 +57,11 @@
         <EditText
             android:id="@+id/activity_city_value"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_below="@+id/activity_city_text"
-            android:ems="5"/>
+            android:ems="5"
+            android:background="@drawable/bg_edittext_selector"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/activity_state_text"
@@ -70,11 +76,13 @@
         <EditText
             android:id="@+id/activity_state_value"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_below="@+id/activity_state_text"
             android:layout_toRightOf="@+id/activity_city_value"
             android:layout_marginLeft="20dp"
-            android:ems="5"/>
+            android:layout_marginTop="5dp"
+            android:ems="5"
+            android:background="@drawable/bg_edittext_selector"/>
 
         <TextView
             android:id="@+id/activity_zip_code_text"
@@ -87,9 +95,11 @@
         <EditText
             android:id="@+id/activity_zip_code_value"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_below="@+id/activity_zip_code_text"
-            android:ems="5"/>
+            android:ems="5"
+            android:background="@drawable/bg_edittext_selector"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/activity_start_time_text"
@@ -182,23 +192,30 @@
         <EditText
             android:id="@+id/activity_content_value"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_below="@+id/activity_content_text"
-            android:ems="10"/>
+            android:ems="10"
+            android:background="@drawable/bg_edittext_selector"
+            android:layout_marginTop="5dp"/>
 
         <Button
             android:id="@+id/submit_btn"
+            style="@style/SubmitBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/activity_content_value"
+            android:layout_marginTop="10dp"
             android:text="@string/submit_btn"/>
 
         <Button
             android:id="@+id/cancel_btn"
+            style="@style/CancelBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/activity_content_value"
             android:layout_toRightOf="@+id/submit_btn"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
             android:text="@string/cancel_btn"/>
     </RelativeLayout>
 </ScrollView>

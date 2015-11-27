@@ -1,6 +1,8 @@
 package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import com.toe.shareyourcuisine.asynctask.AddressToGeoPointTask;
 import com.toe.shareyourcuisine.model.Activity;
 import com.toe.shareyourcuisine.service.ActivityService;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -107,8 +110,14 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
                     //Combine the address, city, state and zip code
                     String totalAddress = mAddressValue.getText().toString().replace(" ", "+") + "+" +mCityValue.getText().toString().replace(" ", "+") + "+" +mStateValue.getText().toString().replace(" ", "+") + "+" + mZipCodeValue.getText().toString().replace(" ", "+");
                     AddressToGeoPointTask addressToGeoPointTask = new AddressToGeoPointTask(AddActivityActivity.this, AddActivityActivity.this);
-                    addressToGeoPointTask.execute("https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyATMzIiSG-Ctvzb9pPeYTdroug1K7nxPmc&address=" + totalAddress + "&sensor=true");
-                }
+                    try {
+                        ApplicationInfo appInfo = getPackageManager().getApplicationInfo(getPackageName(),
+                                PackageManager.GET_META_DATA);
+                        String apiKey = appInfo.metaData.getString("com.google.android.API_KEY");
+                        addressToGeoPointTask.execute("https://maps.googleapis.com/maps/api/geocode/json?key="+apiKey+"&address=" + totalAddress + "&sensor=true");
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                    }}
             }
         });
         mCancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -258,6 +267,8 @@ public class AddActivityActivity extends ActionBarActivity implements DatePicker
         activity.setmEndTime(mEndTime);
         activity.setmCreatedBy(ParseUser.getCurrentUser());
         activity.setmGeoPoint(mGeoPoint);
+        activity.setmJoinedBy(new ArrayList<ParseUser>());
+        activity.setmJoinedNum(0);
         ActivityService activityService = new ActivityService(AddActivityActivity.this, AddActivityActivity.this, "addActivity");
         activityService.addActivity(activity);
     }

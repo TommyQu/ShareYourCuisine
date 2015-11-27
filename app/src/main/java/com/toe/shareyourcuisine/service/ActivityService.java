@@ -94,6 +94,8 @@ public class ActivityService {
         activityObject.put("endTime", activity.getmEndTime());
         activityObject.put("geoPoint", activity.getmGeoPoint());
         activityObject.put("createdBy", activity.getmCreatedBy());
+        activityObject.put("joinedBy", activity.getmJoinedBy());
+        activityObject.put("joinedNum", activity.getmJoinedNum());
         activityObject.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -126,6 +128,7 @@ public class ActivityService {
                         activity.setmAddress((String) list.get(i).get("address"));
                         activity.setmCity((String) list.get(i).get("city"));
                         activity.setmState((String) list.get(i).get("state"));
+                        activity.setmJoinedNum((Integer) list.get(i).get("joinedNum"));
                         activities.add(activity);
                     }
                     mGetAllActivitiesListener.getAllActivitiesSuccess(activities);
@@ -139,6 +142,7 @@ public class ActivityService {
     public void getSingleActivity(String activityId) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Activity");
         query.include("createdBy");
+        query.include("joinedBy");
         query.whereEqualTo("objectId", activityId);
         query.getFirstInBackground(new GetCallback<ParseObject>() {
             @Override
@@ -154,6 +158,7 @@ public class ActivityService {
                     activity.setmStartTime((Date) parseObject.get("startTime"));
                     activity.setmEndTime((Date) parseObject.get("endTime"));
                     activity.setmContent((String) parseObject.get("content"));
+                    activity.setmJoinedBy((ArrayList<ParseUser>) parseObject.get("joinedBy"));
                     mGetSingleActivityListener.getSingleActivitySuccess(activity);
                 } else {
                     mGetSingleActivityListener.getSingleActivityFail(e.getMessage().toString());
@@ -171,19 +176,21 @@ public class ActivityService {
                 if (e == null) {
                     List<ParseUser> joinedUsers = (List<ParseUser>) parseObject.get("joinedBy");
                     if(joinedUsers.contains(ParseUser.getCurrentUser())) {
-                       mJoinActivityListener.joinActivityFail("You have joined this activity!");
-                   } else {
-                       parseObject.addUnique("joinedBy", parseUser);
-                       parseObject.saveInBackground(new SaveCallback() {
-                           @Override
-                           public void done(ParseException e) {
-                               if(e == null)
-                                   mJoinActivityListener.joinActivitySuccess();
-                               else
-                                   mJoinActivityListener.joinActivityFail(e.getMessage().toString());
-                           }
-                       });
-                   }
+                        mJoinActivityListener.joinActivityFail("You have joined this activity!");
+                    }
+                    else {
+                        parseObject.increment("joinedNum");
+                        parseObject.addUnique("joinedBy", parseUser);
+                        parseObject.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e == null)
+                                    mJoinActivityListener.joinActivitySuccess();
+                                else
+                                    mJoinActivityListener.joinActivityFail(e.getMessage().toString());
+                            }
+                        });
+                    }
                 } else {
                     mJoinActivityListener.joinActivityFail(e.getMessage().toString());
                 }
@@ -208,6 +215,7 @@ public class ActivityService {
                         }
                     }
                     parseObject.put("joinedBy", joinedUsers);
+                    parseObject.increment("joinedNum", -1);
                     parseObject.saveInBackground();
                 }
                 else {

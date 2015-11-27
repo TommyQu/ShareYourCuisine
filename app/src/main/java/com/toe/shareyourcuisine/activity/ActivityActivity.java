@@ -2,6 +2,8 @@ package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.parse.ParseUser;
 import com.toe.shareyourcuisine.R;
@@ -29,11 +32,16 @@ import java.util.List;
  * Modified Date:
  * Why is modified:
  */
-public class ActivityActivity extends BaseActivity implements ActivityService.GetAllActivitiesListener{
+public class ActivityActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener,
+        ActivityService.GetAllActivitiesListener{
 
     private final String TAG = "ToePostActivity";
     private FrameLayout mContentView;
     private ListView mListView;
+    private ActivityArrayAdapter mActivityArrayAdapter;
+    private ActivityService mActivityService;
+    private SwipeRefreshLayout swipeLayout;
+    private boolean isRefresh = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +50,14 @@ public class ActivityActivity extends BaseActivity implements ActivityService.Ge
         View child = getLayoutInflater().inflate(R.layout.activity_activity, null);
         mContentView.addView(child);
         mListView = (ListView) findViewById(R.id.activity_list_view);
-        ActivityService activityService = new ActivityService(ActivityActivity.this, ActivityActivity.this, "getAllActivities");
-        activityService.getAllActivities();
+        swipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
+        swipeLayout.setOnRefreshListener(this);
+        swipeLayout.setColorScheme(android.R.color.white,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light, android.R.color.holo_red_light);
+
+        mActivityService = new ActivityService(ActivityActivity.this, ActivityActivity.this, "getAllActivities");
+        mActivityService.getAllActivities();
         setActivityItemClick();
    }
 
@@ -96,12 +110,23 @@ public class ActivityActivity extends BaseActivity implements ActivityService.Ge
 
     @Override
     public void getAllActivitiesSuccess(List<Activity> activities) {
-        ActivityArrayAdapter activityArrayAdapter = new ActivityArrayAdapter(ActivityActivity.this, activities);
-        mListView.setAdapter(activityArrayAdapter);
+        mActivityArrayAdapter = new ActivityArrayAdapter(ActivityActivity.this, activities);
+        mListView.setAdapter(mActivityArrayAdapter);
     }
 
     @Override
     public void getAllActivitiesFail(String errorMsg) {
         Toast.makeText(ActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                swipeLayout.setRefreshing(false);
+                mActivityService.getAllActivities();
+                setActivityItemClick();
+            }
+        }, 3000);
     }
 }
