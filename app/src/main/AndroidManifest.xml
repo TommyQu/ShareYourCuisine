@@ -49,6 +49,10 @@
             android:label="Activity" >
         </activity>
         <activity
+            android:name=".activity.ProfileActivity"
+            android:label="Profile">
+        </activity>
+        <activity
             android:name=".activity.AddMenuActivity"
             android:label="NewMenuActivity" >
         </activity>

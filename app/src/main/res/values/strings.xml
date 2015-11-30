@@ -41,5 +41,8 @@
     <string name="join">Join</string>
     <string name="unjoin">UnJoin</string>
     <string name="activity_joined_by">Joined By:</string>
+    <string name="delete_activity">Delete Activity</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_out_btn">Sign Out</string>
 
 </resources>

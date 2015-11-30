@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -14,9 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseUser;
+import com.squareup.picasso.Picasso;
 import com.toe.shareyourcuisine.R;
 
 /**
@@ -35,6 +41,8 @@ public class BaseActivity extends ActionBarActivity {
     private ArrayAdapter<String> drawerAdapter;
     private ActionBarDrawerToggle drawerToggle;
     private DrawerLayout drawerLayout;
+    private ImageView mUserImageView;
+    private TextView mLoginTextView;
     private String activityTitle;
 
     @Override
@@ -47,8 +55,50 @@ public class BaseActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        mUserImageView = (ImageView)findViewById(R.id.user_img);
+        mLoginTextView = (TextView)findViewById(R.id.user_nick_name);
         activityTitle = getTitle().toString();
         setupDrawer();
+        if(ParseUser.getCurrentUser() != null) {
+            try {
+                ParseUser.getCurrentUser().fetch();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            ParseFile userImg = ParseUser.getCurrentUser().getParseFile("img");
+            String imageUrl = userImg.getUrl() ;//live url
+            Uri imageUri = Uri.parse(imageUrl);
+            Picasso.with(BaseActivity.this).load(imageUri.toString()).into(mUserImageView);
+            mLoginTextView.setText(ParseUser.getCurrentUser().get("nickName").toString());
+        }
+
+        //Set up the click action for both ImageView and TextView
+        mUserImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ParseUser.getCurrentUser() == null) {
+                    Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(BaseActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+        mLoginTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ParseUser.getCurrentUser() == null) {
+                    Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(BaseActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
@@ -91,7 +141,8 @@ public class BaseActivity extends ActionBarActivity {
     }
 
     protected void addDrawerItems() {
-        String[] osArray = { "Home", "Log in", "Sign Up", "Menu", "Post", "Activity"};
+        String[] osArray = { "Home", "Menu", "Post", "Activity"};
+//        DrawerItemArrayAdapter drawerItemArrayAdapter = new DrawerItemArrayAdapter(BaseActivity.this, osArray);
         drawerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -108,20 +159,11 @@ public class BaseActivity extends ActionBarActivity {
                 Intent intent = new Intent();
                 if (position == 0) {
                     intent.setClass(BaseActivity.this, MainActivity.class);
-                }
-                else if (position == 1) {
-                    intent.setClass(BaseActivity.this, LoginActivity.class);
-                }
-                else if (position == 2) {
-                    intent.setClass(BaseActivity.this, SignUpActivity.class);
-                }
-                else if (position == 3) {
+                } else if (position == 1) {
                     intent.setClass(BaseActivity.this, MenuActivity.class);
-                }
-                else if (position == 4) {
+                } else if (position == 2) {
                     intent.setClass(BaseActivity.this, PostActivity.class);
-                }
-                else if (position == 5) {
+                } else if (position == 3) {
                     intent.setClass(BaseActivity.this, ActivityActivity.class);
                 }
                 finish();
@@ -151,5 +193,11 @@ public class BaseActivity extends ActionBarActivity {
         };
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerLayout.setDrawerListener(drawerToggle);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        drawerLayout.closeDrawers();
     }
 }

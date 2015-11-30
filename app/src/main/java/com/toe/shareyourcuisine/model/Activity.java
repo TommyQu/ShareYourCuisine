@@ -25,6 +25,7 @@ public class Activity {
     ParseUser mCreatedBy;
     ArrayList<ParseUser> mJoinedBy;
     Integer mJoinedNum;
+    String mStatus;
 
     public Activity() {
         mGeoPoint = new ParseGeoPoint();
@@ -142,5 +143,13 @@ public class Activity {
 
     public void setmJoinedNum(Integer mJoinedNum) {
         this.mJoinedNum = mJoinedNum;
+    }
+
+    public String getmStatus() {
+        return mStatus;
+    }
+
+    public void setmStatus(String mStatus) {
+        this.mStatus = mStatus;
     }
 }

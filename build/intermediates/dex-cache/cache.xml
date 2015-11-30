@@ -2,137 +2,25 @@
 <items version="2" >
 
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/8.3.0/jars/classes.jar"
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.github.flavienlaurent.datetimepicker/library/0.0.2/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="cb4af597d079ffdc0984a3ec2c03cbf6a1b9f869">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-cfd93f15da9e3ca9c9336803ac6eab3e4edd079c.jar" />
+        sha1="2fc859b7abb78d29169f6a582b45cbe1f3f1a4cc">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-06c0ef092de2d9f3092ab0d9e9f3cdd22abd0f05.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.3.0/bc535105332645408ef5f1380215cc954b842178/bolts-applinks-1.3.0.jar"
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="bc535105332645408ef5f1380215cc954b842178">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/bolts-applinks-1.3.0-6f14eeb9f9a8536c9b5b7a0de9dc779a4cf92664.jar" />
+        sha1="1821601ddbec5ff125653097812823388700af74">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-ff9b5cea745c7448ba3ac927b3fa5fec5bb735a2.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.3.0/jars/classes.jar"
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/8.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="0c3e81d3eb86b86d194b5cdb6a4de78203f6f7fd">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-c64db8b57a35248850e2d42aa24c16b3f79761bc.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.3.0/27cabf3558be23a89f054334dd92512645ad34d9/bolts-android-1.3.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="27cabf3558be23a89f054334dd92512645ad34d9">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/bolts-android-1.3.0-7e5dd72c193a37130f0019b202be82ab964da0cc.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-f10c6e6d88fe689bb822c5f21152cb07607647e3.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.3.0/8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c/bolts-tasks-1.3.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.3.0-ee303499b0eca7e5a02c1ebdd82404802f0751c8.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-41ac35610794966be08ebfb1a22d76088326f1c1.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/libs/Parse-1.10.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="181b435832725bec96c11ff568bdfbccdacab944">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/Parse-1.10.1-65782d5e65bfb258619954ddeb072f0467fd74eb.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/8.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="eb576427887e497cd958a475475f9206e38dc314">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-b5f7213f8fe5d1910d43822d9a0446c5e20a37f9.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-edce62e842a2cf1fc9bf5cefcf926bfda572c800.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6d9ed9a288364688e7fcf6704776284dac1eb42e">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-528f951b30f404648fde3608b95ba329cbcea90b.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/8.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="27775d59b16610ac76f1b83693fedd9520396332">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-98d0def319609b73043e0de76737e3d652b7871e.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/8.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="9f825dc52fb0f1e80e1aef436ce8c04905f8e993">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-771216f31657d28c2682c57491928bc144b9f0f6.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-332001c3c48d903fce385d5e2415460228e168c8.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/8.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="77f9593d979f4347344be233bd0d888315f79517">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-ef216ffa4f5703588255ce3d8260c41991ebb26f.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/8.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4b8df1b1e51fe14b0e89b3845dc2e215a024a09f">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-12751a7f93fe59ba730cf6acb536877ae31f5f17.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-4cd221628509359fc3d21f6ce4bb901fea325411.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-8303eb85898dc4ad8ed28db618768a54962abc71.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="345a1b5cf5b144ce18ba6962bc66a7e2f26c1c1b">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-dc1127f056b146d21725630116b74390010e9979.jar" />
+        sha1="9aedc597d74c6d77258ce5236e9abff0c3cc65e3">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-01b0c428f6213ae8723ee6207519bc6556e10d60.jar" />
     </item>
     <item
         jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/8.3.0/jars/classes.jar"
@@ -142,25 +30,60 @@
         <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-c8f97e65e531d4ad6a83c6b1f1aae6d09721dd16.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/8.3.0/jars/classes.jar"
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/8.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="0af4f577b4a21eb9be2a7f52e33b077b67e6d9f8">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-d57118d0122a6c7a83144e68032d5945ca6b7fd9.jar" />
+        sha1="4b8df1b1e51fe14b0e89b3845dc2e215a024a09f">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-12751a7f93fe59ba730cf6acb536877ae31f5f17.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/8.3.0/jars/classes.jar"
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/8.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="697679619b00837e3d09e9988a2e1e2a9009d502">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-9827038e6f050750b06792343446d0c2d2be8e42.jar" />
+        sha1="2c6fcd6267cbac6509a2e72a61127534a1d616cf">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-c74a280ad3cd7e26bbc09a31c0443263eb560998.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/8.3.0/jars/classes.jar"
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="58adcfbe2c8393765e84c5489d01bba6a5159eb2">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-2a0b15aef272f120f4f7754a2155c6936c44bf97.jar" />
+        sha1="345a1b5cf5b144ce18ba6962bc66a7e2f26c1c1b">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-dc1127f056b146d21725630116b74390010e9979.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.3.0/8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c/bolts-tasks-1.3.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.3.0-ee303499b0eca7e5a02c1ebdd82404802f0751c8.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/8.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="eb576427887e497cd958a475475f9206e38dc314">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-b5f7213f8fe5d1910d43822d9a0446c5e20a37f9.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/libs/Parse-1.10.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="181b435832725bec96c11ff568bdfbccdacab944">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/Parse-1.10.1-65782d5e65bfb258619954ddeb072f0467fd74eb.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="71eda10e33212e44245524b5087366ff8d805825">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-ea66dc2e6573b3df90214de6ea11af1e18ac72e5.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.3.0/bc535105332645408ef5f1380215cc954b842178/bolts-applinks-1.3.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="bc535105332645408ef5f1380215cc954b842178">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/bolts-applinks-1.3.0-6f14eeb9f9a8536c9b5b7a0de9dc779a4cf92664.jar" />
     </item>
     <item
         jar="/Users/kukentaira/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
@@ -177,46 +100,39 @@
         <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-bb4d51a98418531c3cf986165f60901e810666a0.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/8.3.0/jars/classes.jar"
+        jar="/Users/kukentaira/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="724ce977487ab3a215d4d2eb47d8dccd9f30013f">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-2145387e4490eab21635c7362062680fe7c0c98f.jar" />
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-f10c6e6d88fe689bb822c5f21152cb07607647e3.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.3.0/jars/classes.jar"
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/8.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="71eda10e33212e44245524b5087366ff8d805825">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-ea66dc2e6573b3df90214de6ea11af1e18ac72e5.jar" />
+        sha1="0af4f577b4a21eb9be2a7f52e33b077b67e6d9f8">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-d57118d0122a6c7a83144e68032d5945ca6b7fd9.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/jars/classes.jar"
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/8.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="1821601ddbec5ff125653097812823388700af74">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-ff9b5cea745c7448ba3ac927b3fa5fec5bb735a2.jar" />
+        sha1="58adcfbe2c8393765e84c5489d01bba6a5159eb2">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-2a0b15aef272f120f4f7754a2155c6936c44bf97.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.github.flavienlaurent.datetimepicker/library/0.0.2/jars/classes.jar"
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/8.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="2fc859b7abb78d29169f6a582b45cbe1f3f1a4cc">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-06c0ef092de2d9f3092ab0d9e9f3cdd22abd0f05.jar" />
+        sha1="9f825dc52fb0f1e80e1aef436ce8c04905f8e993">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-771216f31657d28c2682c57491928bc144b9f0f6.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/8.3.0/jars/classes.jar"
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/8.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="fd76d95678a6b2b8a49bb8a9fb5bcef7aedb70e7">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-7a22a43fee2bbb31824747a88606f583bcdc9aa2.jar" />
-    </item>
-    <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/8.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="9aedc597d74c6d77258ce5236e9abff0c3cc65e3">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-01b0c428f6213ae8723ee6207519bc6556e10d60.jar" />
+        sha1="697679619b00837e3d09e9988a2e1e2a9009d502">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-9827038e6f050750b06792343446d0c2d2be8e42.jar" />
     </item>
     <item
         jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/8.3.0/jars/classes.jar"
@@ -226,6 +142,13 @@
         <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-1a6bbdc7509900f2239fe1de4349c8b36e4eddb5.jar" />
     </item>
     <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-332001c3c48d903fce385d5e2415460228e168c8.jar" />
+    </item>
+    <item
         jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/8.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -233,11 +156,88 @@
         <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-1df9a0537d332f6a537fc09cf285865028f8f82f.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/8.3.0/jars/classes.jar"
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/8.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="2c6fcd6267cbac6509a2e72a61127534a1d616cf">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-c74a280ad3cd7e26bbc09a31c0443263eb560998.jar" />
+        sha1="77f9593d979f4347344be233bd0d888315f79517">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-ef216ffa4f5703588255ce3d8260c41991ebb26f.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-4cd221628509359fc3d21f6ce4bb901fea325411.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/8.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fd76d95678a6b2b8a49bb8a9fb5bcef7aedb70e7">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-7a22a43fee2bbb31824747a88606f583bcdc9aa2.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-8303eb85898dc4ad8ed28db618768a54962abc71.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-41ac35610794966be08ebfb1a22d76088326f1c1.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/8.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="724ce977487ab3a215d4d2eb47d8dccd9f30013f">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-2145387e4490eab21635c7362062680fe7c0c98f.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-edce62e842a2cf1fc9bf5cefcf926bfda572c800.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/8.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="27775d59b16610ac76f1b83693fedd9520396332">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-98d0def319609b73043e0de76737e3d652b7871e.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6d9ed9a288364688e7fcf6704776284dac1eb42e">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-528f951b30f404648fde3608b95ba329cbcea90b.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/8.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="cb4af597d079ffdc0984a3ec2c03cbf6a1b9f869">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-cfd93f15da9e3ca9c9336803ac6eab3e4edd079c.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0c3e81d3eb86b86d194b5cdb6a4de78203f6f7fd">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-c64db8b57a35248850e2d42aa24c16b3f79761bc.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.3.0/27cabf3558be23a89f054334dd92512645ad34d9/bolts-android-1.3.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="27cabf3558be23a89f054334dd92512645ad34d9">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/bolts-android-1.3.0-7e5dd72c193a37130f0019b202be82ab964da0cc.jar" />
     </item>
     <item
         jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.3.0/jars/classes.jar"
@@ -247,18 +247,18 @@
         <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-c1ed667a307a791e5b3bb2bb87673cdc3886883e.jar" />
     </item>
     <item
-        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/8.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="af6ee25641df3142059c0828517aa7ee6eba08d6">
-        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-11fd0a62acc4174f9d071c43dc0a32aaae3a38b5.jar" />
-    </item>
-    <item
         jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/8.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="ea34579b1be157cd792376362157e9c54ebb4cd7">
         <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-3e9e188ac19c44fdefb0095d96a21cc1c53eea42.jar" />
+    </item>
+    <item
+        jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/8.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="af6ee25641df3142059c0828517aa7ee6eba08d6">
+        <dex dex="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/pre-dexed/debug/classes-11fd0a62acc4174f9d071c43dc0a32aaae3a38b5.jar" />
     </item>
     <item
         jar="/Users/kukentaira/Documents/AndroidWorkspace/ShareYourCuisine/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-measurement/8.3.0/jars/classes.jar"

@@ -28,6 +28,7 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
     private static class ViewHolder {
         ImageView userImgView;
         TextView activityIdTextView;
+        TextView nickNameTextView;
         TextView userNameTextView;
         TextView activityTitleTextView;
         TextView startTimeTextView;
@@ -51,6 +52,7 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
             convertView = inflater.inflate(R.layout.row_activity,parent,false);
             viewHolder.activityIdTextView = (TextView) convertView.findViewById(R.id.activity_id);
             viewHolder.userImgView = (ImageView) convertView.findViewById(R.id.user_img);
+            viewHolder.nickNameTextView = (TextView) convertView.findViewById(R.id.nick_name);
             viewHolder.userNameTextView = (TextView) convertView.findViewById(R.id.user_name);
             viewHolder.activityTitleTextView = (TextView) convertView.findViewById(R.id.activity_title);
             viewHolder.startTimeTextView = (TextView) convertView.findViewById(R.id.activity_start_time);
@@ -79,7 +81,8 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
         String endTime = activity.getmEndTime().getMonth()+", "+activity.getmEndTime().getDay()+", "+
                 activity.getmEndTime().getYear()+", "+activity.getmEndTime().getHours()+", "+activity.getmEndTime().getMinutes();
         viewHolder.activityIdTextView.setText(activity.getmObjectId());
-        viewHolder.userNameTextView.setText(activity.getmCreatedBy().get("nickName").toString());
+        viewHolder.nickNameTextView.setText(activity.getmCreatedBy().get("nickName").toString());
+        viewHolder.userNameTextView.setText(activity.getmCreatedBy().getUsername());
         viewHolder.activityTitleTextView.setText(activity.getmTitle());
         viewHolder.startTimeTextView.setText(startTime);
         viewHolder.cityTextView.setText(activity.getmCity());

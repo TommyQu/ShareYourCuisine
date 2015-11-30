@@ -29,6 +29,7 @@ public class ActivityService {
     private JoinActivityListener mJoinActivityListener;
     private UnJoinActivityListener mUnJoinActivityListener;
     private CheckJoinActivityListener mCheckJoinActivityListener;
+    private DeleteActivityListener mDeleteActivityListener;
 
     public interface AddActivityListener {
         public void addActivitySuccess();
@@ -60,6 +61,11 @@ public class ActivityService {
         public void checkJoinActivityListenerFail(String errorMsg);
     }
 
+    public interface DeleteActivityListener {
+        public void deleteActivityListenerSuccess(String response);
+        public void deleteActivityListenerFail(String errorMsg);
+    }
+
     public ActivityService(Context context, Object activityListener, String action) {
         mContext = context;
         if (action.equals("addActivity")) {
@@ -80,6 +86,9 @@ public class ActivityService {
         else if (action.equals("checkJoinActivity")) {
             mCheckJoinActivityListener = (CheckJoinActivityListener) activityListener;
         }
+        else if (action.equals("deleteActivity")) {
+            mDeleteActivityListener = (DeleteActivityListener) activityListener;
+        }
     }
 
     public void addActivity(Activity activity) {
@@ -94,8 +103,9 @@ public class ActivityService {
         activityObject.put("endTime", activity.getmEndTime());
         activityObject.put("geoPoint", activity.getmGeoPoint());
         activityObject.put("createdBy", activity.getmCreatedBy());
-        activityObject.put("joinedBy", activity.getmJoinedBy());
-        activityObject.put("joinedNum", activity.getmJoinedNum());
+        activityObject.put("joinedBy", new ArrayList<ParseUser>());
+        activityObject.put("joinedNum", 0);
+        activityObject.put("status", "Open");
         activityObject.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -119,17 +129,20 @@ public class ActivityService {
                 if (e == null) {
                     List<Activity> activities = new ArrayList<Activity>();
                     for (int i = 0; i < list.size(); i++) {
-                        Activity activity = new Activity();
-                        activity.setmObjectId(list.get(i).getObjectId());
-                        activity.setmCreatedBy(list.get(i).getParseUser("createdBy"));
-                        activity.setmTitle((String) list.get(i).get("title"));
-                        activity.setmStartTime((Date) list.get(i).get("startTime"));
-                        activity.setmEndTime((Date) list.get(i).get("endTime"));
-                        activity.setmAddress((String) list.get(i).get("address"));
-                        activity.setmCity((String) list.get(i).get("city"));
-                        activity.setmState((String) list.get(i).get("state"));
-                        activity.setmJoinedNum((Integer) list.get(i).get("joinedNum"));
-                        activities.add(activity);
+                        //Only show the "Open" activity
+                        if((list.get(i).get("status")).equals("Open")) {
+                            Activity activity = new Activity();
+                            activity.setmObjectId(list.get(i).getObjectId());
+                            activity.setmCreatedBy(list.get(i).getParseUser("createdBy"));
+                            activity.setmTitle((String) list.get(i).get("title"));
+                            activity.setmStartTime((Date) list.get(i).get("startTime"));
+                            activity.setmEndTime((Date) list.get(i).get("endTime"));
+                            activity.setmAddress((String) list.get(i).get("address"));
+                            activity.setmCity((String) list.get(i).get("city"));
+                            activity.setmState((String) list.get(i).get("state"));
+                            activity.setmJoinedNum((Integer) list.get(i).get("joinedNum"));
+                            activities.add(activity);
+                        }
                     }
                     mGetAllActivitiesListener.getAllActivitiesSuccess(activities);
                 } else {
@@ -250,6 +263,23 @@ public class ActivityService {
                 }
                 else {
                     mUnJoinActivityListener.unJoinActivityFail(e.getMessage().toString());
+                }
+            }
+        });
+    }
+
+    public void deleteActivity(String activityId) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Activity");
+        query.getInBackground(activityId, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject parseObject, ParseException e) {
+                if(e == null) {
+                    parseObject.put("status", "Removed");
+                    parseObject.saveInBackground();
+                    mDeleteActivityListener.deleteActivityListenerSuccess("Delete activity successfully!");
+                }
+                else {
+                    mDeleteActivityListener.deleteActivityListenerFail(e.getMessage().toString());
                 }
             }
         });
