@@ -39,6 +39,11 @@ import java.util.List;
  * Modified Date:11/12/2015
  * Why is modified:Complete the class to Show the posts
  */
+
+/**
+ * Updated by Theon_Z on 11/30/15.
+ * Allow user to see the image they uploaded
+ */
 public class PostActivity extends BaseActivity implements PostService.GetAllPostsListener{
     private final String TAG = "ToePostActivity";
     private FrameLayout mContentView;
@@ -127,7 +132,6 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
             }
             ParseFile userImg = user.getParseFile("img");
 
-            //Todo how to fill the userImageView with the user image which is a ParseFile type
             //userImageView.setImageDrawable();
             String imageUrl = userImg.getUrl() ;//live url
             Uri imageUri = Uri.parse(imageUrl);
@@ -149,8 +153,30 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
             contentTextView.setText(currentPost.getContent());
 
             //Todo show post images
+            ImageView postImageView1 = (ImageView) itemView.findViewById(R.id.plPostImageView1);
+            ImageView postImageView2 = (ImageView) itemView.findViewById(R.id.plPostImageView2);
+            ImageView postImageView3 = (ImageView) itemView.findViewById(R.id.plPostImageView3);
+            ArrayList<ImageView> postImgList = new ArrayList<ImageView>();
+            postImgList.add(postImageView1);
+            postImgList.add(postImageView2);
+            postImgList.add(postImageView3);
 
+            for(int i=0;i<currentPost.getImg().size();i++) {
+                String postImageUrl = currentPost.getImg().get(i).getUrl() ;//live url
+                Uri postImageUri = Uri.parse(postImageUrl);
 
+                Picasso.with(PostActivity.this).load(postImageUri.toString()).into(postImgList.get(i));
+            }
+
+            /*if(currentPost.getImg().size()>0) {
+                String postImageUrl1 = currentPost.getImg().get(0).getUrl() ;//live url
+                Uri postImageUri1 = Uri.parse(postImageUrl1);
+
+                ImageView postImageView1 = (ImageView) itemView.findViewById(R.id.plPostImageView1);
+                Picasso.with(PostActivity.this).load(postImageUri1.toString()).into(postImageView1);
+
+            }
+*/
             return itemView;
         }
     }

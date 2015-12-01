@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spPostImage1"
-            android:src="@drawable/edittext_bg"
+
             android:adjustViewBounds="true"
             android:maxHeight="60dp"
             android:maxWidth="60dp"
@@ -73,7 +73,7 @@
             android:layout_toRightOf="@+id/spPostImage1"
             android:layout_toEndOf="@+id/spPostImage1"
             android:id="@+id/spPostImage2"
-            android:src="@drawable/edittext_bg"
+
             android:adjustViewBounds="true"
             android:maxHeight="60dp"
             android:maxWidth="60dp"/>
@@ -84,7 +84,6 @@
             android:layout_toRightOf="@+id/spPostImage2"
             android:layout_toEndOf="@+id/spPostImage2"
             android:id="@+id/spPostImage3"
-            android:src="@drawable/edittext_bg"
             android:adjustViewBounds="true"
             android:maxHeight="60dp"
             android:maxWidth="60dp"/>

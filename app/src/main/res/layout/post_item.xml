@@ -48,7 +48,8 @@
         android:layout_below="@+id/Content"
         android:layout_alignLeft="@+id/Content"
         android:layout_alignStart="@+id/Content"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:id="@+id/linearLayout2">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -79,6 +80,39 @@
             android:maxHeight="60dp"
             android:maxWidth="60dp"/>
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/plPostImageView1"
+        android:layout_below="@+id/Content"
+        android:layout_alignLeft="@+id/Content"
+        android:layout_alignStart="@+id/Content"
+        android:adjustViewBounds="true"
+        android:maxHeight="60dp"
+        android:maxWidth="60dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/plPostImageView2"
+        android:layout_below="@+id/Content"
+        android:layout_toRightOf="@+id/plPostImageView1"
+        android:layout_toEndOf="@+id/plPostImageView1"
+        android:adjustViewBounds="true"
+        android:maxHeight="60dp"
+        android:maxWidth="60dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/plPostImageView3"
+        android:layout_below="@+id/Content"
+        android:layout_toRightOf="@+id/plPostImageView2"
+        android:layout_toEndOf="@+id/plPostImageView2"
+        android:adjustViewBounds="true"
+        android:maxHeight="60dp"
+        android:maxWidth="60dp"/>
 
 
 </RelativeLayout>
