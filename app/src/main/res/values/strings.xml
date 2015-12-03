@@ -47,5 +47,8 @@
     <string name="menu_title">Menu title:</string>
     <string name="menu_display_img_text">Upload a display image:</string>
     <string name="menu_content_text">Menu content:</string>
+    <string name="delete_menu">Delete menu</string>
+    <string name="search_hint">Search</string>
+    <string name="search_menu">Search menu</string>
 
 </resources>

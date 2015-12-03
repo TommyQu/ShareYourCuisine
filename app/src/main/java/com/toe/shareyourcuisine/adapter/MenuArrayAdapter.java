@@ -24,6 +24,7 @@ public class MenuArrayAdapter extends ArrayAdapter<Menu> {
     private static class ViewHolder {
         ImageView menuImgView;
         TextView menuTitleTextView;
+        TextView menuIdTextView;
     }
 
     public MenuArrayAdapter(Context context, List<Menu> menus) {
@@ -41,6 +42,7 @@ public class MenuArrayAdapter extends ArrayAdapter<Menu> {
             convertView = inflater.inflate(R.layout.row_menu,parent,false);
             viewHolder.menuImgView = (ImageView)convertView.findViewById(R.id.menu_img);
             viewHolder.menuTitleTextView = (TextView)convertView.findViewById(R.id.menu_title);
+            viewHolder.menuIdTextView = (TextView)convertView.findViewById(R.id.menu_id);
             convertView.setTag(viewHolder);
         }
         else {
@@ -48,6 +50,7 @@ public class MenuArrayAdapter extends ArrayAdapter<Menu> {
         }
         Picasso.with(mContext).load(menu.getmDisplayImg().getUrl()).into(viewHolder.menuImgView);
         viewHolder.menuTitleTextView.setText(menu.getmTitle());
+        viewHolder.menuIdTextView.setText(menu.getmObjectId());
         return convertView;
     }
 }

@@ -84,10 +84,7 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        else if (id == R.id.new_post) {
+        if (id == R.id.new_post) {
             if(ParseUser.getCurrentUser() == null) {
                 Toast.makeText(PostActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
             }

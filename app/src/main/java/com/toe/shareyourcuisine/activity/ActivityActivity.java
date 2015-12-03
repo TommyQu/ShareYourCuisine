@@ -2,7 +2,6 @@ package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,7 +11,6 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.parse.ParseUser;
 import com.toe.shareyourcuisine.R;
@@ -52,13 +50,14 @@ public class ActivityActivity extends BaseActivity implements SwipeRefreshLayout
         mListView = (ListView) findViewById(R.id.activity_list_view);
         swipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
         swipeLayout.setOnRefreshListener(this);
-        swipeLayout.setColorScheme(getResources().getColor(R.color.white),
-                android.R.color.holo_green_light,
+        swipeLayout.setScrollBarSize(10);
+        swipeLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
         mActivityService = new ActivityService(ActivityActivity.this, ActivityActivity.this, "getAllActivities");
         mActivityService.getAllActivities();
         setActivityItemClick();
+        swipeLayout.setRefreshing(true);
    }
 
     @Override
@@ -80,9 +79,7 @@ public class ActivityActivity extends BaseActivity implements SwipeRefreshLayout
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.new_activity) {
+        if (id == R.id.new_activity) {
             if(ParseUser.getCurrentUser() == null) {
                 Toast.makeText(ActivityActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
             }
@@ -114,6 +111,7 @@ public class ActivityActivity extends BaseActivity implements SwipeRefreshLayout
     public void getAllActivitiesSuccess(List<Activity> activities) {
         mActivityArrayAdapter = new ActivityArrayAdapter(ActivityActivity.this, activities);
         mListView.setAdapter(mActivityArrayAdapter);
+        swipeLayout.setRefreshing(false);
     }
 
     @Override
@@ -123,12 +121,13 @@ public class ActivityActivity extends BaseActivity implements SwipeRefreshLayout
 
     @Override
     public void onRefresh() {
-        new Handler().postDelayed(new Runnable() {
+        swipeLayout.post(new Runnable() {
+            @Override
             public void run() {
-                swipeLayout.setRefreshing(false);
+                swipeLayout.setRefreshing(true);
                 mActivityService.getAllActivities();
                 setActivityItemClick();
             }
-        }, 3000);
+        });
     }
 }

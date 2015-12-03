@@ -25,6 +25,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".activity.SearchableActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <activity
             android:name=".activity.MainActivity"
             android:label="Share Your Cuisine" >
@@ -39,7 +46,9 @@
         </activity>
         <activity
             android:name=".activity.MenuActivity"
-            android:label="Menu" >
+            android:label="Menu">
+            <meta-data android:name="android.app.default_searchable"
+                android:value=".activity.SearchableActivity"/>
         </activity>
         <activity
             android:name=".activity.PostActivity"
@@ -72,6 +81,10 @@
         <activity
             android:name=".activity.SingleActivityActivity"
             android:label="SingleActivityActivity">
+        </activity>
+        <activity
+            android:name=".activity.SingleMenuActivity"
+            android:label="SingleMenuActivity">
         </activity>
     </application>
 

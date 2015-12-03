@@ -81,12 +81,19 @@
             android:maxWidth="60dp"
             android:src="@drawable/add_img_btn"/>
 
+        <ImageView
+            android:id="@+id/menu_img"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/menu_img_button"
+            android:layout_marginBottom="1dp" />
+
         <android.support.v7.widget.RecyclerView
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/menu_img_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_below="@+id/menu_img_button"/>
+            android:layout_below="@+id/menu_img"/>
 
         <Button
             android:id="@+id/submit_btn"

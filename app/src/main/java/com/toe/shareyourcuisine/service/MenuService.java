@@ -48,7 +48,6 @@ public class MenuService {
         ParseObject parseObject = new ParseObject("Menu");
         parseObject.put("title", menu.getmTitle());
         parseObject.put("displayImg", menu.getmDisplayImg());
-        menu.getmDisplayImg().saveInBackground();
         parseObject.put("content", menu.getmContent());
         parseObject.put("img", menu.getmImg());
         parseObject.put("createdBy", ParseUser.getCurrentUser());
@@ -73,8 +72,10 @@ public class MenuService {
                     List<Menu> menus = new ArrayList<Menu>();
                     for(int i = 0; i < list.size(); i++) {
                         Menu menu = new Menu();
+                        menu.setmObjectId(list.get(i).getObjectId());
                         menu.setmTitle(list.get(i).get("title").toString());
                         menu.setmDisplayImg(list.get(i).getParseFile("displayImg"));
+                        menu.setmCreatedBy((ParseUser) list.get(i).get("createdBy"));
                         menus.add(menu);
                     }
                     mGetAllMenusListener.getAllMenusSuccess(menus);

@@ -28,6 +28,12 @@
     </style>
 
 
+    <!-- Menu styles-->
+    <style name="MenuRowTitle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <!-- Activity styles-->
     <style name="ActivityRowTitle">
         <item name="android:textColor">@color/black</item>

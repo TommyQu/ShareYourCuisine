@@ -6,8 +6,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
@@ -43,14 +45,17 @@ public class MenuActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         mContentView = (FrameLayout)findViewById(R.id.content);
         View child = getLayoutInflater().inflate(R.layout.activity_menu, null);
         mContentView.addView(child);
+
         mListView = (ListView)findViewById(R.id.menu_list_view);
         mSwipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
         mSwipeLayout.setOnRefreshListener(this);
-        mSwipeLayout.setColorScheme(android.R.color.white,
-                android.R.color.holo_green_light,
+        mSwipeLayout.setScrollBarSize(10);
+        mSwipeLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
         mMenuService = new MenuService(MenuActivity.this, MenuActivity.this, "getAllMenus");
         mMenuService.getAllMenus();
+        setMenuItemClick();
+        mSwipeLayout.setRefreshing(true);
     }
 
     @Override
@@ -72,10 +77,7 @@ public class MenuActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        else if (id == R.id.new_menu) {
+        if (id == R.id.new_menu) {
             if(ParseUser.getCurrentUser() == null) {
                 Toast.makeText(MenuActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
             }
@@ -84,18 +86,46 @@ public class MenuActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(intent);
             }
         }
+        else if (id == R.id.search_menu) {
+            onSearchRequested();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onRefresh() {
+        mSwipeLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeLayout.setRefreshing(true);
+                mMenuService.getAllMenus();
+                setMenuItemClick();
+            }
+        });
+    }
 
+    private void setMenuItemClick() {
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView idTextView = (TextView)view.findViewById(R.id.menu_id);
+                TextView titleTextView = (TextView)view.findViewById(R.id.menu_title);
+                TextView userNameTextView = (TextView)view.findViewById(R.id.user_name);
+                Intent intent = new Intent(MenuActivity.this, SingleMenuActivity.class);
+                intent.putExtra("menuId", idTextView.getText().toString());
+                intent.putExtra("menuTitle", titleTextView.getText().toString());
+                intent.putExtra("userName", userNameTextView.getText().toString());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void getAllMenusSuccess(List<com.toe.shareyourcuisine.model.Menu> menus) {
         mMenuArrayAdapter = new MenuArrayAdapter(MenuActivity.this, menus);
         mListView.setAdapter(mMenuArrayAdapter);
+        mSwipeLayout.setRefreshing(false);
     }
 
     @Override

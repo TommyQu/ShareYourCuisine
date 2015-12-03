@@ -2,10 +2,13 @@ package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +22,9 @@ import com.parse.ParseFile;
 import com.sangcomz.fishbun.FishBun;
 import com.sangcomz.fishbun.define.Define;
 import com.toe.shareyourcuisine.R;
+import com.toe.shareyourcuisine.adapter.ToeRecyclerAdapter;
 import com.toe.shareyourcuisine.model.Menu;
+import com.toe.shareyourcuisine.model.ToeRecyclerController;
 import com.toe.shareyourcuisine.service.MenuService;
 
 import java.io.ByteArrayOutputStream;
@@ -38,12 +43,21 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
     private ImageButton mMenuImgBtn;
     private ImageView mDisplayImgView;
     private ArrayList<String> mDisplayImgPath = new ArrayList<>();
+    private ArrayList<String> mImgPaths = new ArrayList<>();
     private Bitmap mDisPlayBitmap;
     private Button mSubmitBtn;
     private Button mCancelBtn;
     private int mMenuDisplayImgCount = 0;
     private int mMenuImgCount = 0;
     private String imgPickAction;
+
+    private ImageView mMenuImgView;
+    private RecyclerView mRecyclerView;
+    private LinearLayoutManager mLinearLayoutManager;
+    private ToeRecyclerAdapter mToeRecyclerAdapter;
+    private ToeRecyclerController mToeRecyclerController;
+    private ArrayList<ParseFile> mImgFiles = new ArrayList<ParseFile>();
+    private ArrayList<Bitmap> mImgBitmaps = new ArrayList<Bitmap>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +74,14 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
         mSubmitBtn = (Button)findViewById(R.id.submit_btn);
         mCancelBtn = (Button)findViewById(R.id.cancel_btn);
 
+        mMenuImgView = (ImageView)findViewById(R.id.menu_img);
+        mRecyclerView = (RecyclerView)findViewById(R.id.menu_img_recycler_view);
+        mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mToeRecyclerController = new ToeRecyclerController(this, mMenuImgView);
+        mToeRecyclerAdapter = new ToeRecyclerAdapter(this, mToeRecyclerController, mImgPaths);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mRecyclerView.setAdapter(mToeRecyclerAdapter);
+
         mMenuDisplayImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,14 +91,18 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
                         .setActionBarColor(Color.parseColor("#FF3030"), Color.parseColor("#FF3030"))
                         .setArrayPaths(mDisplayImgPath)
                         .startAlbum();
-//                if(mMenuDisplayImgCount<1) {
-//                    mMenuDisplayImgCount++;
-//                    Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                    startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
-//
-//                } else {
-//                    Toast.makeText(AddMenuActivity.this, "You can only upload one image!", Toast.LENGTH_SHORT).show();
-//                }
+            }
+        });
+
+        mMenuImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgPickAction = "pickImg";
+                FishBun.with(AddMenuActivity.this)
+                        .setPickerCount(10)
+                        .setActionBarColor(Color.parseColor("#FF3030"), Color.parseColor("#FF3030"))
+                        .setArrayPaths(mImgPaths)
+                        .startAlbum();
             }
         });
 
@@ -84,17 +110,29 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
             @Override
             public void onClick(View v) {
                 if(check() == true) {
-                    MenuService menuService = new MenuService(AddMenuActivity.this, AddMenuActivity.this, "addMenu");
                     Menu menu = new Menu();
                     menu.setmTitle(mMenuTitleValue.getText().toString());
                     menu.setmContent(mMenuContentValue.getText().toString());
 
+                    //Decode display img
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     mDisPlayBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                     byte[] displayImgByteArray = stream.toByteArray();
-
                     ParseFile displayImgFile = new ParseFile("displayImg.jpg", displayImgByteArray);
+                    displayImgFile.saveInBackground();
                     menu.setmDisplayImg(displayImgFile);
+
+                    //Decode imgs
+                    for(int i = 0; i < mImgBitmaps.size(); i++) {
+                        ByteArrayOutputStream imgStream = new ByteArrayOutputStream();
+                        mImgBitmaps.get(i).compress(Bitmap.CompressFormat.JPEG, 100, imgStream);
+                        byte[] imgByteArray = imgStream.toByteArray();
+                        ParseFile imgFile = new ParseFile("img.jpg", imgByteArray);
+                        imgFile.saveInBackground();
+                        mImgFiles.add(imgFile);
+                    }
+                    menu.setmImg(mImgFiles);
+                    MenuService menuService = new MenuService(AddMenuActivity.this, AddMenuActivity.this, "addMenu");
                     menuService.addMenu(menu);
                 }
             }
@@ -134,6 +172,11 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
                         Glide.with(AddMenuActivity.this).load(mDisplayImgPath.get(0)).fitCenter().into(mDisplayImgView);
                         break;
                     }
+                    else if(imgPickAction.equals("pickImg")) {
+                        mImgPaths = data.getStringArrayListExtra(Define.INTENT_PATH);
+                        mToeRecyclerAdapter.changePath(mImgPaths);
+                        break;
+                    }
                 }
         }
     }
@@ -151,6 +194,10 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
         else {
             mDisplayImgView.buildDrawingCache();
             mDisPlayBitmap = mDisplayImgView.getDrawingCache();
+            for(int i = 0;i < mToeRecyclerAdapter.getItemCount(); i++) {
+                Bitmap currentImg = BitmapFactory.decodeFile(mImgPaths.get(i));
+                mImgBitmaps.add(currentImg);
+            }
             return true;
         }
     }
