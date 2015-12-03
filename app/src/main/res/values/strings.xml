@@ -44,5 +44,8 @@
     <string name="delete_activity">Delete Activity</string>
     <string name="log_in">Log In</string>
     <string name="sign_out_btn">Sign Out</string>
+    <string name="menu_title">Menu title:</string>
+    <string name="menu_display_img_text">Upload a display image:</string>
+    <string name="menu_content_text">Menu content:</string>
 
 </resources>

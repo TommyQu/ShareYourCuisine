@@ -22,7 +22,6 @@ public class ActivityService {
 
     private static final String TAG = "ToeActivityService";
     private Context mContext;
-    private String mAction;
     private AddActivityListener mAddActivityListener;
     private GetAllActivitiesListener mGetAllActivitiesListener;
     private GetSingleActivityListener mGetSingleActivityListener;
@@ -248,7 +247,7 @@ public class ActivityService {
                 if(e == null) {
                     boolean isJoined = false;
                     List<ParseUser> joinedUsers = (List<ParseUser>) parseObject.get("joinedBy");
-                    if(joinedUsers != null) {
+                    if(joinedUsers != null && ParseUser.getCurrentUser() != null) {
                         for(int i=0; i<joinedUsers.size(); i++) {
                             if(joinedUsers.get(i).getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
                                 isJoined = true;

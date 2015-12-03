@@ -60,7 +60,7 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
         mActivityId = (String) bundle.get("activityId");
         mActivityTitle = (String) bundle.get("activityTitle");
         mUserName = (String) bundle.get("userName");
-        if(ParseUser.getCurrentUser().getUsername().equals(mUserName))
+        if(ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername().equals(mUserName))
             mIsCurrentUser = true;
         getSupportActionBar().setTitle(mActivityTitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
