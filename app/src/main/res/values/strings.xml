@@ -15,9 +15,6 @@
     <string name="user_des_text">Description:</string>
     <string name="submit_btn">Submit</string>
     <string name="cancel_btn">Cancel</string>
-    <string name="menu_text">Menu</string>
-    <string name="post_text">Post</string>
-    <string name="activity_text">Activity</string>
     <string name="user_nick_name_text">Nick name:</string>
     <string name="new_menu">New Menu</string>
     <string name="new_post">New Post</string>
@@ -50,5 +47,8 @@
     <string name="delete_menu">Delete menu</string>
     <string name="search_hint">Search</string>
     <string name="search_menu">Search menu</string>
+    <string name="hot_menu_text">Hot menus:</string>
+    <string name="hot_post_text">Hot posts:</string>
+    <string name="hot_activity_text">Hot activities:</string>
 
 </resources>

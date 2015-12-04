@@ -49,7 +49,6 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
     private ListView mListView;
     private boolean mIsCurrentUser;
     private JoinedByArrayAdapter mJoinedByArrayAdapter;
-    private Activity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,7 +153,6 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
     @Override
     public void getSingleActivitySuccess(Activity activity) {
         mActivityTitleTextView.setText(activity.getmTitle());
-        mActivity = activity;
         //Fetch user img into ImageView
         ParseUser parseUser = activity.getmCreatedBy();
         try {

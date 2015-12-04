@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.sangcomz.fishbun.FishBun;
 import com.sangcomz.fishbun.define.Define;
@@ -119,7 +120,11 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
                     mDisPlayBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                     byte[] displayImgByteArray = stream.toByteArray();
                     ParseFile displayImgFile = new ParseFile("displayImg.jpg", displayImgByteArray);
-                    displayImgFile.saveInBackground();
+                    try {
+                        displayImgFile.save();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     menu.setmDisplayImg(displayImgFile);
 
                     //Decode imgs
@@ -127,8 +132,12 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
                         ByteArrayOutputStream imgStream = new ByteArrayOutputStream();
                         mImgBitmaps.get(i).compress(Bitmap.CompressFormat.JPEG, 100, imgStream);
                         byte[] imgByteArray = imgStream.toByteArray();
-                        ParseFile imgFile = new ParseFile("img.jpg", imgByteArray);
-                        imgFile.saveInBackground();
+                        ParseFile imgFile = new ParseFile("img.jpg",imgByteArray);
+                        try {
+                            imgFile.save();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
                         mImgFiles.add(imgFile);
                     }
                     menu.setmImg(mImgFiles);
@@ -192,10 +201,17 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
             return false;
         }
         else {
-            mDisplayImgView.buildDrawingCache();
-            mDisPlayBitmap = mDisplayImgView.getDrawingCache();
+//            BitmapFactory.Options options = new BitmapFactory.Options();
+//            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            mDisPlayBitmap = BitmapFactory.decodeFile(mDisplayImgPath.get(0));
+
+            //Compress img to meet the ParseFile maximum requirements
+            if(mDisPlayBitmap.getByteCount() >= 10485760)
+                mDisPlayBitmap = Bitmap.createScaledBitmap(mDisPlayBitmap, 1920, 1080, true);
             for(int i = 0;i < mToeRecyclerAdapter.getItemCount(); i++) {
                 Bitmap currentImg = BitmapFactory.decodeFile(mImgPaths.get(i));
+                if(currentImg.getByteCount() >= 10485760)
+                    currentImg = Bitmap.createScaledBitmap(currentImg, 1920, 1080, true);
                 mImgBitmaps.add(currentImg);
             }
             return true;

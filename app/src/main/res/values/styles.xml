@@ -27,9 +27,25 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <!-- Main Activity style-->
+    <style name="MainTitle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 
     <!-- Menu styles-->
     <style name="MenuRowTitle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="SingleMenuTitle">
+        <item name="android:fontFamily">@string/sans_serif</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+    <style name="SingleMenuContent">
+        <item name="android:fontFamily">@string/sans_serif</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">20sp</item>
     </style>

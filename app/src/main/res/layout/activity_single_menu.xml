@@ -1,22 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="15dp"
-    android:layout_marginRight="20dp">
+    android:background="@color/white">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/menu_display_img"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/syc_icon"/>
+        <ImageView
+            android:id="@+id/menu_display_img"
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/syc_icon"/>
 
-    <TextView
-        android:id="@+id/menu_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/menu_display_img"/>
-</RelativeLayout>
+        <TextView
+            android:id="@+id/menu_title"
+            style="@style/SingleMenuTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/menu_display_img"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"/>
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/user_img"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_below="@id/menu_title"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#ffffff"/>
+
+        <TextView
+            android:id="@+id/user_nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_img"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/menu_content"
+            style="@style/SingleMenuContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_nick_name"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+    </RelativeLayout>
+</ScrollView>

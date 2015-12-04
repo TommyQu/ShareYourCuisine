@@ -15,11 +15,12 @@
 
     <ImageView
         android:id="@+id/menu_img"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="7dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="7dp"/>
 
     <TextView
         android:id="@+id/menu_title"
@@ -27,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/menu_img"
+        android:layout_marginTop="2dp"
         android:layout_marginLeft="10dp"/>
 
 </RelativeLayout>

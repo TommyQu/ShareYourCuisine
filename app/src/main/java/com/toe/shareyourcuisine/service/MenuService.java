@@ -3,7 +3,9 @@ package com.toe.shareyourcuisine.service;
 import android.content.Context;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -23,6 +25,8 @@ public class MenuService {
     private String mAction;
     private AddMenuListener mAddMenuListener;
     private GetAllMenusListener mGetAllMenusListener;
+    private GetSingleMenuListener mGetSingleMenuListener;
+
 
     public interface AddMenuListener {
         public void addMenuSuccess();
@@ -34,6 +38,11 @@ public class MenuService {
         public void getAllMenusFail(String errorMsg);
     }
 
+    public interface GetSingleMenuListener {
+        public void getSingleMenusSuccess(Menu menu);
+        public void getSingleMenusFail(String errorMsg);
+    }
+
     public MenuService(Context context, Object menuListener, String action) {
         mContext = context;
         if(action.equals("addMenu")) {
@@ -41,6 +50,9 @@ public class MenuService {
         }
         else if(action.equals("getAllMenus")) {
             mGetAllMenusListener = (GetAllMenusListener)menuListener;
+        }
+        else if(action.equals("getSingleMenu")) {
+            mGetSingleMenuListener = (GetSingleMenuListener)menuListener;
         }
     }
 
@@ -68,20 +80,44 @@ public class MenuService {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-                if(e == null) {
+                if (e == null) {
                     List<Menu> menus = new ArrayList<Menu>();
-                    for(int i = 0; i < list.size(); i++) {
+                    for (int i = 0; i < list.size(); i++) {
                         Menu menu = new Menu();
                         menu.setmObjectId(list.get(i).getObjectId());
                         menu.setmTitle(list.get(i).get("title").toString());
+                        menu.setmContent(list.get(i).get("content").toString());
+                        menu.setmImg((ArrayList<ParseFile>) list.get(i).get("img"));
                         menu.setmDisplayImg(list.get(i).getParseFile("displayImg"));
                         menu.setmCreatedBy((ParseUser) list.get(i).get("createdBy"));
                         menus.add(menu);
                     }
                     mGetAllMenusListener.getAllMenusSuccess(menus);
-                }
-                else {
+                } else {
                     mGetAllMenusListener.getAllMenusFail(e.getMessage().toString());
+                }
+            }
+        });
+    }
+
+    public void getSingleMenu(final String menuId) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Menu");
+        query.include("createdBy");
+        query.whereEqualTo("objectId", menuId);
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject parseObject, ParseException e) {
+                if (e == null) {
+                    Menu menu = new Menu();
+                    menu.setmObjectId(parseObject.getObjectId());
+                    menu.setmTitle((String) parseObject.get("title"));
+                    menu.setmDisplayImg((ParseFile) parseObject.get("displayImg"));
+                    menu.setmContent((String) parseObject.get("content"));
+                    menu.setmCreatedBy((ParseUser) parseObject.get("createdBy"));
+                    menu.setmImg((ArrayList<ParseFile>) parseObject.get("img"));
+                    mGetSingleMenuListener.getSingleMenusSuccess(menu);
+                } else {
+                    mGetSingleMenuListener.getSingleMenusFail(e.getMessage().toString());
                 }
             }
         });
