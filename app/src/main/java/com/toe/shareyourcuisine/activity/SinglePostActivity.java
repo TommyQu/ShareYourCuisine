@@ -1,5 +1,6 @@
 package com.toe.shareyourcuisine.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 
 public class SinglePostActivity extends ActionBarActivity implements PostService.GetSinglePostListener{
     private String mClickedPostId;
-
+    private Context mContext;
     private ImageView mUserImageView;
     private TextView mUserNameTextView;
     private TextView mCreatedAtTextView;
@@ -128,17 +129,17 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
             e.printStackTrace();
         }
 
-        for(int n = 0; n < postImg.size(); n++) {
-            String currentImageUrl = postImg.get(n).getUrl() ;//live url
-            Uri currentImageUri = Uri.parse(currentImageUrl);
-            if(n == 0) {
-                Picasso.with(SinglePostActivity.this).load(imageUri.toString()).into(mPostImageView1);
-            } else if(n==1) {
-                Picasso.with(SinglePostActivity.this).load(imageUri.toString()).into(mPostImageView2);
-            } else if(n==2) {
-                Picasso.with(SinglePostActivity.this).load(imageUri.toString()).into(mPostImageView3);
-            }
+        ArrayList<ImageView> postImgList = new ArrayList<ImageView>();
+        postImgList.add(mPostImageView1);
+        postImgList.add(mPostImageView2);
+        postImgList.add(mPostImageView3);
+        for(int i=0;i<postImg.size();i++) {
+            String postImageUrl = postImg.get(i).getUrl() ;//live url
+            Uri postImageUri = Uri.parse(postImageUrl);
+
+            Picasso.with(mContext).load(postImageUri.toString()).into(postImgList.get(i));
         }
+
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by Theon_Z on 10/31/15.
  */
 public class Post {
-    private String mPostId;
+    private String mObjectId;
     private Date mCreatedAt;
     private Date mUpdatedAt;
     private ParseUser mCreatedBy;
@@ -21,12 +21,12 @@ public class Post {
         mImg = new ArrayList<ParseFile>();
     }
 
-    public String getPostId() {
-        return mPostId;
+    public String getObjectId() {
+        return mObjectId;
     }
 
-    public void setPostId(String postId) {
-        mPostId = postId;
+    public void setObjectId(String objectId) {
+        mObjectId = objectId;
     }
 
     public Date getCreatedAt() {
