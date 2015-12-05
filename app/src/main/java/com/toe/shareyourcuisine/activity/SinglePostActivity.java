@@ -1,7 +1,6 @@
 package com.toe.shareyourcuisine.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -85,9 +84,7 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(SinglePostActivity.this, PostActivity.class);
         finish();
-        startActivity(intent);
     }
 
     private void LoadPrefs() {
