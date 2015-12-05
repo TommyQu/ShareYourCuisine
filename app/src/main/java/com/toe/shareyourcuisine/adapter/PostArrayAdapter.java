@@ -35,8 +35,8 @@ public class PostArrayAdapter extends ArrayAdapter<Post> {
         ImageView postImageView3;
     }
 
-    public PostArrayAdapter(Context context, List<Post> mPostList) {
-        super(context, R.layout.post_item, mPostList);
+    public PostArrayAdapter(Context context, List<Post> PostList) {
+        super(context, R.layout.post_item, PostList);
         mContext = context;
     }
 
