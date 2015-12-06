@@ -121,7 +121,6 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
                 SavePrefs("clickedPostId", clickedPost.getObjectId());
 
                 Intent intent = new Intent(PostActivity.this, SinglePostActivity.class);
-                finish();
                 startActivity(intent);
             }
         });

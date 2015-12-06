@@ -2,6 +2,7 @@ package com.toe.shareyourcuisine;
 
 import android.app.Application;
 
+import com.facebook.FacebookSdk;
 import com.parse.Parse;
 
 /**
@@ -13,6 +14,7 @@ public class SycApplication extends Application{
     public void onCreate() {
         super.onCreate();
         Parse.initialize(this, "azue2TtJIXAFTrqD3SpEjYGjHU8ImgXPatmlZzHg", "DM8kgbiabchxLYealzGJaXmrjmoEVEm8ReGEQszk");
+        FacebookSdk.sdkInitialize(getApplicationContext());
     }
 
 }

@@ -2,6 +2,7 @@ package com.toe.shareyourcuisine.service;
 
 import android.content.Context;
 
+import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -26,7 +27,7 @@ public class MenuService {
     private AddMenuListener mAddMenuListener;
     private GetAllMenusListener mGetAllMenusListener;
     private GetSingleMenuListener mGetSingleMenuListener;
-
+    private DeleteMenuListener mDeleteMenuListener;
 
     public interface AddMenuListener {
         public void addMenuSuccess();
@@ -43,6 +44,11 @@ public class MenuService {
         public void getSingleMenusFail(String errorMsg);
     }
 
+    public interface DeleteMenuListener {
+        public void deleteMenuListenerSuccess(String response);
+        public void deleteMenuListenerFail(String errorMsg);
+    }
+
     public MenuService(Context context, Object menuListener, String action) {
         mContext = context;
         if(action.equals("addMenu")) {
@@ -53,6 +59,9 @@ public class MenuService {
         }
         else if(action.equals("getSingleMenu")) {
             mGetSingleMenuListener = (GetSingleMenuListener)menuListener;
+        }
+        else if(action.equals("deleteMenu")) {
+            mDeleteMenuListener = (DeleteMenuListener)menuListener;
         }
     }
 
@@ -118,6 +127,21 @@ public class MenuService {
                     mGetSingleMenuListener.getSingleMenusSuccess(menu);
                 } else {
                     mGetSingleMenuListener.getSingleMenusFail(e.getMessage().toString());
+                }
+            }
+        });
+    }
+
+    public void deleteMenu(String menuId) {
+        ParseObject menuObject = ParseObject.createWithoutData("Menu", menuId);
+        menuObject.deleteInBackground(new DeleteCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null) {
+                    mDeleteMenuListener.deleteMenuListenerSuccess("Delete menu successfully!");
+                }
+                else {
+                    mDeleteMenuListener.deleteMenuListenerFail(e.getMessage().toString());
                 }
             }
         });

@@ -1,6 +1,10 @@
 package com.toe.shareyourcuisine.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -12,7 +16,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
+import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 import com.toe.shareyourcuisine.R;
 import com.toe.shareyourcuisine.service.MenuService;
@@ -22,7 +36,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by TommyQu on 12/3/15.
  */
-public class SingleMenuActivity extends ActionBarActivity implements MenuService.GetSingleMenuListener {
+public class SingleMenuActivity extends ActionBarActivity implements MenuService.GetSingleMenuListener,
+    MenuService.DeleteMenuListener{
 
     private static final String TAG = "ToeSingleMenu";
     private String mMenuId;
@@ -33,17 +48,22 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
     private CircleImageView mUserImgView;
     private TextView mUserNickNameTextView;
     private TextView mMenuContentTextView;
+    private boolean mIsCurrentUser;
+    private CallbackManager mCallbackManager;
+    private com.toe.shareyourcuisine.model.Menu mMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_menu);
+        mCallbackManager = CallbackManager.Factory.create();
         Intent currentIntent = getIntent();
         Bundle bundle = currentIntent.getExtras();
         mMenuId = (String) bundle.get("menuId");
         mMenuTitle = (String) bundle.get("menuTitle");
         mUserName = (String) bundle.get("userName");
-
+        if(ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername().equals(mUserName))
+            mIsCurrentUser = true;
         getSupportActionBar().setTitle(mMenuTitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
@@ -60,7 +80,10 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_single_activity, menu);
+        if(mIsCurrentUser == true)
+            getMenuInflater().inflate(R.menu.menu_single_menu, menu);
+        else
+            getMenuInflater().inflate(R.menu.menu_single_menu_share, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -70,6 +93,65 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
         if (id == android.R.id.home) {
             onBackPressed();
             return true;
+        }
+        else if (id == R.id.delete_menu) {
+            //Show a dialog for confirm delete activity
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("Are you sure to delete this menu?");
+            alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    MenuService menuService = new MenuService(SingleMenuActivity.this, SingleMenuActivity.this, "deleteMenu");
+                    menuService.deleteMenu(mMenuId);
+                }
+            });
+            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alertDialog.show();
+        }
+        else if ( id == R.id.share_menu ) {
+            ShareDialog shareDialog;
+            shareDialog = new ShareDialog(this);
+            shareDialog.registerCallback(mCallbackManager, new FacebookCallback<Sharer.Result>() {
+                @Override
+                public void onSuccess(Sharer.Result result) {
+                    Toast.makeText(SingleMenuActivity.this, "Share to Facebook successfully!", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+
+                @Override
+                public void onError(FacebookException error) {
+                    Toast.makeText(SingleMenuActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            if (ShareDialog.canShow(ShareLinkContent.class)) {
+//                String description = "Activity: The activity is located at " + mActivity.getmAddress() + ", " + mActivity.getmCity()
+//                        + ", " + mActivity.getmState() + "/n from " + mActivity.getmStartTime() + " to " + mActivity.getmEndTime()
+//                        + "./nThe content is " + mActivity.getmContent() + ".";
+                Bitmap image = null;
+                try {
+                    image = BitmapFactory.decodeByteArray(mMenu.getmDisplayImg().getData(), 0, mMenu.getmDisplayImg().getData().length);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                SharePhoto photo = new SharePhoto.Builder()
+                        .setBitmap(image)
+                        .build();
+                SharePhotoContent content = new SharePhotoContent.Builder()
+                        .addPhoto(photo)
+                        .build();
+                shareDialog.show(content);
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -82,6 +164,7 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
 
     @Override
     public void getSingleMenusSuccess(com.toe.shareyourcuisine.model.Menu menu) {
+        mMenu = menu;
         ParseFile displayImg = menu.getmDisplayImg();
         String imageUrl = displayImg.getUrl() ;//live url
         Uri imageUri = Uri.parse(imageUrl);
@@ -98,6 +181,20 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
 
     @Override
     public void getSingleMenusFail(String errorMsg) {
+        Toast.makeText(SingleMenuActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void deleteMenuListenerSuccess(String response) {
+        Toast.makeText(SingleMenuActivity.this, response, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(SingleMenuActivity.this, MenuActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        finish();
+        startActivity(intent);
+    }
+
+    @Override
+    public void deleteMenuListenerFail(String errorMsg) {
         Toast.makeText(SingleMenuActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 }

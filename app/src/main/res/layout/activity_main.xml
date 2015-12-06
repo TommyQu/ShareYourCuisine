@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -13,7 +13,7 @@
         android:background="@color/white">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
@@ -42,13 +42,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/menu_list_view"
+                android:layout_marginTop="20dp"
                 android:text="@string/hot_post_text"/>
 
             <ListView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:id="@+id/post_list_view"
-                android:layout_below="@id/hot_post_text"/>
+                android:layout_below="@id/hot_post_text"
+                android:layout_marginTop="10dp"/>
 
             <TextView
                 android:id="@+id/hot_activity_text"
@@ -56,7 +58,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hot_activity_text"
-                android:layout_below="@id/post_list_view"/>
+                android:layout_below="@id/post_list_view"
+                android:layout_marginTop="20dp"/>
 
             <ListView
                 android:id="@+id/activity_list_view"

@@ -47,6 +47,7 @@
 
     <Button
         android:id="@+id/submit_btn"
+        style="@style/SubmitBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/submit_btn"
@@ -60,6 +61,7 @@
 
     <Button
         android:id="@+id/cancel_btn"
+        style="@style/CancelBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/cancel_btn"
@@ -69,4 +71,26 @@
         android:layout_alignRight="@+id/submit_btn"
         android:layout_alignEnd="@+id/submit_btn" />
 
+    <TextView
+        android:id="@+id/sign_up_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up_text"
+        android:layout_below="@id/cancel_btn"
+        android:layout_marginTop="13dp"
+        android:layout_marginLeft="70dp"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/sign_up_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cancel_btn"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/sign_up_text"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/orange"
+        android:text="@string/sign_up"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
 </RelativeLayout>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Share Your Cuisine</string>
 
+    <string name="facebook_app_id">1048336895196616</string>
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
@@ -50,5 +51,9 @@
     <string name="hot_menu_text">Hot menus:</string>
     <string name="hot_post_text">Hot posts:</string>
     <string name="hot_activity_text">Hot activities:</string>
+    <string name="share_activity">Share Activity</string>
+    <string name="share_menu">Share Menu</string>
+    <string name="sign_up_text">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up Here!</string>
 
 </resources>

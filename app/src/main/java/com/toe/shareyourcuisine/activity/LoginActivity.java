@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.toe.shareyourcuisine.R;
@@ -29,6 +30,7 @@ public class LoginActivity extends BaseActivity implements UserService.UserLogin
     private Button mCancelBtn;
     private EditText mUserEmailValue;
     private EditText mUserPwdValue;
+    private TextView mSignUpTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class LoginActivity extends BaseActivity implements UserService.UserLogin
         mCancelBtn = (Button)findViewById(R.id.cancel_btn);
         mUserEmailValue = (EditText)findViewById(R.id.user_email_value);
         mUserPwdValue = (EditText)findViewById(R.id.user_pwd_value);
+        mSignUpTextView = (TextView)findViewById(R.id.sign_up_link);
 
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +59,14 @@ public class LoginActivity extends BaseActivity implements UserService.UserLogin
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 finish();
+                startActivity(intent);
+            }
+        });
+
+        mSignUpTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });

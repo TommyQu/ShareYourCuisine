@@ -18,11 +18,24 @@
         <meta-data
             android:name="com.google.android.API_KEY"
             android:value="AIzaSyATMzIiSG-Ctvzb9pPeYTdroug1K7nxPmc" />
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
         <activity android:name=".activity.LoadActivity"
             android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <intent-filter>
+                    <action android:name="android.intent.action.VIEW"></action>
+                    <category android:name="android.intent.category.DEFAULT"></category>
+                    <category android:name="android.intent.category.BROWSABLE"></category>
+                    <data android:host="main" android:scheme="syc"></data>
+                </intent-filter>
             </intent-filter>
         </activity>
         <activity android:name=".activity.SearchableActivity">
@@ -86,6 +99,9 @@
             android:name=".activity.SingleMenuActivity"
             android:label="SingleMenuActivity">
         </activity>
+        <provider android:authorities="com.facebook.app.FacebookContentProvider1048336895196616"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true" />
     </application>
 
 </manifest>

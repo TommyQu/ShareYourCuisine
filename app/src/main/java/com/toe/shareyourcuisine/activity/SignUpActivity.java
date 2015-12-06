@@ -96,9 +96,7 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
         mCancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                 finish();
-                startActivity(intent);
             }
         });
     }
@@ -106,9 +104,7 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
         finish();
-        startActivity(intent);
     }
 
     private boolean check() {
@@ -140,6 +136,7 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
     public void signUpSuccess() {
         Toast.makeText(SignUpActivity.this, "Sign up successfully!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
         startActivity(intent);
     }

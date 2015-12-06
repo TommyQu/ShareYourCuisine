@@ -1,23 +1,33 @@
 package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
 import com.toe.shareyourcuisine.R;
 import com.toe.shareyourcuisine.adapter.ActivityArrayAdapter;
 import com.toe.shareyourcuisine.adapter.MenuArrayAdapter;
+import com.toe.shareyourcuisine.adapter.PostArrayAdapter;
 import com.toe.shareyourcuisine.model.Activity;
 import com.toe.shareyourcuisine.model.Menu;
+import com.toe.shareyourcuisine.model.Post;
 import com.toe.shareyourcuisine.service.ActivityService;
 import com.toe.shareyourcuisine.service.MenuService;
+import com.toe.shareyourcuisine.service.PostService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +42,7 @@ import java.util.List;
  */
 
 public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, MenuService.GetAllMenusListener,
-        ActivityService.GetAllActivitiesListener{
+        ActivityService.GetAllActivitiesListener, PostService.GetAllPostsListener{
 
     private FrameLayout mContentView;
     private SwipeRefreshLayout mSwipeLayout;
@@ -41,8 +51,10 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     private ListView mActivityListView;
 
     private MenuArrayAdapter mMenuArrayAdapter;
+    private PostArrayAdapter mPostArrayAdapter;
     private ActivityArrayAdapter mActivityArrayAdapter;
     private MenuService mMenuService;
+    private PostService mPostService;
     private ActivityService mActivityService;
 
     @Override
@@ -114,6 +126,13 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         });
     }
 
+    private void SavePrefs(String key, String value) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putString(key, value);
+        edit.commit();
+    }
+
     @Override
     public void getAllMenusSuccess(List<Menu> menus) {
         mMenuArrayAdapter = new MenuArrayAdapter(MainActivity.this, menus);
@@ -134,11 +153,55 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         mActivityArrayAdapter = new ActivityArrayAdapter(MainActivity.this, activities);
         mActivityListView.setAdapter(mActivityArrayAdapter);
         setActivityItemClick();
+        mPostService = new PostService(MainActivity.this, MainActivity.this, "getAllPosts");
+        mPostService.getAllPosts();
         mSwipeLayout.setRefreshing(false);
     }
 
     @Override
     public void getAllActivitiesFail(String errorMsg) {
+        Toast.makeText(MainActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+        mSwipeLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void getAllPostsSuccess(List<ParseObject> postlist) {
+        final List<Post> tempList = new ArrayList<Post>();
+        for(int n=0;n<postlist.size(); n++) {
+            Post currentPost = new Post();
+            currentPost.setObjectId(postlist.get(n).getObjectId());
+            currentPost.setCreatedAt(postlist.get(n).getCreatedAt());
+            currentPost.setUpdatedAt(postlist.get(n).getUpdatedAt());
+            currentPost.setCreatedBy(postlist.get(n).getParseUser("createdBy"));
+            currentPost.setContent(postlist.get(n).getString("content"));
+
+            //how to get the img array and assign it to the Post.mImg
+            ArrayList<ParseFile> tempImg = new ArrayList<ParseFile>();
+
+            try {
+                tempImg =(ArrayList<ParseFile>) postlist.get(n).fetchIfNeeded().get("img");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            currentPost.setImg(tempImg);
+            tempList.add(currentPost);
+        }
+        ArrayAdapter<Post> postAdapter = new PostArrayAdapter(MainActivity.this,tempList);
+        mPostListView.setAdapter(postAdapter);
+        mPostListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+                Post clickedPost = tempList.get(position);
+                //Turn to Single Post activity and use shared preference to assign the post information
+                SavePrefs("clickedPostId", clickedPost.getObjectId());
+                Intent intent = new Intent(MainActivity.this, SinglePostActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public void getAllPostsFail(String errorMsg) {
         Toast.makeText(MainActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
         mSwipeLayout.setRefreshing(false);
     }

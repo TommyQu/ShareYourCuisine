@@ -17,6 +17,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -49,11 +55,14 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
     private ListView mListView;
     private boolean mIsCurrentUser;
     private JoinedByArrayAdapter mJoinedByArrayAdapter;
+    private Activity mActivity;
+    private CallbackManager mCallbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_activity);
+        mCallbackManager = CallbackManager.Factory.create();
         Intent currentIntent = getIntent();
         Bundle bundle = currentIntent.getExtras();
         mActivityId = (String) bundle.get("activityId");
@@ -86,6 +95,8 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
     public boolean onCreateOptionsMenu(Menu menu) {
         if(mIsCurrentUser == true)
             getMenuInflater().inflate(R.menu.menu_single_activity, menu);
+        else
+            getMenuInflater().inflate(R.menu.menu_single_activity_share, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -115,6 +126,39 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
                 }
             });
             alertDialog.show();
+        }
+        else if (id == R.id.share_activity) {
+            ShareDialog shareDialog;
+            shareDialog = new ShareDialog(this);
+            shareDialog.registerCallback(mCallbackManager, new FacebookCallback<Sharer.Result>() {
+                @Override
+                public void onSuccess(Sharer.Result result) {
+                    Toast.makeText(SingleActivityActivity.this, "Share to Facebook successfully!", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+
+                @Override
+                public void onError(FacebookException error) {
+                    Toast.makeText(SingleActivityActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            if (ShareDialog.canShow(ShareLinkContent.class)) {
+                String description = "Activity: The activity is located at " + mActivity.getmAddress() + ", " + mActivity.getmCity()
+                        + ", " + mActivity.getmState() + "/n from " + mActivity.getmStartTime() + " to " + mActivity.getmEndTime()
+                        + "./nThe content is " + mActivity.getmContent() + ".";
+                ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                        .setContentTitle(mActivityTitle)
+                        .setContentDescription(description)
+                        .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
+                        .build();
+
+                shareDialog.show(linkContent);
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -152,6 +196,7 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
 
     @Override
     public void getSingleActivitySuccess(Activity activity) {
+        mActivity = activity;
         mActivityTitleTextView.setText(activity.getmTitle());
         //Fetch user img into ImageView
         ParseUser parseUser = activity.getmCreatedBy();
@@ -251,4 +296,9 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
         Toast.makeText(SingleActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 }
