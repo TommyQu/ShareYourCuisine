@@ -61,5 +61,6 @@
     <string name="joined_activity_text">Joined Activities</string>
     <string name="joined_by_text">Joined By:</string>
     <string name="people_text">People</string>
-
+    <string name="add_comment_btn_text">Send</string>
+    <string name="commentsText">Comments:</string>
 </resources>

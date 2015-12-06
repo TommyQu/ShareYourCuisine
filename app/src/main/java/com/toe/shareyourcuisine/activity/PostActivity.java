@@ -126,29 +126,8 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
     }
 
     @Override
-    public void getAllPostsSuccess(List<ParseObject> postlist) {
-        List<Post> tempList = new ArrayList<Post>();
-        for(int n=0;n<postlist.size(); n++) {
-            Post currentPost = new Post();
-            currentPost.setObjectId(postlist.get(n).getObjectId());
-            currentPost.setCreatedAt(postlist.get(n).getCreatedAt());
-            currentPost.setUpdatedAt(postlist.get(n).getUpdatedAt());
-            currentPost.setCreatedBy(postlist.get(n).getParseUser("createdBy"));
-            currentPost.setContent(postlist.get(n).getString("content"));
-
-            //how to get the img array and assign it to the Post.mImg
-            ArrayList<ParseFile> tempImg = new ArrayList<ParseFile>();
-
-            try {
-                tempImg =(ArrayList<ParseFile>) postlist.get(n).fetchIfNeeded().get("img");
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            currentPost.setImg(tempImg);
-            tempList.add(currentPost);
-        }
-        mPostList = tempList;
-
+    public void getAllPostsSuccess(List<Post> postlist) {
+        mPostList = postlist;
         populateListView();
         swipeLayout.setRefreshing(false);
     }

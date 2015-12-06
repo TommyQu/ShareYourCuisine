@@ -45,3 +45,4 @@ public class Comment {
         mContent = content;
     }
 }
+

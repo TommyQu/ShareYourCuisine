@@ -47,6 +47,7 @@
         android:layout_toRightOf="@+id/spUserImage"
         android:layout_toEndOf="@+id/spUserImage"/>
 
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -89,21 +90,57 @@
             android:maxWidth="60dp"/>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:id="@+id/commentsTextView"
+        android:text="@string/commentsText"
+        android:layout_toRightOf="@+id/spUserImage"/>
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spCommentList"
-        android:layout_below="@+id/linearLayout"
+        android:layout_below="@+id/commentsTextView"
         android:layout_alignLeft="@+id/linearLayout"
         android:layout_alignStart="@+id/linearLayout"/>
 
-    <Button
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/addCommentImgBtn"
+        android:layout_above="@+id/spContent"
+        android:background="@drawable/comment2"
+        android:layout_alignParentRight="true"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+
+        />
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_comment"
-        android:id="@+id/spCommentBtn"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/spContent"/>
+        android:id="@+id/inputContent"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible">
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/commentContent"
+            android:hint="Say something here..."
+            android:layout_toStartOf="@+id/addCommentBtn"
+            android:layout_toLeftOf="@+id/addCommentBtn"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:id="@+id/addCommentBtn"
+            android:text="@string/add_comment_btn_text"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
 </RelativeLayout>

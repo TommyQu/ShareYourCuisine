@@ -14,9 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
 import com.toe.shareyourcuisine.R;
 import com.toe.shareyourcuisine.adapter.ActivityArrayAdapter;
 import com.toe.shareyourcuisine.adapter.MenuArrayAdapter;
@@ -28,7 +25,6 @@ import com.toe.shareyourcuisine.service.ActivityService;
 import com.toe.shareyourcuisine.service.MenuService;
 import com.toe.shareyourcuisine.service.PostService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -171,8 +167,8 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     }
 
     @Override
-    public void getAllPostsSuccess(List<ParseObject> postlist) {
-        final List<Post> tempList = new ArrayList<Post>();
+    public void getAllPostsSuccess(final List<Post> postlist) {
+        /*final List<Post> tempList = new ArrayList<Post>();
         for(int n=0;n<postlist.size(); n++) {
             Post currentPost = new Post();
             currentPost.setObjectId(postlist.get(n).getObjectId());
@@ -191,13 +187,13 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             }
             currentPost.setImg(tempImg);
             tempList.add(currentPost);
-        }
-        ArrayAdapter<Post> postAdapter = new PostArrayAdapter(MainActivity.this,tempList);
+        }*/
+        ArrayAdapter<Post> postAdapter = new PostArrayAdapter(MainActivity.this,postlist);
         mPostListView.setAdapter(postAdapter);
         mPostListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
-                Post clickedPost = tempList.get(position);
+                Post clickedPost = postlist.get(position);
                 //Turn to Single Post activity and use shared preference to assign the post information
                 SavePrefs("clickedPostId", clickedPost.getObjectId());
                 Intent intent = new Intent(MainActivity.this, SinglePostActivity.class);

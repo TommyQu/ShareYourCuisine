@@ -1,6 +1,7 @@
 package com.toe.shareyourcuisine.model;
 
 import com.parse.ParseFile;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -16,6 +17,15 @@ public class Post {
     private ParseUser mCreatedBy;
     private String mContent;
     private ArrayList<ParseFile> mImg;
+    private ArrayList<ParseObject> mComments;
+
+    public ArrayList<ParseObject> getComments() {
+        return mComments;
+    }
+
+    public void setComments(ArrayList<ParseObject> comments) {
+        mComments = comments;
+    }
 
     public Post() {
         mImg = new ArrayList<ParseFile>();
