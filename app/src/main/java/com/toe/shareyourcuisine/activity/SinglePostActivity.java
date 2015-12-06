@@ -2,7 +2,6 @@ package com.toe.shareyourcuisine.activity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -49,7 +48,7 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
 
         getSupportActionBar().setTitle("Single Post");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarRed)));
 
         LoadPrefs();
 

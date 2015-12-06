@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -61,7 +60,7 @@ public class AddPostActivity extends ActionBarActivity implements PostService.Ad
         setContentView(R.layout.activity_add_post);
         getSupportActionBar().setTitle("New Post");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarRed)));
         mSubmitBtn = (Button)findViewById(R.id.submit_btn);
         mCancelBtn = (Button)findViewById(R.id.cancel_btn);
         mPostContentValue = (EditText)findViewById(R.id.post_content_value);

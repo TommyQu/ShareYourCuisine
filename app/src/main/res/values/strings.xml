@@ -56,8 +56,10 @@
     <string name="sign_up_text">Don\'t have an account?</string>
     <string name="sign_up">Sign Up Here!</string>
     <string name="menu_text">Menus</string>
-    <string name="post_text">Post</string>
+    <string name="post_text">Posts</string>
     <string name="hosted_activity_text">Hosted Activities</string>
     <string name="joined_activity_text">Joined Activities</string>
+    <string name="joined_by_text">Joined By:</string>
+    <string name="people_text">People</string>
 
 </resources>

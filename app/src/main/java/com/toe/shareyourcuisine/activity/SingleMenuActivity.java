@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -83,7 +82,7 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
             mIsCurrentUser = true;
         getSupportActionBar().setTitle(mMenuTitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarRed)));
         mProgressDialog = ProgressDialog.show(this, "Loading", "Loading data...");
         mProgressDialog.setCancelable(true);
 

@@ -6,7 +6,9 @@
         android:id="@+id/user_img"
         android:layout_width="35dp"
         android:layout_height="35dp"
+        android:layout_marginTop="4dp"
         android:layout_marginLeft="7dp"
+        android:layout_marginBottom="4dp"
         android:src="@drawable/edittext_bg"/>
 
     <TextView
@@ -14,6 +16,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/user_img"
-        android:layout_marginTop="6dp"
+        android:layout_alignTop="@+id/user_img"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="16sp"
         android:text="Tommy Qu"/>
 </RelativeLayout>

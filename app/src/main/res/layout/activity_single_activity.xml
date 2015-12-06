@@ -28,8 +28,8 @@
     <Button
         android:id="@+id/activity_join"
         style="@style/SubmitBtn"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="35dp"
         android:layout_below="@+id/activity_title"
         android:layout_toRightOf="@+id/user_img"
         android:layout_marginTop="5dp"
@@ -39,8 +39,8 @@
     <Button
         android:id="@+id/activity_unjoin"
         style="@style/CancelBtn"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="35dp"
         android:layout_below="@+id/activity_title"
         android:layout_toRightOf="@+id/user_img"
         android:layout_marginTop="5dp"
@@ -56,14 +56,32 @@
         android:layout_below="@+id/user_img"
         android:text="Tommy Qu"/>
 
+    <ImageView
+        android:id="@+id/address_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/user_name"
+        android:layout_marginTop="17dp"
+        android:src="@drawable/map"/>
+
     <TextView
         android:id="@+id/activity_address"
         style="@style/SingleActivityAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_name"
-        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/address_icon"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="9dp"
         android:text="asfasf"/>
+
+    <ImageView
+        android:id="@+id/time_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/activity_address"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/clock"/>
 
     <TextView
         android:id="@+id/activity_start_time"
@@ -71,7 +89,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_address"
-        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/time_icon"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="9dp"
         android:text="starttime"/>
 
     <TextView
@@ -80,7 +100,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_start_time"
-        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/time_icon"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="9dp"
         android:text="endtime"/>
 
     <TextView
@@ -89,7 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/activity_end_time"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="asdfasfsfsdfadf"/>
 
     <TextView
@@ -98,7 +120,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_content"
         android:layout_marginTop="10dp"
+        android:textStyle=""
         android:text="@string/activity_joined_by"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/activity_joined_by"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/darker_gray"/>
 
     <ListView
         android:id="@+id/activity_joined_by_list_view"
@@ -106,6 +136,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="-5dp"
-        android:layout_below="@id/activity_joined_by">
+        android:layout_below="@id/activity_joined_by"
+        android:divider="@null"
+        android:dividerHeight="0dp">
     </ListView>
 </RelativeLayout>

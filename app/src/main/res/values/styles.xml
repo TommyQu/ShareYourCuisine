@@ -86,7 +86,7 @@
     <style name="SingleActivityTime">
         <item name="android:fontFamily">@string/sans_serif</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="SingleActivityContent">

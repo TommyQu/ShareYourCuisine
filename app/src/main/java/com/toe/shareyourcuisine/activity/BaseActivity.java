@@ -53,7 +53,7 @@ public class BaseActivity extends ActionBarActivity {
         addDrawerItems();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarRed)));
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mUserImageView = (ImageView)findViewById(R.id.user_img);
         mLoginTextView = (TextView)findViewById(R.id.user_nick_name);

@@ -76,10 +76,10 @@ public class ActivityArrayAdapter extends ArrayAdapter<Activity> {
         Uri imageUri = Uri.parse(imageUrl);
         Picasso.with(mContext).load(imageUri.toString()).into(viewHolder.userImgView);
 
-        String startTime = activity.getmStartTime().getMonth()+", "+activity.getmStartTime().getDay()+", "+
-            activity.getmStartTime().getYear()+", "+activity.getmStartTime().getHours()+", "+activity.getmStartTime().getMinutes();
-        String endTime = activity.getmEndTime().getMonth()+", "+activity.getmEndTime().getDay()+", "+
-                activity.getmEndTime().getYear()+", "+activity.getmEndTime().getHours()+", "+activity.getmEndTime().getMinutes();
+        String startTime = activity.getmStartTime().getMonth()+"/"+activity.getmStartTime().getDay()+"/"+
+            activity.getmStartTime().getYear()+" "+activity.getmStartTime().getHours()+":"+activity.getmStartTime().getMinutes();
+        String endTime = activity.getmEndTime().getMonth()+"/"+activity.getmEndTime().getDay()+"/"+
+                activity.getmEndTime().getYear()+" "+activity.getmEndTime().getHours()+":"+activity.getmEndTime().getMinutes();
         viewHolder.activityIdTextView.setText(activity.getmObjectId());
         viewHolder.nickNameTextView.setText(activity.getmCreatedBy().get("nickName").toString());
         viewHolder.userNameTextView.setText(activity.getmCreatedBy().getUsername());

@@ -66,7 +66,7 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
         setContentView(R.layout.activity_add_menu);
         getSupportActionBar().setTitle("New Menu");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarRed)));
         mMenuTitleValue = (EditText)findViewById(R.id.menu_title_value);
         mMenuDisplayImgBtn = (ImageButton)findViewById(R.id.menu_display_img_button);
         mMenuContentValue = (EditText)findViewById(R.id.menu_content_value);

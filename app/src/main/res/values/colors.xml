@@ -2,8 +2,9 @@
 <resources>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="actionBarRed">#E20000</color>
     <color name="red">#FF3030</color>
-    <color name="green">#00CD00</color>
+    <color name="green">#00BA00</color>
     <color name="blue">#0000CC</color>
     <color name="orange">#FD5400</color>
 </resources>
