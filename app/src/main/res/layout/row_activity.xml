@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/user_img"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="6dp"
         android:text="111"/>
 
     <TextView
@@ -73,8 +73,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/joined_by_text"
-        android:layout_marginTop="7dp"
-        android:layout_alignRight="@+id/activity_joined_num"/>
+        android:layout_marginTop="6dp"
+        android:layout_alignRight="@+id/activity_joined_num"
+        android:textSize="12sp"/>
 
     <TextView
         android:id="@+id/activity_joined_num"
@@ -93,5 +94,6 @@
         android:text="@string/people_text"
         android:layout_marginTop="7dp"
         android:layout_below="@id/activity_joined_num"
-        android:layout_alignRight="@+id/activity_joined_num"/>
+        android:layout_alignRight="@+id/activity_joined_num"
+        android:textSize="12sp"/>
 </RelativeLayout>

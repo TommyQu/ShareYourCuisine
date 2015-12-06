@@ -99,6 +99,10 @@
             android:name=".activity.SingleMenuActivity"
             android:label="SingleMenuActivity">
         </activity>
+        <activity
+            android:name=".activity.ActivityJoinedActivity"
+            android:label="ActivityJoinedActivity">
+        </activity>
         <provider android:authorities="com.facebook.app.FacebookContentProvider1048336895196616"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true" />

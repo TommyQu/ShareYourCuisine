@@ -84,17 +84,21 @@
         android:layout_below="@id/hosted_activity_text"
         android:text="123"/>
 
-    <!--<TextView-->
-        <!--android:id="@+id/joined_activity_text"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/hosted_activity_num"-->
-        <!--android:text="@string/joined_activity_text"/>-->
+    <TextView
+        android:id="@+id/joined_activity_text"
+        style="@style/ProfileTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hosted_activity_num"
+        android:layout_marginTop="10dp"
+        android:text="@string/joined_activity_text"/>
 
-    <!--<TextView-->
-        <!--android:id="@+id/joined_activity_num"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/joined_activity_text"-->
-        <!--android:text="123"/>-->
+    <TextView
+        android:id="@+id/joined_activity_num"
+        style="@style/ProfileNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/joined_activity_text"
+        android:textColor="@color/blue"
+        android:text="123"/>
 </RelativeLayout>

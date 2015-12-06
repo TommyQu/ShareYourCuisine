@@ -2,13 +2,13 @@ package com.toe.shareyourcuisine.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.view.Menu;
+import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,20 +22,12 @@ import com.toe.shareyourcuisine.service.ActivityService;
 import java.util.List;
 
 /**
- * Project: Share Your Cuisine
- * Comments: Activity screen's activity
- * Compile SDK version: 22
- * Author: Tommy Qu
- * Created Date: 09/14/2015
- * Modified By:
- * Modified Date:
- * Why is modified:
+ * Created by TommyQu on 12/6/15.
  */
-public class ActivityActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener,
-        ActivityService.GetAllActivitiesListener{
+public class ActivityJoinedActivity extends ActionBarActivity implements SwipeRefreshLayout.OnRefreshListener,
+        ActivityService.GetJoinedActivityByUserListener {
 
-    private final String TAG = "ToePostActivity";
-    private FrameLayout mContentView;
+    private final String TAG = "ToeJoinedActivity";
     private ListView mListView;
     private ActivityArrayAdapter mActivityArrayAdapter;
     private ActivityService mActivityService;
@@ -46,62 +38,46 @@ public class ActivityActivity extends BaseActivity implements SwipeRefreshLayout
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContentView = (FrameLayout) findViewById(R.id.content);
-        View child = getLayoutInflater().inflate(R.layout.activity_activity, null);
-        mContentView.addView(child);
+        setContentView(R.layout.activity_joined_activity);
+        getSupportActionBar().setTitle("Check Joined Activity");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarRed)));
+        mListView = (ListView) findViewById(R.id.activity_list_view);
         mProgressDialog = ProgressDialog.show(this, "Loading", "Loading data...");
         mProgressDialog.setCancelable(true);
-        mListView = (ListView) findViewById(R.id.activity_list_view);
         swipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
         swipeLayout.setOnRefreshListener(this);
         swipeLayout.setScrollBarSize(10);
         swipeLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
-
-        mActivityService = new ActivityService(ActivityActivity.this, ActivityActivity.this, "getAllActivities");
-        mActivityService.getAllActivities();
-        swipeLayout.setRefreshing(true);
-   }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(ActivityActivity.this, MainActivity.class);
-        finish();
-        startActivity(intent);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity, menu);
-        return super.onCreateOptionsMenu(menu);
+        mActivityService = new ActivityService(ActivityJoinedActivity.this, ActivityJoinedActivity.this, "getJoinedActivityByUser");
+        mActivityService.getJoinedActivityByUser(ParseUser.getCurrentUser().getObjectId());
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.new_activity) {
-            if(ParseUser.getCurrentUser() == null) {
-                Toast.makeText(ActivityActivity.this, "Please login!", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Intent intent = new Intent(ActivityActivity.this, AddActivityActivity.class);
-                startActivity(intent);
-            }
+        if(id == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     private void setActivityItemClick() {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView textView = (TextView)view.findViewById(R.id.activity_id);
-                TextView titleTextView = (TextView)view.findViewById(R.id.activity_title);
-                TextView userNameTextView = (TextView)view.findViewById(R.id.user_name);
-                Intent intent = new Intent(ActivityActivity.this, SingleActivityActivity.class);
+                TextView textView = (TextView) view.findViewById(R.id.activity_id);
+                TextView titleTextView = (TextView) view.findViewById(R.id.activity_title);
+                TextView userNameTextView = (TextView) view.findViewById(R.id.user_name);
+                Intent intent = new Intent(ActivityJoinedActivity.this, SingleActivityActivity.class);
                 intent.putExtra("activityId", textView.getText().toString());
                 intent.putExtra("activityTitle", titleTextView.getText().toString());
                 intent.putExtra("userName", userNameTextView.getText().toString());
@@ -111,18 +87,17 @@ public class ActivityActivity extends BaseActivity implements SwipeRefreshLayout
     }
 
     @Override
-    public void getAllActivitiesSuccess(List<Activity> activities) {
-        mActivityArrayAdapter = new ActivityArrayAdapter(ActivityActivity.this, activities);
+    public void getJoinedActivityByUserSuccess(List<Activity> activities) {
+        mActivityArrayAdapter = new ActivityArrayAdapter(ActivityJoinedActivity.this, activities);
         mListView.setAdapter(mActivityArrayAdapter);
-        swipeLayout.setRefreshing(false);
         mProgressDialog.dismiss();
         setActivityItemClick();
+        swipeLayout.setRefreshing(false);
     }
 
     @Override
-    public void getAllActivitiesFail(String errorMsg) {
-        Toast.makeText(ActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
-        mProgressDialog.dismiss();
+    public void getJoinedActivityByUserFail(String errorMsg) {
+        Toast.makeText(ActivityJoinedActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -131,7 +106,7 @@ public class ActivityActivity extends BaseActivity implements SwipeRefreshLayout
             @Override
             public void run() {
                 swipeLayout.setRefreshing(true);
-                mActivityService.getAllActivities();
+                mActivityService.getJoinedActivityByUser(ParseUser.getCurrentUser().getObjectId());
                 setActivityItemClick();
             }
         });

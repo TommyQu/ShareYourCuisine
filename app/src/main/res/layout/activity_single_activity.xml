@@ -105,13 +105,23 @@
         android:layout_marginLeft="9dp"
         android:text="endtime"/>
 
+    <ImageView
+        android:id="@+id/content_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/activity_end_time"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/content"/>
+
     <TextView
         android:id="@+id/activity_content"
         style="@style/SingleActivityContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/activity_end_time"
-        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/content_icon"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="9dp"
         android:text="asdfasfsfsdfadf"/>
 
     <TextView
@@ -119,7 +129,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="17dp"
         android:textStyle=""
         android:text="@string/activity_joined_by"/>
 

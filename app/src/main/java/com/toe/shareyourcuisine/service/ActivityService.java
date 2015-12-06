@@ -29,6 +29,7 @@ public class ActivityService {
     private UnJoinActivityListener mUnJoinActivityListener;
     private CheckJoinActivityListener mCheckJoinActivityListener;
     private DeleteActivityListener mDeleteActivityListener;
+    private GetJoinedActivityByUserListener mGetJoinedActivityByUserListener;
 
     public interface AddActivityListener {
         public void addActivitySuccess();
@@ -65,6 +66,11 @@ public class ActivityService {
         public void deleteActivityListenerFail(String errorMsg);
     }
 
+    public interface GetJoinedActivityByUserListener {
+        public void getJoinedActivityByUserSuccess(List<Activity> activities);
+        public void getJoinedActivityByUserFail(String errorMsg);
+    }
+
     public ActivityService(Context context, Object activityListener, String action) {
         mContext = context;
         if (action.equals("addActivity")) {
@@ -87,6 +93,9 @@ public class ActivityService {
         }
         else if (action.equals("deleteActivity")) {
             mDeleteActivityListener = (DeleteActivityListener) activityListener;
+        }
+        else if (action.equals("getJoinedActivityByUser")) {
+            mGetJoinedActivityByUserListener = (GetJoinedActivityByUserListener) activityListener;
         }
     }
 
@@ -261,7 +270,7 @@ public class ActivityService {
                         mCheckJoinActivityListener.checkJoinActivityListenerSuccess("unJoined");
                 }
                 else {
-                    mUnJoinActivityListener.unJoinActivityFail(e.getMessage().toString());
+                    mCheckJoinActivityListener.checkJoinActivityListenerFail(e.getMessage().toString());
                 }
             }
         });
@@ -272,13 +281,44 @@ public class ActivityService {
         query.getInBackground(activityId, new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject parseObject, ParseException e) {
-                if(e == null) {
+                if (e == null) {
                     parseObject.put("status", "Removed");
                     parseObject.saveInBackground();
                     mDeleteActivityListener.deleteActivityListenerSuccess("Delete activity successfully!");
-                }
-                else {
+                } else {
                     mDeleteActivityListener.deleteActivityListenerFail(e.getMessage().toString());
+                }
+            }
+        });
+    }
+
+    public void getJoinedActivityByUser(String userId) {
+        ParseQuery<ParseUser> userJoined = ParseUser.getQuery();
+        userJoined.whereEqualTo("objectId", userId);
+        ParseQuery<ParseObject> queryJoinedActivity = ParseQuery.getQuery("Activity");
+        queryJoinedActivity.whereMatchesQuery("joinedBy", userJoined);
+        queryJoinedActivity.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    List<Activity> activities = new ArrayList<Activity>();
+                    for (int i = 0; i < list.size(); i++) {
+                        //Only show all the  activities
+                        Activity activity = new Activity();
+                        activity.setmObjectId(list.get(i).getObjectId());
+                        activity.setmCreatedBy(list.get(i).getParseUser("createdBy"));
+                        activity.setmTitle((String) list.get(i).get("title"));
+                        activity.setmStartTime((Date) list.get(i).get("startTime"));
+                        activity.setmEndTime((Date) list.get(i).get("endTime"));
+                        activity.setmAddress((String) list.get(i).get("address"));
+                        activity.setmCity((String) list.get(i).get("city"));
+                        activity.setmState((String) list.get(i).get("state"));
+                        activity.setmJoinedNum((Integer) list.get(i).get("joinedNum"));
+                        activities.add(activity);
+                    }
+                    mGetJoinedActivityByUserListener.getJoinedActivityByUserSuccess(activities);
+                } else {
+                    mGetJoinedActivityByUserListener.getJoinedActivityByUserFail(e.getMessage().toString());
                 }
             }
         });

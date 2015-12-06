@@ -36,6 +36,7 @@ public class ProfileActivity extends BaseActivity {
     private TextView mMenuNumTextView;
     private TextView mPostNumTextView;
     private TextView mHostedActivityNumTextView;
+    private TextView mJoinedActivityNumTextView;
     private ProgressDialog mProgressDialog;
 
     @Override
@@ -52,6 +53,7 @@ public class ProfileActivity extends BaseActivity {
         mMenuNumTextView = (TextView)findViewById(R.id.menu_num);
         mPostNumTextView = (TextView)findViewById(R.id.post_num);
         mHostedActivityNumTextView = (TextView)findViewById(R.id.hosted_activity_num);
+        mJoinedActivityNumTextView = (TextView)findViewById(R.id.joined_activity_num);
 
         //Input user's personal information
         ParseUser parseUser = ParseUser.getCurrentUser();
@@ -102,16 +104,16 @@ public class ProfileActivity extends BaseActivity {
                 alertDialog.show();
             }
         });
-        getNumInfo();
+        setUpContent();
     }
 
-    private void getNumInfo() {
+    private void setUpContent() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Menu");
         query.whereEqualTo("createdBy", ParseUser.getCurrentUser());
         query.countInBackground(new CountCallback() {
             @Override
             public void done(int i, ParseException e) {
-                if(e == null)
+                if (e == null)
                     mMenuNumTextView.setText(String.valueOf(i));
                 else
                     Toast.makeText(ProfileActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
@@ -123,7 +125,7 @@ public class ProfileActivity extends BaseActivity {
         queryPost.countInBackground(new CountCallback() {
             @Override
             public void done(int i, ParseException e) {
-                if(e == null)
+                if (e == null)
                     mPostNumTextView.setText(String.valueOf(i));
                 else
                     Toast.makeText(ProfileActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
@@ -135,12 +137,35 @@ public class ProfileActivity extends BaseActivity {
         queryActivity.countInBackground(new CountCallback() {
             @Override
             public void done(int i, ParseException e) {
-                if(e == null)
+                if (e == null)
                     mHostedActivityNumTextView.setText(String.valueOf(i));
                 else
                     Toast.makeText(ProfileActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        ParseQuery<ParseUser> userJoined = ParseUser.getQuery();
+        userJoined.whereEqualTo("objectId", ParseUser.getCurrentUser().getObjectId());
+        ParseQuery<ParseObject> queryJoinedActivity = ParseQuery.getQuery("Activity");
+        queryJoinedActivity.whereMatchesQuery("joinedBy", userJoined);
+        queryJoinedActivity.countInBackground(new CountCallback() {
+            @Override
+            public void done(int i, ParseException e) {
+                if (e == null)
+                    mJoinedActivityNumTextView.setText(String.valueOf(i));
+                else
+                    Toast.makeText(ProfileActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mJoinedActivityNumTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, ActivityJoinedActivity.class);
+                startActivity(intent);
+            }
+        });
+
         mProgressDialog.dismiss();
     }
 
