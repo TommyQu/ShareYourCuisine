@@ -1,6 +1,7 @@
 package com.toe.shareyourcuisine.activity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -57,6 +58,7 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
     private JoinedByArrayAdapter mJoinedByArrayAdapter;
     private Activity mActivity;
     private CallbackManager mCallbackManager;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,8 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
         getSupportActionBar().setTitle(mActivityTitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
+        mProgressDialog = ProgressDialog.show(this, "Loading", "Loading data...");
+        mProgressDialog.setCancelable(true);
 
         mActivityTitleTextView = (TextView) findViewById(R.id.activity_title);
         mUserImgImgView = (ImageView) findViewById(R.id.user_img);
@@ -275,11 +279,13 @@ public class SingleActivityActivity extends ActionBarActivity implements Activit
             mJoinBtn.setVisibility(View.VISIBLE);
             mUnJoinBtn.setVisibility(View.INVISIBLE);
         }
+        mProgressDialog.dismiss();
     }
 
     @Override
     public void checkJoinActivityListenerFail(String errorMsg) {
         Toast.makeText(SingleActivityActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+        mProgressDialog.dismiss();
     }
 
     @Override

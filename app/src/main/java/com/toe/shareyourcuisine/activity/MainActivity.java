@@ -1,5 +1,6 @@
 package com.toe.shareyourcuisine.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -57,12 +58,16 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     private PostService mPostService;
     private ActivityService mActivityService;
 
+    private ProgressDialog mProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContentView = (FrameLayout) findViewById(R.id.content);
         View child = getLayoutInflater().inflate(R.layout.activity_main, null);
         mContentView.addView(child);
+        mProgressDialog = ProgressDialog.show(this, "Loading", "Loading data...");
+        mProgressDialog.setCancelable(true);
         mSwipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setScrollBarSize(10);
@@ -146,6 +151,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     public void getAllMenusFail(String errorMsg) {
         Toast.makeText(MainActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
         mSwipeLayout.setRefreshing(false);
+        mProgressDialog.dismiss();
     }
 
     @Override
@@ -155,13 +161,13 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         setActivityItemClick();
         mPostService = new PostService(MainActivity.this, MainActivity.this, "getAllPosts");
         mPostService.getAllPosts();
-        mSwipeLayout.setRefreshing(false);
     }
 
     @Override
     public void getAllActivitiesFail(String errorMsg) {
         Toast.makeText(MainActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
         mSwipeLayout.setRefreshing(false);
+        mProgressDialog.dismiss();
     }
 
     @Override
@@ -198,11 +204,14 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(intent);
             }
         });
+        mSwipeLayout.setRefreshing(false);
+        mProgressDialog.dismiss();
     }
 
     @Override
     public void getAllPostsFail(String errorMsg) {
         Toast.makeText(MainActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
         mSwipeLayout.setRefreshing(false);
+        mProgressDialog.dismiss();
     }
 }

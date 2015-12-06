@@ -22,7 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/user_img"
-        android:layout_marginLeft="5dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/sign_out_btn"
@@ -30,4 +32,69 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_img"
         android:text="@string/sign_out_btn"/>
+
+    <TextView
+        android:id="@+id/menu_text"
+        style="@style/ProfileTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sign_out_btn"
+        android:layout_marginTop="10dp"
+        android:text="@string/menu_text" />
+
+    <TextView
+        android:id="@+id/menu_num"
+        style="@style/ProfileNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/menu_text"
+        android:text="123"/>
+
+    <TextView
+        android:id="@+id/post_text"
+        style="@style/ProfileTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/menu_num"
+        android:layout_marginTop="10dp"
+        android:text="@string/post_text"/>
+
+    <TextView
+        android:id="@+id/post_num"
+        style="@style/ProfileNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/post_text"
+        android:text="123"/>
+
+    <TextView
+        android:id="@+id/hosted_activity_text"
+        style="@style/ProfileTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/post_num"
+        android:layout_marginTop="10dp"
+        android:text="@string/hosted_activity_text"/>
+
+    <TextView
+        android:id="@+id/hosted_activity_num"
+        style="@style/ProfileNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hosted_activity_text"
+        android:text="123"/>
+
+    <!--<TextView-->
+        <!--android:id="@+id/joined_activity_text"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/hosted_activity_num"-->
+        <!--android:text="@string/joined_activity_text"/>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/joined_activity_num"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/joined_activity_text"-->
+        <!--android:text="123"/>-->
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.toe.shareyourcuisine.activity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,6 +11,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -29,7 +32,11 @@ import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 import com.toe.shareyourcuisine.R;
+import com.toe.shareyourcuisine.adapter.ToeRecyclerAdapter;
+import com.toe.shareyourcuisine.model.ToeRecyclerController;
 import com.toe.shareyourcuisine.service.MenuService;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -52,6 +59,16 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
     private CallbackManager mCallbackManager;
     private com.toe.shareyourcuisine.model.Menu mMenu;
 
+    private ImageView mMenuImgView;
+    private RecyclerView mRecyclerView;
+    private LinearLayoutManager mLinearLayoutManager;
+    private ToeRecyclerAdapter mToeRecyclerAdapter;
+    private ToeRecyclerController mToeRecyclerController;
+    private ArrayList<ParseFile> mImgFiles = new ArrayList<ParseFile>();
+    private ArrayList<Bitmap> mImgBitmaps = new ArrayList<Bitmap>();
+    private ArrayList<String> mImgPaths = new ArrayList<>();
+    private ProgressDialog mProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,12 +84,21 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
         getSupportActionBar().setTitle(mMenuTitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
+        mProgressDialog = ProgressDialog.show(this, "Loading", "Loading data...");
+        mProgressDialog.setCancelable(true);
 
         mDisplayImgView = (ImageView)findViewById(R.id.menu_display_img);
         mTitleTextView = (TextView)findViewById(R.id.menu_title);
         mUserImgView = (CircleImageView)findViewById(R.id.user_img);
         mUserNickNameTextView = (TextView)findViewById(R.id.user_nick_name);
         mMenuContentTextView = (TextView)findViewById(R.id.menu_content);
+        mMenuImgView = (ImageView)findViewById(R.id.menu_img);
+        mRecyclerView = (RecyclerView)findViewById(R.id.menu_img_recycler_view);
+        mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mToeRecyclerController = new ToeRecyclerController(this, mMenuImgView);
+        mToeRecyclerAdapter = new ToeRecyclerAdapter(this, mToeRecyclerController, mImgPaths);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mRecyclerView.setAdapter(mToeRecyclerAdapter);
 
         MenuService menuService = new MenuService(SingleMenuActivity.this, SingleMenuActivity.this, "getSingleMenu");
         menuService.getSingleMenu(mMenuId);
@@ -177,11 +203,18 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
         Picasso.with(SingleMenuActivity.this).load(imageUri.toString()).into(mUserImgView);
         mUserNickNameTextView.setText((String) menu.getmCreatedBy().get("nickName"));
         mMenuContentTextView.setText(menu.getmContent());
+
+        for(int i = 0; i < menu.getmImg().size(); i++) {
+            mImgPaths.add(menu.getmImg().get(i).getUrl());
+        }
+        mToeRecyclerAdapter.changePath(mImgPaths);
+        mProgressDialog.dismiss();
     }
 
     @Override
     public void getSingleMenusFail(String errorMsg) {
         Toast.makeText(SingleMenuActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+        mProgressDialog.dismiss();
     }
 
     @Override

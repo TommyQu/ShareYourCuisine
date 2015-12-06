@@ -1,5 +1,6 @@
 package com.toe.shareyourcuisine.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -38,6 +39,7 @@ public class MenuActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     private ListView mListView;
     private SwipeRefreshLayout mSwipeLayout;
     private MenuService mMenuService;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,8 @@ public class MenuActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         mContentView = (FrameLayout)findViewById(R.id.content);
         View child = getLayoutInflater().inflate(R.layout.activity_menu, null);
         mContentView.addView(child);
-
+        mProgressDialog = ProgressDialog.show(this, "Loading", "Loading data...");
+        mProgressDialog.setCancelable(true);
         mListView = (ListView)findViewById(R.id.menu_list_view);
         mSwipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
         mSwipeLayout.setOnRefreshListener(this);
@@ -126,10 +129,12 @@ public class MenuActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         mMenuArrayAdapter = new MenuArrayAdapter(MenuActivity.this, menus);
         mListView.setAdapter(mMenuArrayAdapter);
         mSwipeLayout.setRefreshing(false);
+        mProgressDialog.dismiss();
     }
 
     @Override
     public void getAllMenusFail(String errorMsg) {
         Toast.makeText(MenuActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+        mProgressDialog.dismiss();
     }
 }

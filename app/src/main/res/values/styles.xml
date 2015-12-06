@@ -33,6 +33,16 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <!-- Profile Activity style-->
+    <style name="ProfileTitle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="ProfileNum">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <!-- Menu styles-->
     <style name="MenuRowTitle">
         <item name="android:textColor">@color/black</item>

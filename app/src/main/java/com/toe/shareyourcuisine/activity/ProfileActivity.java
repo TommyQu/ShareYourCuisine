@@ -1,6 +1,7 @@
 package com.toe.shareyourcuisine.activity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,9 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.CountCallback;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 import com.toe.shareyourcuisine.R;
@@ -29,6 +33,10 @@ public class ProfileActivity extends BaseActivity {
     private Button mSignOutBtn;
     private ImageView mUserImgImageView;
     private TextView mUserNameTextView;
+    private TextView mMenuNumTextView;
+    private TextView mPostNumTextView;
+    private TextView mHostedActivityNumTextView;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +44,14 @@ public class ProfileActivity extends BaseActivity {
         mContentView = (FrameLayout) findViewById(R.id.content);
         View child = getLayoutInflater().inflate(R.layout.activity_profile, null);
         mContentView.addView(child);
-//        getSupportActionBar().setTitle("Profile");
+        mProgressDialog = ProgressDialog.show(this, "Loading", "Loading data...");
+        mProgressDialog.setCancelable(true);
         mUserImgImageView = (ImageView)findViewById(R.id.user_img);
         mUserNameTextView = (TextView)findViewById(R.id.user_name);
         mSignOutBtn = (Button) findViewById(R.id.sign_out_btn);
+        mMenuNumTextView = (TextView)findViewById(R.id.menu_num);
+        mPostNumTextView = (TextView)findViewById(R.id.post_num);
+        mHostedActivityNumTextView = (TextView)findViewById(R.id.hosted_activity_num);
 
         //Input user's personal information
         ParseUser parseUser = ParseUser.getCurrentUser();
@@ -90,6 +102,46 @@ public class ProfileActivity extends BaseActivity {
                 alertDialog.show();
             }
         });
+        getNumInfo();
+    }
+
+    private void getNumInfo() {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Menu");
+        query.whereEqualTo("createdBy", ParseUser.getCurrentUser());
+        query.countInBackground(new CountCallback() {
+            @Override
+            public void done(int i, ParseException e) {
+                if(e == null)
+                    mMenuNumTextView.setText(String.valueOf(i));
+                else
+                    Toast.makeText(ProfileActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        ParseQuery<ParseObject> queryPost = ParseQuery.getQuery("Post");
+        queryPost.whereEqualTo("createdBy", ParseUser.getCurrentUser());
+        queryPost.countInBackground(new CountCallback() {
+            @Override
+            public void done(int i, ParseException e) {
+                if(e == null)
+                    mPostNumTextView.setText(String.valueOf(i));
+                else
+                    Toast.makeText(ProfileActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        ParseQuery<ParseObject> queryActivity = ParseQuery.getQuery("Activity");
+        queryActivity.whereEqualTo("createdBy", ParseUser.getCurrentUser());
+        queryActivity.countInBackground(new CountCallback() {
+            @Override
+            public void done(int i, ParseException e) {
+                if(e == null)
+                    mHostedActivityNumTextView.setText(String.valueOf(i));
+                else
+                    Toast.makeText(ProfileActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        mProgressDialog.dismiss();
     }
 
     @Override
