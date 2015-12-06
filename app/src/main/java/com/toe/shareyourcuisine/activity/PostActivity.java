@@ -77,9 +77,7 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(PostActivity.this, MainActivity.class);
         finish();
-        startActivity(intent);
     }
 
     @Override

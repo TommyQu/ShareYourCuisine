@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+=======
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+>>>>>>> origin/master
 
     <ImageView
         android:layout_width="50dp"
@@ -40,4 +45,8 @@
         android:layout_toRightOf="@+id/userImageImgView"
         android:layout_toEndOf="@+id/userImageImgView"/>
 
+<<<<<<< HEAD
 </RelativeLayout>
+=======
+</RelativeLayout>
+>>>>>>> origin/master

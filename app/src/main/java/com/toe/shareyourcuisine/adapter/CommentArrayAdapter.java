@@ -89,4 +89,10 @@ public class CommentArrayAdapter extends ArrayAdapter<Comment> {
 
         return convertView;
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+
+>>>>>>> origin/master
