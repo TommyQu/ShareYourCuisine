@@ -128,30 +128,31 @@ public class ActivityService {
         });
     }
 
-    public void getAllActivities() {
+    public void getAllActivities(int limitNum) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Activity");
         query.include("createdBy");
         query.orderByDescending("joinedNum");
+        //Only show the "Open" activity
+        query.whereEqualTo("status","Open");
+        if(limitNum != 0)
+            query.setLimit(limitNum);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
                     List<Activity> activities = new ArrayList<Activity>();
                     for (int i = 0; i < list.size(); i++) {
-                        //Only show the "Open" activity
-                        if((list.get(i).get("status")).equals("Open")) {
-                            Activity activity = new Activity();
-                            activity.setmObjectId(list.get(i).getObjectId());
-                            activity.setmCreatedBy(list.get(i).getParseUser("createdBy"));
-                            activity.setmTitle((String) list.get(i).get("title"));
-                            activity.setmStartTime((Date) list.get(i).get("startTime"));
-                            activity.setmEndTime((Date) list.get(i).get("endTime"));
-                            activity.setmAddress((String) list.get(i).get("address"));
-                            activity.setmCity((String) list.get(i).get("city"));
-                            activity.setmState((String) list.get(i).get("state"));
-                            activity.setmJoinedNum((Integer) list.get(i).get("joinedNum"));
-                            activities.add(activity);
-                        }
+                        Activity activity = new Activity();
+                        activity.setmObjectId(list.get(i).getObjectId());
+                        activity.setmCreatedBy(list.get(i).getParseUser("createdBy"));
+                        activity.setmTitle((String) list.get(i).get("title"));
+                        activity.setmStartTime((Date) list.get(i).get("startTime"));
+                        activity.setmEndTime((Date) list.get(i).get("endTime"));
+                        activity.setmAddress((String) list.get(i).get("address"));
+                        activity.setmCity((String) list.get(i).get("city"));
+                        activity.setmState((String) list.get(i).get("state"));
+                        activity.setmJoinedNum((Integer) list.get(i).get("joinedNum"));
+                        activities.add(activity);
                     }
                     mGetAllActivitiesListener.getAllActivitiesSuccess(activities);
                 } else {

@@ -56,7 +56,7 @@ public class MenuActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         mSwipeLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
         mMenuService = new MenuService(MenuActivity.this, MenuActivity.this, "getAllMenus");
-        mMenuService.getAllMenus();
+        mMenuService.getAllMenus(0);
         setMenuItemClick();
         mSwipeLayout.setRefreshing(true);
     }
@@ -102,7 +102,7 @@ public class MenuActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             @Override
             public void run() {
                 mSwipeLayout.setRefreshing(true);
-                mMenuService.getAllMenus();
+                mMenuService.getAllMenus(0);
                 setMenuItemClick();
             }
         });

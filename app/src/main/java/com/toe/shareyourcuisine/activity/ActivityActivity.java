@@ -59,7 +59,7 @@ public class ActivityActivity extends BaseActivity implements SwipeRefreshLayout
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
         mActivityService = new ActivityService(ActivityActivity.this, ActivityActivity.this, "getAllActivities");
-        mActivityService.getAllActivities();
+        mActivityService.getAllActivities(0);
         swipeLayout.setRefreshing(true);
    }
 
@@ -131,7 +131,7 @@ public class ActivityActivity extends BaseActivity implements SwipeRefreshLayout
             @Override
             public void run() {
                 swipeLayout.setRefreshing(true);
-                mActivityService.getAllActivities();
+                mActivityService.getAllActivities(0);
                 setActivityItemClick();
             }
         });

@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         mActivityListView = (ListViewInScrollView)findViewById(R.id.activity_list_view);
 
         mMenuService = new MenuService(MainActivity.this, MainActivity.this, "getAllMenus");
-        mMenuService.getAllMenus();
+        mMenuService.getAllMenus(3);
         mSwipeLayout.setRefreshing(true);
     }
 
@@ -90,7 +90,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             @Override
             public void run() {
                 mSwipeLayout.setRefreshing(true);
-                mMenuService.getAllMenus();
+                mMenuService.getAllMenus(3);
             }
         });
     }
@@ -140,7 +140,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         mMenuListView.setAdapter(mMenuArrayAdapter);
         setMenuItemClick();
         mActivityService = new ActivityService(MainActivity.this, MainActivity.this, "getAllActivities");
-        mActivityService.getAllActivities();
+        mActivityService.getAllActivities(3);
     }
 
     @Override
@@ -156,7 +156,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         mActivityListView.setAdapter(mActivityArrayAdapter);
         setActivityItemClick();
         mPostService = new PostService(MainActivity.this, MainActivity.this, "getAllPosts");
-        mPostService.getAllPosts();
+        mPostService.getAllPosts(3);
     }
 
     @Override

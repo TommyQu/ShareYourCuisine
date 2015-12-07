@@ -90,9 +90,11 @@ public class MenuService {
         });
     }
 
-    public void getAllMenus() {
+    public void getAllMenus(int limitNum) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Menu");
         query.include("createdBy");
+        if(limitNum != 0)
+            query.setLimit(limitNum);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {

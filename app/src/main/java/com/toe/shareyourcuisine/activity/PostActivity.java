@@ -64,7 +64,7 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
 
         //call PostService to get all posts
         mPostService = new PostService(PostActivity.this, PostActivity.this, "getAllPosts");
-        mPostService.getAllPosts();
+        mPostService.getAllPosts(0);
 
         //Item click listener
         registerClickCallback();
@@ -147,7 +147,7 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
             @Override
             public void run() {
                 swipeLayout.setRefreshing(true);
-                mPostService.getAllPosts();
+                mPostService.getAllPosts(0);
                 registerClickCallback();
             }
         });
