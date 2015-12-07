@@ -10,41 +10,11 @@
 
     <ImageView
         android:id="@+id/user_img"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="7dp"
-        android:layout_marginLeft="7dp" />
-
-    <TextView
-        android:id="@+id/nick_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/user_img"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="7dp" />
-
-    <TextView
-        android:id="@+id/user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"/>
-
-    <TextView
-        android:id="@+id/activity_title"
-        style="@style/ActivityRowTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/user_img"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="6dp" />
-
-    <TextView
-        android:id="@+id/activity_start_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/activity_title"
-        android:layout_toRightOf="@+id/user_img"
-        android:layout_marginLeft="14dp" />
+        android:layout_marginLeft="7dp"
+        android:scaleType="fitXY"/>
 
     <TextView
         android:id="@+id/activity_city"
@@ -63,6 +33,20 @@
         android:layout_marginLeft="5dp" />
 
     <TextView
+        android:id="@+id/nick_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_img"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="7dp" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
+
+    <TextView
         android:id="@+id/joined_by_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,6 +54,24 @@
         android:layout_marginTop="6dp"
         android:layout_alignRight="@+id/activity_joined_num"
         android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/activity_title"
+        style="@style/ActivityRowTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/joined_by_text"
+        android:layout_toRightOf="@+id/user_img"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="6dp" />
+
+    <TextView
+        android:id="@+id/activity_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_title"
+        android:layout_toRightOf="@+id/user_img"
+        android:layout_marginLeft="14dp" />
 
     <TextView
         android:id="@+id/activity_joined_num"

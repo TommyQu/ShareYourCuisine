@@ -58,7 +58,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_below="@+id/user_name"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="22dp"
         android:src="@drawable/map"/>
 
     <TextView
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_name"
         android:layout_toRightOf="@id/address_icon"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="9dp" />
 
     <ImageView

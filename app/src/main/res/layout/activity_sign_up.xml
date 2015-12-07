@@ -196,7 +196,8 @@
         android:id="@+id/userImageView"
         android:adjustViewBounds="true"
         android:maxHeight="60dp"
-        android:maxWidth="60dp"/>
+        android:maxWidth="60dp"
+        android:scaleType="fitXY"/>
 
     <ImageButton
         android:layout_width="60dp"
