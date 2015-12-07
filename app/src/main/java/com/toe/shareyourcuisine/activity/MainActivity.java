@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +18,7 @@ import com.toe.shareyourcuisine.adapter.ActivityArrayAdapter;
 import com.toe.shareyourcuisine.adapter.MenuArrayAdapter;
 import com.toe.shareyourcuisine.adapter.PostArrayAdapter;
 import com.toe.shareyourcuisine.model.Activity;
+import com.toe.shareyourcuisine.model.ListViewInScrollView;
 import com.toe.shareyourcuisine.model.Menu;
 import com.toe.shareyourcuisine.model.Post;
 import com.toe.shareyourcuisine.service.ActivityService;
@@ -43,9 +43,9 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     private FrameLayout mContentView;
     private SwipeRefreshLayout mSwipeLayout;
-    private ListView mMenuListView;
-    private ListView mPostListView;
-    private ListView mActivityListView;
+    private ListViewInScrollView mMenuListView;
+    private ListViewInScrollView mPostListView;
+    private ListViewInScrollView mActivityListView;
 
     private MenuArrayAdapter mMenuArrayAdapter;
     private PostArrayAdapter mPostArrayAdapter;
@@ -70,9 +70,9 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         mSwipeLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
-        mMenuListView = (ListView)findViewById(R.id.menu_list_view);
-        mPostListView = (ListView)findViewById(R.id.post_list_view);
-        mActivityListView = (ListView)findViewById(R.id.activity_list_view);
+        mMenuListView = (ListViewInScrollView)findViewById(R.id.menu_list_view);
+        mPostListView = (ListViewInScrollView)findViewById(R.id.post_list_view);
+        mActivityListView = (ListViewInScrollView)findViewById(R.id.activity_list_view);
 
         mMenuService = new MenuService(MainActivity.this, MainActivity.this, "getAllMenus");
         mMenuService.getAllMenus();

@@ -14,9 +14,6 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.toe.shareyourcuisine.R;
 import com.toe.shareyourcuisine.adapter.PostArrayAdapter;

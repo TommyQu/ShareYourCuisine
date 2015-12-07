@@ -35,14 +35,14 @@
                 android:layout_marginLeft="9dp"
                 android:text="@string/hot_menu_text"/>
 
-            <ListView
+            <com.toe.shareyourcuisine.model.ListViewInScrollView
                 android:id="@+id/menu_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="10dp">
-            </ListView>
+            </com.toe.shareyourcuisine.model.ListViewInScrollView>
 
             <ImageView
                 android:id="@+id/post_icon"
@@ -63,7 +63,7 @@
                 android:layout_marginLeft="9dp"
                 android:text="@string/hot_post_text"/>
 
-            <ListView
+            <com.toe.shareyourcuisine.model.ListViewInScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="300dp"
                 android:id="@+id/post_list_view"
@@ -89,14 +89,14 @@
                 android:layout_marginLeft="9dp"
                 android:layout_marginTop="20dp"/>
 
-            <ListView
+            <com.toe.shareyourcuisine.model.ListViewInScrollView
                 android:id="@+id/activity_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_below="@id/hot_activity_text"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp">
-            </ListView>
+            </com.toe.shareyourcuisine.model.ListViewInScrollView>
         </RelativeLayout>
     </ScrollView>
 </android.support.v4.widget.SwipeRefreshLayout>

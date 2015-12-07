@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +25,7 @@ import com.squareup.picasso.Picasso;
 import com.toe.shareyourcuisine.R;
 import com.toe.shareyourcuisine.adapter.CommentArrayAdapter;
 import com.toe.shareyourcuisine.model.Comment;
+import com.toe.shareyourcuisine.model.ListViewInScrollView;
 import com.toe.shareyourcuisine.model.Post;
 import com.toe.shareyourcuisine.service.CommentService;
 import com.toe.shareyourcuisine.service.PostService;
@@ -51,7 +51,7 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
     private EditText mCommentContent;
     private Button mAddCommentBtn;
     private CommentService mCommentService;
-    private ListView mCommentListView;
+    private ListViewInScrollView mCommentListView;
     private ArrayList<Comment> mCommentList = new ArrayList<Comment>();
     private CommentArrayAdapter mCommentAdapter;
     private Post mClickedPost;
@@ -82,7 +82,7 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
         mIuputContent = (RelativeLayout) findViewById(R.id.inputContent);
         mCommentContent = (EditText) findViewById(R.id.commentContent);
         mAddCommentBtn = (Button) findViewById(R.id.addCommentBtn);
-        mCommentListView = (ListView) findViewById(R.id.spCommentList);
+        mCommentListView = (ListViewInScrollView) findViewById(R.id.spCommentList);
 
 
         mCommentService = new CommentService(SinglePostActivity.this, SinglePostActivity.this, "addCommentToPost");

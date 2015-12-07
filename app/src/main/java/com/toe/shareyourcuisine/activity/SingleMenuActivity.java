@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +38,7 @@ import com.toe.shareyourcuisine.R;
 import com.toe.shareyourcuisine.adapter.CommentArrayAdapter;
 import com.toe.shareyourcuisine.adapter.ToeRecyclerAdapter;
 import com.toe.shareyourcuisine.model.Comment;
+import com.toe.shareyourcuisine.model.ListViewInScrollView;
 import com.toe.shareyourcuisine.model.Menu;
 import com.toe.shareyourcuisine.model.ToeRecyclerController;
 import com.toe.shareyourcuisine.service.CommentService;
@@ -88,7 +88,7 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
     private EditText mCommentContent;
     private Button mAddCommentBtn;
     private CommentService mCommentService;
-    private ListView mCommentListView;
+    private ListViewInScrollView mCommentListView;
     private ArrayList<Comment> mCommentList = new ArrayList<Comment>();
     private CommentArrayAdapter mCommentAdapter;
 
@@ -127,7 +127,7 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
         mIuputContent = (RelativeLayout) findViewById(R.id.inputContent);
         mCommentContent = (EditText) findViewById(R.id.commentContent);
         mAddCommentBtn = (Button) findViewById(R.id.addCommentBtn);
-        mCommentListView = (ListView) findViewById(R.id.spCommentList);
+        mCommentListView = (ListViewInScrollView) findViewById(R.id.spCommentList);
 
 
         mCommentService = new CommentService(SingleMenuActivity.this, SingleMenuActivity.this, "addCommentToMenu");
