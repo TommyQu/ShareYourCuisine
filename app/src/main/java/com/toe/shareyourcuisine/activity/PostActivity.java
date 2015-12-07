@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.toe.shareyourcuisine.R;
 import com.toe.shareyourcuisine.adapter.PostArrayAdapter;
@@ -114,7 +115,14 @@ public class PostActivity extends BaseActivity implements PostService.GetAllPost
                 Post clickedPost = mPostList.get(position);
                 //Turn to Single Post activity and use shared preference to assign the post information
                 SavePrefs("clickedPostId", clickedPost.getObjectId());
-
+                clickedPost.getCreatedBy();
+                ParseUser user = clickedPost.getCreatedBy();
+                try {
+                    user.fetch();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                SavePrefs("clickedUserName", user.getEmail());
                 Intent intent = new Intent(PostActivity.this, SinglePostActivity.class);
                 startActivity(intent);
             }

@@ -1,6 +1,10 @@
 package com.toe.shareyourcuisine.activity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -36,7 +40,7 @@ import java.util.ArrayList;
  * Created by Theon_Z on 10/31/15.
  */
 
-public class SinglePostActivity extends ActionBarActivity implements PostService.GetSinglePostListener,CommentService.AddCommentToPostListener{
+public class SinglePostActivity extends ActionBarActivity implements PostService.GetSinglePostListener,CommentService.AddCommentToPostListener,PostService.DeletePostListener{
     private String mClickedPostId;
     private Context mContext;
     private ImageView mUserImageView;
@@ -56,6 +60,10 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
     private CommentArrayAdapter mCommentAdapter;
     private Post mClickedPost;
     private PostService mPostService;
+    private boolean mIsCurrentUser;
+    private ProgressDialog mProgressDialog;
+    private String mUserName;
+    private ProgressDialog mProgressDialog2;
 
     private static final String TAG = "ToeSinglePostActivity";
 
@@ -67,8 +75,13 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
         getSupportActionBar().setTitle("Single Post");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
-
         LoadPrefs();
+
+        if(ParseUser.getCurrentUser() != null && ParseUser.getCurrentUser().getUsername().equals(mUserName))
+            mIsCurrentUser = true;
+        mProgressDialog = ProgressDialog.show(this, "Loading", "Loading data...");
+        mProgressDialog.setCancelable(true);
+
 
         //wire up widgts
         mUserImageView = (ImageView) findViewById(R.id.spUserImage);
@@ -100,6 +113,7 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
                     mCommentService.addCommentToPost(mClickedPostId, comment);
                     mCommentContent.clearComposingText();
                     mIuputContent.setVisibility(View.INVISIBLE);
+                    mProgressDialog = ProgressDialog.show(SinglePostActivity.this, "Loading", "Loading data...");
                 }
             }
         });
@@ -122,11 +136,37 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
     }
 
     @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        if(mIsCurrentUser == true)
+            getMenuInflater().inflate(R.menu.menu_single_post, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == android.R.id.home) {
             onBackPressed();
             return true;
+        } else if (id == R.id.delete_post) {
+            //Show a dialog for confirm delete activity
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("Are you sure to delete this post?");
+            alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    PostService postService = new PostService(SinglePostActivity.this, SinglePostActivity.this, "deletePost");
+                    postService.deletePost(mClickedPostId);
+                }
+            });
+            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alertDialog.show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -139,7 +179,8 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
 
     private void LoadPrefs() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        mClickedPostId = sp.getString("clickedPostId", "crj6VzCQN6");
+        mClickedPostId = sp.getString("clickedPostId", "");
+        mUserName = sp.getString("clickedUserName", "");
     }
 
     @Override
@@ -179,11 +220,13 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
         if(mCommentList.size() != 0) {
             populateListView();
         }
+        mProgressDialog.dismiss();
     }
 
     @Override
     public void getSinglePostFail(String errorMsg) {
         Toast.makeText(SinglePostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+        mProgressDialog.dismiss();
     }
 
 
@@ -195,6 +238,7 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
     @Override
     public void addCommentToPostFail(String errorMsg) {
         Toast.makeText(SinglePostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+        mProgressDialog.dismiss();
     }
 
     private void populateListView() {
@@ -214,5 +258,19 @@ public class SinglePostActivity extends ActionBarActivity implements PostService
             tempComentList.add(currentComment);
         }
         mCommentList = tempComentList;
+    }
+
+    @Override
+    public void deletePostListenerSuccess(String response) {
+        Toast.makeText(SinglePostActivity.this, response, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(SinglePostActivity.this, PostActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        finish();
+        startActivity(intent);
+    }
+
+    @Override
+    public void deletePostListenerFail(String errorMsg) {
+        Toast.makeText(SinglePostActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
 }

@@ -2,6 +2,7 @@ package com.toe.shareyourcuisine.service;
 
 import android.content.Context;
 
+import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -25,6 +26,7 @@ public class PostService {
     private AddPostListener mAddPostListener;
     private GetAllPostsListener mGetAllPostsListener;
     private GetSinglePostListener mGetSinglePostListener;
+    private DeletePostListener mDeletePostListener;
 
     public interface GetAllPostsListener {
         public void getAllPostsSuccess(List<Post> postlist);
@@ -41,16 +43,22 @@ public class PostService {
         public void addPostFail(String errorMsg);
     }
 
+    public interface DeletePostListener {
+        public void deletePostListenerSuccess(String response);
+        public void deletePostListenerFail(String errorMsg);
+    }
+
     //Action is to identify different actions and implement different listeners
     public PostService(Context context, Object postListener, String action) {
         mContext = context;
         if(action.equals("addPost")) {
             mAddPostListener = (AddPostListener) postListener;
-        }
-        else if(action.equals("getAllPosts")) {
+        } else if(action.equals("getAllPosts")) {
             mGetAllPostsListener = (GetAllPostsListener) postListener;
         } else if(action.equals("getSinglePost")) {
             mGetSinglePostListener = (GetSinglePostListener) postListener;
+        } else if(action.equals("deletePost")) {
+            mDeletePostListener = (DeletePostListener) postListener;
         }
     }
 
@@ -90,7 +98,7 @@ public class PostService {
                 if (e == null) {
                     List<Post> resultPostList = new ArrayList<Post>();
                     List<Post> tempList = new ArrayList<Post>();
-                    for(int n=0;n<postlist.size(); n++) {
+                    for (int n = 0; n < postlist.size(); n++) {
                         Post currentPost = new Post();
                         currentPost.setObjectId(postlist.get(n).getObjectId());
                         currentPost.setCreatedAt(postlist.get(n).getCreatedAt());
@@ -102,7 +110,7 @@ public class PostService {
                         ArrayList<ParseFile> tempImg = new ArrayList<ParseFile>();
 
                         try {
-                            tempImg =(ArrayList<ParseFile>) postlist.get(n).fetchIfNeeded().get("img");
+                            tempImg = (ArrayList<ParseFile>) postlist.get(n).fetchIfNeeded().get("img");
                         } catch (ParseException exception) {
                             exception.printStackTrace();
                         }
@@ -130,7 +138,7 @@ public class PostService {
         query.getInBackground(postId, new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject post, ParseException e) {
-                if( e == null) {
+                if (e == null) {
                     Post resultPost = new Post();
                     resultPost.setObjectId(post.getObjectId());
                     resultPost.setCreatedAt(post.getCreatedAt());
@@ -139,7 +147,7 @@ public class PostService {
                     resultPost.setContent(post.get("content").toString());
                     ArrayList<ParseFile> postImg = new ArrayList<ParseFile>();
                     try {
-                        postImg =(ArrayList<ParseFile>) post.fetchIfNeeded().get("img");
+                        postImg = (ArrayList<ParseFile>) post.fetchIfNeeded().get("img");
                     } catch (ParseException exception) {
                         exception.printStackTrace();
                     }
@@ -154,4 +162,17 @@ public class PostService {
         });
     }
 
+    public void deletePost(String postId) {
+        ParseObject menuObject = ParseObject.createWithoutData("Post", postId);
+        menuObject.deleteInBackground(new DeleteCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    mDeletePostListener.deletePostListenerSuccess("Delete post successfully!");
+                } else {
+                    mDeletePostListener.deletePostListenerFail(e.getMessage().toString());
+                }
+            }
+        });
+    }
 }

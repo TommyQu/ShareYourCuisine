@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,124 +9,140 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.toe.shareyourcuisine.activity.SinglePostActivity">
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/spUserImage"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:src="@drawable/edittext_bg"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tommy Qu"
-        android:id="@+id/spUserName"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/spUserImage"
-        android:layout_toEndOf="@+id/spUserImage"
-        android:layout_marginLeft="9dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1 hour ago"
-        android:id="@+id/spCreatedAt"
-        android:layout_toRightOf="@+id/spUserImage"
-        android:layout_toEndOf="@+id/spUserImage"
-        android:layout_below="@+id/spUserName"
-        android:layout_marginLeft="9dp"/>
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Binds several enermy units together, causing 25% of the damage dealt to one to them to be felt by the others."
-        android:id="@+id/spContent"
-        android:layout_below="@+id/spCreatedAt"
-        android:layout_toRightOf="@+id/spUserImage"
-        android:layout_toEndOf="@+id/spUserImage"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="9dp"/>
+        android:background="@color/white">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            >
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/spUserImage"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/edittext_bg"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tommy Qu"
+                android:id="@+id/spUserName"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/spUserImage"
+                android:layout_toEndOf="@+id/spUserImage"
+                android:layout_marginLeft="9dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 hour ago"
+                android:id="@+id/spCreatedAt"
+                android:layout_toRightOf="@+id/spUserImage"
+                android:layout_toEndOf="@+id/spUserImage"
+                android:layout_below="@+id/spUserName"
+                android:layout_marginLeft="9dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Binds several enermy units together, causing 25% of the damage dealt to one to them to be felt by the others."
+                android:id="@+id/spContent"
+                android:layout_below="@+id/spCreatedAt"
+                android:layout_toRightOf="@+id/spUserImage"
+                android:layout_toEndOf="@+id/spUserImage"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="9dp"/>
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spContent"
-        android:layout_alignLeft="@+id/spContent"
-        android:layout_alignStart="@+id/spContent"
-        android:weightSum="1"
-        android:id="@+id/linearLayout">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spContent"
+                android:layout_alignLeft="@+id/spContent"
+                android:layout_alignStart="@+id/spContent"
+                android:weightSum="1"
+                android:id="@+id/linearLayout">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/spPostImage1"
-            android:layout_marginTop="5dp"
-            android:adjustViewBounds="true"
-            android:maxHeight="60dp"
-            android:maxWidth="60dp"
-            />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spPostImage1"
+                    android:layout_marginTop="5dp"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="60dp"
+                    android:maxWidth="60dp"
+                    />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/spPostImage1"
-            android:layout_toEndOf="@+id/spPostImage1"
-            android:id="@+id/spPostImage2"
-            android:layout_marginTop="5dp"
-            android:adjustViewBounds="true"
-            android:maxHeight="60dp"
-            android:maxWidth="60dp"
-            android:layout_marginLeft="5dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/spPostImage1"
+                    android:layout_toEndOf="@+id/spPostImage1"
+                    android:id="@+id/spPostImage2"
+                    android:layout_marginTop="5dp"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="60dp"
+                    android:maxWidth="60dp"
+                    android:layout_marginLeft="5dp"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/spPostImage2"
-            android:layout_toEndOf="@+id/spPostImage2"
-            android:id="@+id/spPostImage3"
-            android:adjustViewBounds="true"
-            android:maxHeight="60dp"
-            android:maxWidth="60dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"/>
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/spPostImage2"
+                    android:layout_toEndOf="@+id/spPostImage2"
+                    android:id="@+id/spPostImage3"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="60dp"
+                    android:maxWidth="60dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"/>
+            </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
-        android:id="@+id/commentsTextView"
-        android:text="@string/commentsText"
-        android:textSize="20sp"
-        android:layout_toRightOf="@+id/spUserImage"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="9dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearLayout"
+                android:id="@+id/commentsTextView"
+                android:text="@string/commentsText"
+                android:textSize="20sp"
+                android:layout_toRightOf="@+id/spUserImage"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="9dp"/>
 
-    <com.toe.shareyourcuisine.model.ListViewInScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spCommentList"
-        android:layout_below="@+id/commentsTextView"
-        android:layout_alignLeft="@+id/linearLayout"
-        android:layout_alignStart="@+id/linearLayout" />
+            <com.toe.shareyourcuisine.model.ListViewInScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spCommentList"
+                android:layout_below="@+id/commentsTextView"
+                android:layout_alignLeft="@+id/linearLayout"
+                android:layout_alignStart="@+id/linearLayout" />
 
-    <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:id="@+id/addCommentImgBtn"
-        android:layout_above="@+id/spContent"
-        android:background="@drawable/comment2"
-        android:layout_alignParentRight="true"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
+            <ImageButton
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/addCommentImgBtn"
+                android:layout_above="@+id/spContent"
+                android:background="@drawable/comment2"
+                android:layout_alignParentRight="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
 
-        />
+                />
+
+
+        </RelativeLayout>
+    </ScrollView>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -161,5 +171,6 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
+
+
 </RelativeLayout>
-</ScrollView>

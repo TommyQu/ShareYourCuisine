@@ -64,4 +64,5 @@
     <string name="add_comment_btn_text">Send</string>
     <string name="commentsText">Comments:</string>
     <string name="menu_cooking_time_text">Cooking time:</string>
+    <string name="delete_post">Delete post</string>
 </resources>

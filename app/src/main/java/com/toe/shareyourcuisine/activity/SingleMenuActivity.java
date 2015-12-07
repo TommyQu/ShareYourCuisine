@@ -1,5 +1,9 @@
 package com.toe.shareyourcuisine.activity;
 
+/**
+ * Created by TommyQu on 12/3/15.
+ */
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -47,10 +51,6 @@ import com.toe.shareyourcuisine.service.MenuService;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-
-/**
- * Created by TommyQu on 12/3/15.
- */
 
 /**
  * Modified by Theon_Z on 12/6/15.
@@ -265,10 +265,11 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
         Picasso.with(SingleMenuActivity.this).load(imageUri.toString()).into(mUserImgView);
         mUserNickNameTextView.setText((String) menu.getmCreatedBy().get("nickName"));
         mMenuContentTextView.setText(menu.getmContent());
-
+        ArrayList<String> tempImgPaths = new ArrayList<>();
         for(int i = 0; i < menu.getmImg().size(); i++) {
-            mImgPaths.add(menu.getmImg().get(i).getUrl());
+            tempImgPaths.add(menu.getmImg().get(i).getUrl());
         }
+        mImgPaths = tempImgPaths;
         mToeRecyclerAdapter.changePath(mImgPaths);
 
         //populate comment list view
@@ -328,3 +329,4 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
         mCommentListView.setAdapter(mCommentAdapter);
     }
 }
+
