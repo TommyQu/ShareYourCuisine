@@ -78,6 +78,7 @@ public class MenuService {
         parseObject.put("img", menu.getmImg());
         parseObject.put("createdBy", ParseUser.getCurrentUser());
         parseObject.put("comments",menu.getmComments());
+        parseObject.put("cookingTime", menu.getmCookingTime());
         parseObject.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -105,6 +106,7 @@ public class MenuService {
                         menu.setmImg((ArrayList<ParseFile>) list.get(i).get("img"));
                         menu.setmDisplayImg(list.get(i).getParseFile("displayImg"));
                         menu.setmCreatedBy((ParseUser) list.get(i).get("createdBy"));
+                        menu.setmCookingTime((String) list.get(i).get("cookingTime"));
                         menus.add(menu);
                     }
                     mGetAllMenusListener.getAllMenusSuccess(menus);

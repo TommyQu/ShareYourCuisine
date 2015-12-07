@@ -26,6 +26,7 @@ public class MenuArrayAdapter extends ArrayAdapter<Menu> {
         TextView menuTitleTextView;
         TextView menuIdTextView;
         TextView userNameTextView;
+        TextView menuCookingTimeTextView;
     }
 
     public MenuArrayAdapter(Context context, List<Menu> menus) {
@@ -45,6 +46,7 @@ public class MenuArrayAdapter extends ArrayAdapter<Menu> {
             viewHolder.menuTitleTextView = (TextView)convertView.findViewById(R.id.menu_title);
             viewHolder.menuIdTextView = (TextView)convertView.findViewById(R.id.menu_id);
             viewHolder.userNameTextView = (TextView)convertView.findViewById(R.id.user_name);
+            viewHolder.menuCookingTimeTextView = (TextView)convertView.findViewById(R.id.menu_cooking_time);
             convertView.setTag(viewHolder);
         }
         else {
@@ -54,6 +56,7 @@ public class MenuArrayAdapter extends ArrayAdapter<Menu> {
         viewHolder.menuTitleTextView.setText(menu.getmTitle());
         viewHolder.menuIdTextView.setText(menu.getmObjectId());
         viewHolder.userNameTextView.setText(menu.getmCreatedBy().getUsername());
+        viewHolder.menuCookingTimeTextView.setText(menu.getmCookingTime());
         return convertView;
     }
 }

@@ -63,12 +63,30 @@
             android:adjustViewBounds="true" />
 
         <TextView
-            android:id="@+id/menu_content_text"
+            android:id="@+id/menu_cooking_time_text"
             style="@style/AddTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/menu_display_img"
-            android:text="@string/menu_content_text"/>
+            android:text="@string/menu_cooking_time_text"/>
+
+        <EditText
+            android:id="@+id/menu_cooking_time_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/menu_cooking_time_text"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_edittext_selector"
+            android:ems="10"/>
+
+        <TextView
+            android:id="@+id/menu_content_text"
+            style="@style/AddTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/menu_cooking_time_value"
+            android:text="@string/menu_content_text"
+            android:layout_marginTop="20dp"/>
 
         <EditText
             android:id="@+id/menu_content_value"

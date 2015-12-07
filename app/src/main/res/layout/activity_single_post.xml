@@ -134,9 +134,6 @@
         android:id="@+id/inputContent"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="-16dp"
-        android:layout_marginRight="-16dp"
-        android:layout_marginBottom="-16dp"
         android:background="@color/white"
         android:visibility="invisible">
 

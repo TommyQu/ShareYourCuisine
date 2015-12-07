@@ -43,6 +43,7 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
     private EditText mMenuContentValue;
     private ImageButton mMenuImgBtn;
     private ImageView mDisplayImgView;
+    private EditText mCookingTimeValue;
     private ArrayList<String> mDisplayImgPath = new ArrayList<>();
     private ArrayList<String> mImgPaths = new ArrayList<>();
     private Bitmap mDisPlayBitmap;
@@ -72,6 +73,7 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
         mMenuContentValue = (EditText)findViewById(R.id.menu_content_value);
         mMenuImgBtn = (ImageButton)findViewById(R.id.menu_img_button);
         mDisplayImgView = (ImageView)findViewById(R.id.menu_display_img);
+        mCookingTimeValue = (EditText)findViewById(R.id.menu_cooking_time_value);
         mSubmitBtn = (Button)findViewById(R.id.submit_btn);
         mCancelBtn = (Button)findViewById(R.id.cancel_btn);
 
@@ -114,7 +116,7 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
                     Menu menu = new Menu();
                     menu.setmTitle(mMenuTitleValue.getText().toString());
                     menu.setmContent(mMenuContentValue.getText().toString());
-
+                    menu.setmCookingTime(mCookingTimeValue.getText().toString());
                     //Decode display img
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     mDisPlayBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
@@ -192,7 +194,8 @@ public class AddMenuActivity extends ActionBarActivity implements MenuService.Ad
 
     private boolean check() {
         if(mMenuTitleValue.getText().toString().equals("")
-                || mMenuContentValue.getText().toString().equals("")) {
+                || mMenuContentValue.getText().toString().equals("")
+                || mCookingTimeValue.getText().toString().equals("")) {
             Toast.makeText(AddMenuActivity.this, "Please fill required text fields!", Toast.LENGTH_SHORT).show();
             return false;
         }

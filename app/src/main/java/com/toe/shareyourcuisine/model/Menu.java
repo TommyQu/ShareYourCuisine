@@ -20,12 +20,15 @@ public class Menu {
     private ArrayList<ParseFile> mImg;
     private Date mCreatedAt;
     private ParseUser mCreatedBy;
+    private String mCookingTime;
     private ArrayList<ParseObject> mComments;
+    private ArrayList<ParseUser> mLikedBy;
 
     public Menu() {
         mImg = new ArrayList<ParseFile>();
         mCreatedBy = new ParseUser();
         mComments = new ArrayList<ParseObject>();
+        mLikedBy = new ArrayList<ParseUser>();
     }
 
     public String getmObjectId() {
@@ -90,5 +93,21 @@ public class Menu {
 
     public void setmComments(ArrayList<ParseObject> mComments) {
         this.mComments = mComments;
+    }
+
+    public String getmCookingTime() {
+        return mCookingTime;
+    }
+
+    public void setmCookingTime(String mCookingTime) {
+        this.mCookingTime = mCookingTime;
+    }
+
+    public ArrayList<ParseUser> getmLikedBy() {
+        return mLikedBy;
+    }
+
+    public void setmLikedBy(ArrayList<ParseUser> mLikedBy) {
+        this.mLikedBy = mLikedBy;
     }
 }
