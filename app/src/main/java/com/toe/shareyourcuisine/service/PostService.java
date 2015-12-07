@@ -89,7 +89,7 @@ public class PostService {
     //Get all posts
     public void getAllPosts(int limitNum) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
-        query.addAscendingOrder("createdAt");
+        query.addDescendingOrder("createdAt");
         if(limitNum != 0)
             query.setLimit(limitNum);
         query.findInBackground(new FindCallback<ParseObject>() {

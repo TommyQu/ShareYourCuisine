@@ -48,8 +48,8 @@
     <string name="delete_menu">Delete menu</string>
     <string name="search_hint">Search</string>
     <string name="search_menu">Search menu</string>
-    <string name="hot_menu_text">Hot menus:</string>
-    <string name="hot_post_text">Hot posts:</string>
+    <string name="hot_menu_text">Latest menus:</string>
+    <string name="hot_post_text">Latest posts:</string>
     <string name="hot_activity_text">Hot activities:</string>
     <string name="share_activity">Share Activity</string>
     <string name="share_menu">Share Menu</string>

@@ -212,6 +212,7 @@
 
     <Button
         android:id="@+id/submit_btn"
+        style="@style/SubmitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_des_value"
@@ -222,6 +223,7 @@
 
     <Button
         android:id="@+id/cancel_btn"
+        style="@style/CancelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/submit_btn"

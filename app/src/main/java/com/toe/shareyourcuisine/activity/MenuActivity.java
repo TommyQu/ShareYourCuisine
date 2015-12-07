@@ -89,9 +89,9 @@ public class MenuActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 startActivity(intent);
             }
         }
-        else if (id == R.id.search_menu) {
-            onSearchRequested();
-        }
+//        else if (id == R.id.search_menu) {
+//            onSearchRequested();
+//        }
 
         return super.onOptionsItemSelected(item);
     }

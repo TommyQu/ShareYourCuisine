@@ -26,19 +26,12 @@
         android:layout_marginLeft="10dp"
         android:textSize="20sp"/>
 
-    <Button
-        android:id="@+id/sign_out_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/user_img"
-        android:text="@string/sign_out_btn"/>
-
     <TextView
         android:id="@+id/menu_text"
         style="@style/ProfileTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sign_out_btn"
+        android:layout_below="@id/user_name"
         android:layout_marginTop="10dp"
         android:text="@string/menu_text" />
 
@@ -101,4 +94,13 @@
         android:layout_below="@id/joined_activity_text"
         android:textColor="@color/blue"
         android:text="123"/>
+
+    <Button
+        android:id="@+id/sign_out_btn"
+        style="@style/CancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/joined_activity_num"
+        android:layout_marginTop="20dp"
+        android:text="@string/sign_out_btn"/>
 </RelativeLayout>

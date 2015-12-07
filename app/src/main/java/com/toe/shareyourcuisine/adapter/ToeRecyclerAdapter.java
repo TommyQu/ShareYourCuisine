@@ -62,7 +62,8 @@ public class ToeRecyclerAdapter extends RecyclerView.Adapter<ToeRecyclerAdapter.
 
     public void changePath(ArrayList<String> imagePaths) {
         this.mImgPaths = imagePaths;
-        mToeRecyclerController.setmImgView(imagePaths.get(0));
+        if(imagePaths.size() > 0)
+            mToeRecyclerController.setmImgView(imagePaths.get(0));
         notifyDataSetChanged();
     }
 

@@ -93,6 +93,7 @@ public class MenuService {
     public void getAllMenus(int limitNum) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Menu");
         query.include("createdBy");
+        query.orderByDescending("createdAt");
         if(limitNum != 0)
             query.setLimit(limitNum);
         query.findInBackground(new FindCallback<ParseObject>() {
