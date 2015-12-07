@@ -74,5 +74,61 @@
             android:layout_height="100dp"
             android:layout_below="@+id/menu_img"
             android:layout_centerInParent="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/menu_img_recycler_view"
+            android:id="@+id/commentsTextView"
+            android:text="@string/commentsText"
+            android:layout_marginLeft="20dp"
+            />
+
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/addCommentImgBtn"
+            android:background="@drawable/comment2"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:layout_alignBottom="@+id/commentsTextView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spCommentList"
+            android:layout_below="@+id/commentsTextView"
+            android:layout_alignLeft="@+id/commentsTextView"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/inputContent"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:visibility="invisible">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/commentContent"
+                android:hint="Say something here..."
+                android:layout_toStartOf="@+id/addCommentBtn"
+                android:layout_toLeftOf="@+id/addCommentBtn"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:id="@+id/addCommentBtn"
+                android:text="@string/add_comment_btn_text"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+
     </RelativeLayout>
 </ScrollView>

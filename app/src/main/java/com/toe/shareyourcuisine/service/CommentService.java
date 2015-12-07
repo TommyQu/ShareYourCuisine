@@ -75,5 +75,41 @@ public class CommentService {
             }
         });
     }
+
+    public void addCommentToMenu(final String menuId, final Comment comment) {
+        final ParseObject commentObj = new ParseObject("Comment");
+        commentObj.put("content",comment.getContent());
+        commentObj.put("createdBy",comment.getCreatedBy());
+        commentObj.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if( e == null) {
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Menu");
+                    query.whereEqualTo("objectId", menuId);
+                    query.getFirstInBackground(new GetCallback<ParseObject>() {
+                        @Override
+                        public void done(ParseObject parseObject, ParseException e) {
+                            if(e == null) {
+                                parseObject.addUnique("comments", commentObj);
+                                parseObject.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(ParseException e) {
+                                        if (e == null)
+                                            mAddCommentToMenuListener.addCommentToMenuSuccess();
+                                        else
+                                            mAddCommentToMenuListener.addCommentToMenuFail(e.getMessage().toString());
+                                    }
+                                });
+                            } else {
+                                mAddCommentToMenuListener.addCommentToMenuFail(e.getMessage().toString());
+                            }
+                        }
+                    });
+                } else {
+                    mAddCommentToMenuListener.addCommentToMenuFail(e.getMessage().toString());
+                }
+            }
+        });
+    }
 }
 

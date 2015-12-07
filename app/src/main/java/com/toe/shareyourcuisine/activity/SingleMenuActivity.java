@@ -12,9 +12,14 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +36,12 @@ import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 import com.toe.shareyourcuisine.R;
+import com.toe.shareyourcuisine.adapter.CommentArrayAdapter;
 import com.toe.shareyourcuisine.adapter.ToeRecyclerAdapter;
+import com.toe.shareyourcuisine.model.Comment;
+import com.toe.shareyourcuisine.model.Menu;
 import com.toe.shareyourcuisine.model.ToeRecyclerController;
+import com.toe.shareyourcuisine.service.CommentService;
 import com.toe.shareyourcuisine.service.MenuService;
 
 import java.util.ArrayList;
@@ -42,8 +51,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by TommyQu on 12/3/15.
  */
+
+/**
+ * Modified by Theon_Z on 12/6/15.
+ * Allow user to add comments to menu
+ */
+
 public class SingleMenuActivity extends ActionBarActivity implements MenuService.GetSingleMenuListener,
-    MenuService.DeleteMenuListener{
+        MenuService.DeleteMenuListener,CommentService.AddCommentToMenuListener{
 
     private static final String TAG = "ToeSingleMenu";
     private String mMenuId;
@@ -67,6 +82,15 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
     private ArrayList<Bitmap> mImgBitmaps = new ArrayList<Bitmap>();
     private ArrayList<String> mImgPaths = new ArrayList<>();
     private ProgressDialog mProgressDialog;
+
+    private ImageButton mAddCommentImgBtn;
+    private RelativeLayout mIuputContent;
+    private EditText mCommentContent;
+    private Button mAddCommentBtn;
+    private CommentService mCommentService;
+    private ListView mCommentListView;
+    private ArrayList<Comment> mCommentList = new ArrayList<Comment>();
+    private CommentArrayAdapter mCommentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,12 +123,51 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mToeRecyclerAdapter);
 
+        mAddCommentImgBtn = (ImageButton) findViewById(R.id.addCommentImgBtn);
+        mIuputContent = (RelativeLayout) findViewById(R.id.inputContent);
+        mCommentContent = (EditText) findViewById(R.id.commentContent);
+        mAddCommentBtn = (Button) findViewById(R.id.addCommentBtn);
+        mCommentListView = (ListView) findViewById(R.id.spCommentList);
+
+
+        mCommentService = new CommentService(SingleMenuActivity.this, SingleMenuActivity.this, "addCommentToMenu");
+
+        mAddCommentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCommentContent.getText().equals(null)) {
+                    Toast.makeText(SingleMenuActivity.this, "Comment content can't be empty!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SingleMenuActivity.this, "Commenting Succeed!", Toast.LENGTH_SHORT).show();
+                    Comment comment = new Comment();
+                    comment.setContent(mCommentContent.getText().toString());
+                    comment.setCreatedBy(ParseUser.getCurrentUser());
+                    mCommentService.addCommentToMenu(mMenuId, comment);
+                    mCommentContent.clearComposingText();
+                    mIuputContent.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        mAddCommentImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mIuputContent.getVisibility() == View.VISIBLE) {
+                    mIuputContent.setVisibility(View.INVISIBLE);
+                } else if (mIuputContent.getVisibility() == View.INVISIBLE) {
+                    mIuputContent.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
+
         MenuService menuService = new MenuService(SingleMenuActivity.this, SingleMenuActivity.this, "getSingleMenu");
         menuService.getSingleMenu(mMenuId);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
         if(mIsCurrentUser == true)
             getMenuInflater().inflate(R.menu.menu_single_menu, menu);
         else
@@ -207,6 +270,11 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
             mImgPaths.add(menu.getmImg().get(i).getUrl());
         }
         mToeRecyclerAdapter.changePath(mImgPaths);
+
+        //populate comment list view
+        populateComment(menu);
+        populateListView();
+
         mProgressDialog.dismiss();
     }
 
@@ -228,5 +296,35 @@ public class SingleMenuActivity extends ActionBarActivity implements MenuService
     @Override
     public void deleteMenuListenerFail(String errorMsg) {
         Toast.makeText(SingleMenuActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void addCommentToMenuSuccess() {
+        MenuService menuService = new MenuService(SingleMenuActivity.this, SingleMenuActivity.this, "getSingleMenu");
+        menuService.getSingleMenu(mMenuId);
+    }
+
+    @Override
+    public void addCommentToMenuFail(String errorMsg) {
+        Toast.makeText(SingleMenuActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void populateComment(Menu menu) {
+        ArrayList<Comment> tempComentList = new ArrayList<Comment>();
+
+        for(int i = 0;i<menu.getmComments().size();i++) {
+            Comment currentComment = new Comment();
+            currentComment.setObjectId(menu.getmComments().get(i).getObjectId());
+            currentComment.setCreatedAt(menu.getmComments().get(i).getCreatedAt());
+            currentComment.setContent(menu.getmComments().get(i).getString("content").toString());
+            currentComment.setCreatedBy((ParseUser) menu.getmComments().get(i).get("createdBy"));
+            tempComentList.add(currentComment);
+        }
+        mCommentList = tempComentList;
+    }
+
+    private void populateListView() {
+        mCommentAdapter = new CommentArrayAdapter(SingleMenuActivity.this,mCommentList);
+        mCommentListView.setAdapter(mCommentAdapter);
     }
 }

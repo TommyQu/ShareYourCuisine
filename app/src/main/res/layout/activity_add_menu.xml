@@ -45,6 +45,7 @@
             android:adjustViewBounds="true"
             android:maxHeight="60dp"
             android:maxWidth="60dp"
+            android:scaleType="fitXY"
             android:src="@drawable/add_img_btn"/>
 
         <ImageView
@@ -79,6 +80,7 @@
             android:adjustViewBounds="true"
             android:maxHeight="60dp"
             android:maxWidth="60dp"
+            android:scaleType="fitXY"
             android:src="@drawable/add_img_btn"/>
 
         <ImageView

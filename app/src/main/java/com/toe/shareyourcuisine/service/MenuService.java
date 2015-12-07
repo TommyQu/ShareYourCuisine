@@ -19,6 +19,11 @@ import java.util.List;
 /**
  * Created by TommyQu on 12/2/15.
  */
+
+/**
+ * Modified by Theon_Z on 12/6/15.
+ * Add comment to menu
+ */
 public class MenuService {
 
     private static final String TAG = "ToeMenuService";
@@ -72,6 +77,7 @@ public class MenuService {
         parseObject.put("content", menu.getmContent());
         parseObject.put("img", menu.getmImg());
         parseObject.put("createdBy", ParseUser.getCurrentUser());
+        parseObject.put("comments",menu.getmComments());
         parseObject.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -112,6 +118,7 @@ public class MenuService {
     public void getSingleMenu(final String menuId) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Menu");
         query.include("createdBy");
+        query.include("comments");
         query.whereEqualTo("objectId", menuId);
         query.getFirstInBackground(new GetCallback<ParseObject>() {
             @Override
@@ -124,6 +131,7 @@ public class MenuService {
                     menu.setmContent((String) parseObject.get("content"));
                     menu.setmCreatedBy((ParseUser) parseObject.get("createdBy"));
                     menu.setmImg((ArrayList<ParseFile>) parseObject.get("img"));
+                    menu.setmComments((ArrayList<ParseObject>) parseObject.get("comments"));
                     mGetSingleMenuListener.getSingleMenusSuccess(menu);
                 } else {
                     mGetSingleMenuListener.getSingleMenusFail(e.getMessage().toString());
