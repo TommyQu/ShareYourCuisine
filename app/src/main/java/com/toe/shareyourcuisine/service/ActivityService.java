@@ -131,6 +131,7 @@ public class ActivityService {
     public void getAllActivities() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Activity");
         query.include("createdBy");
+        query.orderByDescending("joinedNum");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {

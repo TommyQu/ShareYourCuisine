@@ -13,8 +13,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="7dp"
-        android:layout_marginLeft="7dp"
-        android:src="@drawable/edittext_bg"/>
+        android:layout_marginLeft="7dp" />
 
     <TextView
         android:id="@+id/nick_name"
@@ -22,8 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_img"
         android:layout_marginTop="6dp"
-        android:layout_marginBottom="7dp"
-        android:text="Tommy Qu"/>
+        android:layout_marginBottom="7dp" />
 
     <TextView
         android:id="@+id/user_name"
@@ -38,8 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/user_img"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="6dp"
-        android:text="111"/>
+        android:layout_marginTop="6dp" />
 
     <TextView
         android:id="@+id/activity_start_time"
@@ -47,8 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_title"
         android:layout_toRightOf="@+id/user_img"
-        android:layout_marginLeft="14dp"
-        android:text="Nov 16 2015"/>
+        android:layout_marginLeft="14dp" />
 
     <TextView
         android:id="@+id/activity_city"
@@ -56,8 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_start_time"
         android:layout_toRightOf="@+id/user_img"
-        android:layout_marginLeft="14dp"
-        android:text="Arlington"/>
+        android:layout_marginLeft="14dp" />
 
     <TextView
         android:id="@+id/activity_state"
@@ -65,8 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_start_time"
         android:layout_toRightOf="@+id/activity_city"
-        android:layout_marginLeft="5dp"
-        android:text="Virginia"/>
+        android:layout_marginLeft="5dp" />
 
     <TextView
         android:id="@+id/joined_by_text"
@@ -84,8 +78,7 @@
         android:layout_below="@+id/activity_title"
         android:layout_alignParentRight="true"
         android:layout_marginRight="30dp"
-        android:textSize="18sp"
-        android:text="10"/>
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/people_text"

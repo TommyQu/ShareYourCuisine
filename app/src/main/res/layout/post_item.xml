@@ -3,7 +3,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -11,6 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginTop="7dp"
         android:src="@drawable/edittext_bg"/>
 
     <TextView
@@ -20,7 +20,9 @@
         android:id="@+id/UserName"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/UserImage"
-        android:layout_toEndOf="@+id/UserImage"/>
+        android:layout_toEndOf="@+id/UserImage"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="9dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,7 +31,8 @@
         android:id="@+id/CreatedAt"
         android:layout_toRightOf="@+id/UserImage"
         android:layout_toEndOf="@+id/UserImage"
-        android:layout_below="@+id/UserName"/>
+        android:layout_below="@+id/UserName"
+        android:layout_marginLeft="9dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -39,47 +42,9 @@
         android:id="@+id/Content"
         android:layout_below="@+id/CreatedAt"
         android:layout_toRightOf="@+id/UserImage"
-        android:layout_toEndOf="@+id/UserImage"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Content"
-        android:layout_alignLeft="@+id/Content"
-        android:layout_alignStart="@+id/Content"
-        android:weightSum="1"
-        android:id="@+id/linearLayout2">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/PostImage1"
-            android:adjustViewBounds="true"
-            android:maxHeight="60dp"
-            android:maxWidth="60dp"
-            />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/PostImage1"
-            android:layout_toEndOf="@+id/PostImage1"
-            android:id="@+id/PostImage2"
-            android:adjustViewBounds="true"
-            android:maxHeight="60dp"
-            android:maxWidth="60dp"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/PostImage2"
-            android:layout_toEndOf="@+id/PostImage2"
-            android:id="@+id/PostImage3"
-            android:adjustViewBounds="true"
-            android:maxHeight="60dp"
-            android:maxWidth="60dp"/>
-    </LinearLayout>
+        android:layout_toEndOf="@+id/UserImage"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="9dp"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -90,7 +55,9 @@
         android:layout_alignStart="@+id/Content"
         android:adjustViewBounds="true"
         android:maxHeight="60dp"
-        android:maxWidth="60dp"/>
+        android:maxWidth="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="7dp"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -101,7 +68,10 @@
         android:layout_toEndOf="@+id/plPostImageView1"
         android:adjustViewBounds="true"
         android:maxHeight="60dp"
-        android:maxWidth="60dp"/>
+        android:maxWidth="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="5dp"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -112,7 +82,10 @@
         android:layout_toEndOf="@+id/plPostImageView2"
         android:adjustViewBounds="true"
         android:maxHeight="60dp"
-        android:maxWidth="60dp"/>
+        android:maxWidth="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="5dp"/>
 
 
 </RelativeLayout>

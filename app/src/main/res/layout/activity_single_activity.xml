@@ -12,8 +12,7 @@
         android:id="@+id/user_img"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/syc_icon"/>
+        android:layout_marginTop="8dp"/>
 
     <TextView
         android:id="@+id/activity_title"
@@ -22,8 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/user_img"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="20dp"
-        android:text="sdfasdf"/>
+        android:layout_marginLeft="20dp" />
 
     <Button
         android:id="@+id/activity_join"
@@ -53,8 +51,7 @@
         style="@style/SingleActivityUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/user_img"
-        android:text="Tommy Qu"/>
+        android:layout_below="@+id/user_img" />
 
     <ImageView
         android:id="@+id/address_icon"
@@ -72,8 +69,7 @@
         android:layout_below="@+id/user_name"
         android:layout_toRightOf="@id/address_icon"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="9dp"
-        android:text="asfasf"/>
+        android:layout_marginLeft="9dp" />
 
     <ImageView
         android:id="@+id/time_icon"
@@ -91,8 +87,7 @@
         android:layout_below="@+id/activity_address"
         android:layout_toRightOf="@id/time_icon"
         android:layout_marginTop="9dp"
-        android:layout_marginLeft="9dp"
-        android:text="starttime"/>
+        android:layout_marginLeft="9dp" />
 
     <TextView
         android:id="@+id/activity_end_time"
@@ -102,8 +97,7 @@
         android:layout_below="@+id/activity_start_time"
         android:layout_toRightOf="@id/time_icon"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="9dp"
-        android:text="endtime"/>
+        android:layout_marginLeft="9dp" />
 
     <ImageView
         android:id="@+id/content_icon"
@@ -121,8 +115,7 @@
         android:layout_below="@id/activity_end_time"
         android:layout_toRightOf="@+id/content_icon"
         android:layout_marginTop="7dp"
-        android:layout_marginLeft="9dp"
-        android:text="asdfasfsfsdfadf"/>
+        android:layout_marginLeft="9dp" />
 
     <TextView
         android:id="@+id/activity_joined_by"

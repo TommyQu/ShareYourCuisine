@@ -10,7 +10,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:src="@drawable/edittext_bg"/>
+        android:src="@drawable/edittext_bg"
+        android:layout_marginTop="7dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,7 +20,9 @@
         android:id="@+id/userNickNameTextView"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/userImageImgView"
-        android:layout_toEndOf="@+id/userImageImgView"/>
+        android:layout_toEndOf="@+id/userImageImgView"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="7dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,7 +31,8 @@
         android:id="@+id/createdAtTextView"
         android:layout_toRightOf="@+id/userImageImgView"
         android:layout_toEndOf="@+id/userImageImgView"
-        android:layout_below="@+id/userNickNameTextView"/>
+        android:layout_below="@+id/userNickNameTextView"
+        android:layout_marginLeft="14dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -38,6 +42,8 @@
         android:id="@+id/contentTextView"
         android:layout_below="@+id/createdAtTextView"
         android:layout_toRightOf="@+id/userImageImgView"
-        android:layout_toEndOf="@+id/userImageImgView"/>
+        android:layout_toEndOf="@+id/userImageImgView"
+        android:layout_marginLeft="14dp"
+        android:layout_marginBottom="7dp"/>
 
 </RelativeLayout>

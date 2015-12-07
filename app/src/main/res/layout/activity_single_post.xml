@@ -26,7 +26,8 @@
         android:id="@+id/spUserName"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/spUserImage"
-        android:layout_toEndOf="@+id/spUserImage"/>
+        android:layout_toEndOf="@+id/spUserImage"
+        android:layout_marginLeft="9dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,7 +36,8 @@
         android:id="@+id/spCreatedAt"
         android:layout_toRightOf="@+id/spUserImage"
         android:layout_toEndOf="@+id/spUserImage"
-        android:layout_below="@+id/spUserName"/>
+        android:layout_below="@+id/spUserName"
+        android:layout_marginLeft="9dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -45,7 +47,9 @@
         android:id="@+id/spContent"
         android:layout_below="@+id/spCreatedAt"
         android:layout_toRightOf="@+id/spUserImage"
-        android:layout_toEndOf="@+id/spUserImage"/>
+        android:layout_toEndOf="@+id/spUserImage"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="9dp"/>
 
 
     <LinearLayout
@@ -62,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spPostImage1"
-
+            android:layout_marginTop="5dp"
             android:adjustViewBounds="true"
             android:maxHeight="60dp"
             android:maxWidth="60dp"
@@ -74,10 +78,11 @@
             android:layout_toRightOf="@+id/spPostImage1"
             android:layout_toEndOf="@+id/spPostImage1"
             android:id="@+id/spPostImage2"
-
+            android:layout_marginTop="5dp"
             android:adjustViewBounds="true"
             android:maxHeight="60dp"
-            android:maxWidth="60dp"/>
+            android:maxWidth="60dp"
+            android:layout_marginLeft="5dp"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -87,7 +92,9 @@
             android:id="@+id/spPostImage3"
             android:adjustViewBounds="true"
             android:maxHeight="60dp"
-            android:maxWidth="60dp"/>
+            android:maxWidth="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"/>
     </LinearLayout>
 
     <TextView
@@ -96,7 +103,10 @@
         android:layout_below="@+id/linearLayout"
         android:id="@+id/commentsTextView"
         android:text="@string/commentsText"
-        android:layout_toRightOf="@+id/spUserImage"/>
+        android:textSize="20sp"
+        android:layout_toRightOf="@+id/spUserImage"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="9dp"/>
 
     <ListView
         android:layout_width="wrap_content"
@@ -104,7 +114,7 @@
         android:id="@+id/spCommentList"
         android:layout_below="@+id/commentsTextView"
         android:layout_alignLeft="@+id/linearLayout"
-        android:layout_alignStart="@+id/linearLayout"/>
+        android:layout_alignStart="@+id/linearLayout" />
 
     <ImageButton
         android:layout_width="35dp"
@@ -124,15 +134,20 @@
         android:id="@+id/inputContent"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-16dp"
+        android:layout_marginRight="-16dp"
+        android:layout_marginBottom="-16dp"
+        android:background="@color/white"
         android:visibility="invisible">
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:id="@+id/commentContent"
             android:hint="Say something here..."
             android:layout_toStartOf="@+id/addCommentBtn"
             android:layout_toLeftOf="@+id/addCommentBtn"
+            android:background="@drawable/bg_edittext_selector"
             />
         <Button
             android:layout_width="wrap_content"
