@@ -1,21 +1,31 @@
 package com.toe.shareyourcuisine.activity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.toe.shareyourcuisine.R;
 import com.toe.shareyourcuisine.model.User;
 import com.toe.shareyourcuisine.service.UserService;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Date;
 
 /**
@@ -25,7 +35,7 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
 
     private static final String TAG = "ToeSignUpActivity";
     private FrameLayout mContentView;
-
+    private  static final int RESULT_LOAD_IMAGE = 1;
     private EditText mUserEmailValue;
     private EditText mUserNickNameValue;
     private EditText mUserPwdValue;
@@ -37,6 +47,9 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
     private EditText mUserDesValue;
     private Button mSubmitBtn;
     private Button mCancelBtn;
+    private ImageView mUserImgView;
+    private ImageButton mAddImgBtn;
+    private Bitmap mBitmapImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +65,17 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
         mBtnGroup = (RadioGroup)findViewById(R.id.btn_group);
         mDobPicker = (DatePicker)findViewById(R.id.dob_picker);
         mUserDesValue = (EditText)findViewById(R.id.user_des_value);
+        mUserImgView = (ImageView) findViewById(R.id.userImageView);
+        mAddImgBtn = (ImageButton) findViewById(R.id.addImageButton);
+
+        mAddImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+            }
+        });
+
 
         mSubmitBtn = (Button)findViewById(R.id.submit_btn);
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
@@ -65,27 +89,19 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
                     user.setUserGender(mUserGender);
                     user.setUserDob(mUserDob);
                     user.setUserDescription(mUserDesValue.getText().toString());
+
+                    ParseFile tempImg;
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    mBitmapImg.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+                    tempImg = new ParseFile("userImg.jpg", byteArray);
+                    try {
+                        tempImg.save();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    user.setUserImg(tempImg);
                     final UserService userService = new UserService(SignUpActivity.this, SignUpActivity.this, "SignUp");
-
-                    /*//set default user img
-                    //initialize the user img
-                    final User tempUser = user;
-
-                    if(user.getUserImg() == null) {
-                        //test convert img to parsefile
-                        Bitmap bitmap = BitmapFactory.decodeResource(SignUpActivity.this.getResources(), R.drawable.edittext_bg);
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                        byte[] bitmapdata = stream.toByteArray();
-                        ParseFile defaultImgFile = new ParseFile(user.getUserName()+".png",bitmapdata);
-                        defaultImgFile.saveInBackground(new SaveCallback() {
-                            @Override
-                            public void done(ParseException e) {
-                                userService.signUp(tempUser);
-                            }
-                        });
-                        //test ends
-                    }*/
 
                     userService.signUp(user);
                 }
@@ -144,5 +160,26 @@ public class SignUpActivity extends BaseActivity implements UserService.UserSign
     @Override
     public void signUpFail(String errorMsg) {
         Toast.makeText(SignUpActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null) {
+            Uri selectedImage = data.getData();
+            //get the image
+            String[] filePath = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(selectedImage,filePath,null,null,null);
+            cursor.moveToFirst();
+            String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
+
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            Bitmap currentImg = BitmapFactory.decodeFile(imagePath,options);
+            mBitmapImg= currentImg;
+            cursor.close();
+            mUserImgView.setImageURI(selectedImage);
+
+        }
     }
 }

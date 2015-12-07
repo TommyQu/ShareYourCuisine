@@ -178,6 +178,38 @@
         android:inputType="textMultiLine"
         android:lines="4" />
 
+        <TextView
+            android:id="@+id/user_img_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_des_text"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:text="@string/user_img_text" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="30dp">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userImageView"
+        android:adjustViewBounds="true"
+        android:maxHeight="60dp"
+        android:maxWidth="60dp"/>
+
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/addImageButton"
+        android:layout_toRightOf="@+id/userImageView"
+        android:layout_toEndOf="@+id/userImageView"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:background="@drawable/add_img_btn"/>
+</RelativeLayout>
+
+
     <Button
         android:id="@+id/submit_btn"
         android:layout_width="wrap_content"
@@ -197,6 +229,9 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:text="@string/cancel_btn" />
+
+
+
 
     </TableLayout>
 </ScrollView>
