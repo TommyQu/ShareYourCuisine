@@ -39,14 +39,14 @@
 
         <ImageButton
             android:id="@+id/menu_display_img_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_below="@+id/menu_display_img_text"
             android:adjustViewBounds="true"
             android:maxHeight="60dp"
             android:maxWidth="60dp"
             android:scaleType="fitXY"
-            android:src="@drawable/add_img_btn"/>
+            android:background="@drawable/add_img_btn"/>
 
         <ImageView
             android:id="@+id/menu_display_img"
@@ -74,14 +74,14 @@
 
         <ImageButton
             android:id="@+id/menu_img_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_below="@id/menu_content_value"
             android:adjustViewBounds="true"
             android:maxHeight="60dp"
             android:maxWidth="60dp"
             android:scaleType="fitXY"
-            android:src="@drawable/add_img_btn"/>
+            android:background="@drawable/add_img_btn"/>
 
         <ImageView
             android:id="@+id/menu_img"
